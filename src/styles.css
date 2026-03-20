@@ -592,7 +592,7 @@ a {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .shell {
     grid-template-columns: 1fr;
   }
@@ -601,7 +601,8 @@ a {
     position: sticky;
     top: 0;
     z-index: 20;
-    height: auto;
+    height: auto !important;
+    width: 100%;
     border-right: none;
     border-bottom: 1px solid rgba(186, 201, 204, 0.25);
     padding: 14px 12px 12px;
@@ -624,11 +625,11 @@ a {
   }
 
   .mobile-nav {
-    display: block;
+    display: block !important;
   }
 
   .nav-list {
-    display: none;
+    display: none !important;
   }
 
   .span-8,
