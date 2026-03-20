@@ -1,43 +1,76 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const base = import.meta.env.BASE_URL;
+import PromptLab from '../components/PromptLab.astro';
 ---
 
 <BaseLayout title="AI Architect | デプロイ" current="deployment">
   <section class="hero">
     <div class="section-tag">Phase 05</div>
-    <h1>Deployment | Maintenance</h1>
-    <p>ローカルで完成した実装をクラウドへ安全に届け、運用フェーズで安定稼働を維持するための実践パターンです。</p>
+    <h1>Deployment | 发布上线与配置解释</h1>
+    <p>上线阶段最怕“看起来都对，但就是不能发”。浏览器里的 AI 很适合帮助我们解释配置、梳理发布步骤、理解 CI 失败点，降低上线焦虑。</p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
-      <span class="kicker">Bridging Code to Cloud</span>
-      <h3>CI/CD とクラウド構成の標準化</h3>
-      <p>パイプラインの定義、環境差分の管理、ロールバック導線の設計をテンプレート化して、デプロイ失敗率を下げます。</p>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;">
-        <div class="card soft"><strong>CI/CD Pipelines</strong><p>自動ビルドと自動配信</p></div>
-        <div class="card soft"><strong>Cloud Infra</strong><p>環境ごとの構成管理</p></div>
-      </div>
+      <span class="kicker">Core Challenge</span>
+      <h3 class="panel-title">部署难点往往集中在“信息不透明”</h3>
+      <ul class="challenge-list">
+        <li>工作流文件、环境变量、构建命令和托管平台设置分散在多个地方。</li>
+        <li>CI 报错常常是平台术语，读起来费劲，定位成本高。</li>
+        <li>团队知道要回滚、要监控，但临门一脚时经常没有清晰步骤。</li>
+      </ul>
     </article>
 
     <article class="card accent span-4">
-      <h3>The AI Advantage</h3>
+      <h3 class="panel-title">网页 AI 可直接帮你</h3>
       <ul class="pill-list">
-        <li>GitHub Actions 雛形の生成</li>
-        <li>ログから異常兆候を検出</li>
-        <li>設定ファイルの説明と監査</li>
+        <li>解释 GitHub Actions / Docker / Nginx 配置</li>
+        <li>从报错日志推测最可能的失败环节</li>
+        <li>生成最小可行部署流程和回滚清单</li>
+        <li>帮助核对环境变量与构建命令</li>
       </ul>
-      <p class="metric">99.9%</p>
+      <p class="metric">Ship</p>
     </article>
 
-    <article class="card span-12">
-      <h3>Stitch 元デザイン</h3>
-      <div class="image-panel">
-        <img src={`${base}deployment-screen.png`} alt="deployment screen" />
-      </div>
+    <article class="card soft span-6">
+      <span class="kicker">Browser Inputs</span>
+      <ul class="detail-list">
+        <li>工作流 YAML、构建脚本、Dockerfile</li>
+        <li>托管平台构建日志和失败截图</li>
+        <li>环境变量说明与部署目标平台</li>
+      </ul>
+    </article>
+
+    <article class="card soft span-6">
+      <span class="kicker">Ideal Outputs</span>
+      <ul class="detail-list">
+        <li>发布前 checklist</li>
+        <li>失败根因的优先级排序</li>
+        <li>回滚方案与上线后验证项</li>
+      </ul>
     </article>
   </section>
 
-  <div class="footer">Prompt Example: Next.js を main push で自動デプロイ</div>
+  <PromptLab
+    id="deployment-lab"
+    title="发布阶段 Prompt"
+    intro="把工作流配置、平台报错或部署目标说明贴进来，生成一条更适合用 ChatGPT 排查和落地部署的 prompt。"
+    contextLabel="配置 / 构建日志 / 目标平台"
+    contextPlaceholder="例如：我要把一个 Astro 站点部署到 GitHub Pages，当前 workflow 已有 install 和 build，但 deploy 失败，日志里提到 artifact 和 pages 配置。"
+    promptTemplate={`请作为熟悉 CI/CD 和前端部署的平台工程师，基于下面的上下文帮助我完成发布。
+
+上下文：
+__CONTEXT__
+
+请按下面格式输出：
+1. 先判断当前最可能卡在哪个环节。
+2. 用通俗语言解释报错或配置文件里关键字段的含义。
+3. 给出最小可行的部署步骤。
+4. 列出我应该检查的环境变量、构建命令和平台设置。
+5. 如果发布失败，给一个从高概率到低概率的排查清单。
+6. 最后补一份上线后验证和回滚建议。`}
+    promptNote="如果你只是“看不懂这段 workflow 在做什么”，也可以直接把 YAML 丢进去让它解释。"
+  />
+
+  <div class="footer">发布阶段先让 AI 做“解释器”和“排查助手”，能显著减少对平台术语的恐惧感。</div>
 </BaseLayout>

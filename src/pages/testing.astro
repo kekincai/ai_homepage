@@ -1,43 +1,76 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const base = import.meta.env.BASE_URL;
+import PromptLab from '../components/PromptLab.astro';
 ---
 
 <BaseLayout title="AI Architect | テスト" current="testing">
   <section class="hero">
     <div class="section-tag">Phase 04</div>
-    <h1>Testing | QA</h1>
-    <p>網羅率だけでなく、仕様変化への追従速度を高めるために、AI エージェントを使った自動化を中心に設計しています。</p>
+    <h1>Testing | 用网页 AI 补齐测试盲区</h1>
+    <p>测试难的不只是写 case，而是想到该测什么、哪里最脆弱、为什么这次改动会把别处带坏。浏览器里的 AI 特别适合做“补盲”和“解释失败”。</p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
-      <span class="kicker">Precision Layer</span>
-      <h3>テストの品質レイヤー</h3>
-      <p>ユニットテストと統合テストを軸に、入力パターンを増やしつつ回帰リスクを最小化します。</p>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;">
-        <div class="card soft"><strong>Unit Testing</strong><p>関数単位の厳密検証</p></div>
-        <div class="card soft"><strong>Integration Testing</strong><p>モジュール間の連携検証</p></div>
-      </div>
+      <span class="kicker">Core Challenge</span>
+      <h3 class="panel-title">测试常见的痛点不是写不了，而是不知道漏了什么</h3>
+      <ul class="challenge-list">
+        <li>功能分支、异常输入、权限差异和空状态很容易漏。</li>
+        <li>已有测试存在，但和最新实现早就不一致。</li>
+        <li>失败日志很多，真正的根因却藏得很深。</li>
+      </ul>
     </article>
 
     <article class="card accent span-4">
-      <h3>AI Integration</h3>
+      <h3 class="panel-title">网页 AI 适合做什么</h3>
       <ul class="pill-list">
-        <li>複雑ケースのテスト自動生成</li>
-        <li>エッジケース抽出</li>
-        <li>障害ログの自然言語説明</li>
+        <li>从需求或代码推导测试场景</li>
+        <li>补充 edge cases 与错误输入</li>
+        <li>解释 flaky test 和失败日志</li>
+        <li>先生成测试思路，再落到 Jest / Playwright</li>
       </ul>
-      <p class="metric">+40%</p>
+      <p class="metric">Coverage</p>
     </article>
 
-    <article class="card span-12">
-      <h3>Stitch 元デザイン</h3>
-      <div class="image-panel">
-        <img src={`${base}testing-screen.png`} alt="testing screen" />
-      </div>
+    <article class="card soft span-6">
+      <span class="kicker">Use Inputs Like This</span>
+      <ul class="detail-list">
+        <li>需求描述 + 关键状态流转</li>
+        <li>某个函数 / 组件的实现代码</li>
+        <li>测试失败截图、栈信息、控制台日志</li>
+      </ul>
+    </article>
+
+    <article class="card soft span-6">
+      <span class="kicker">Expected Output</span>
+      <ul class="detail-list">
+        <li>优先级排序后的测试清单</li>
+        <li>按单测 / 集成 / E2E 分类的建议</li>
+        <li>最容易产生回归的高风险路径</li>
+      </ul>
     </article>
   </section>
 
-  <div class="footer">Prompt Blueprint: Jest / Playwright / API Contract Test</div>
+  <PromptLab
+    id="testing-lab"
+    title="测试阶段 Prompt"
+    intro="把需求、实现片段或失败日志贴进来，让页面先把 prompt 组织好，再跳到 ChatGPT 里生成测试方案或定位问题。"
+    contextLabel="需求 / 实现 / 测试失败日志"
+    contextPlaceholder="例如：这个表单支持邮箱登录和手机号登录，最近加了验证码逻辑。现有测试只覆盖成功路径，CI 中出现了一个与 disabled 按钮状态相关的失败。"
+    promptTemplate={`请扮演资深测试工程师，基于下面的上下文帮我设计测试并找出薄弱点。
+
+上下文：
+__CONTEXT__
+
+请按下面格式输出：
+1. 用一句话总结这次测试目标。
+2. 列出必须覆盖的核心场景。
+3. 列出最容易遗漏的 edge cases。
+4. 按 单元测试 / 集成测试 / E2E 测试 三类给建议。
+5. 如果给了失败日志，推断最可能的根因和排查顺序。
+6. 最后给出一份可执行的测试清单或示例测试代码草案。`}
+    promptNote="适合在写测试前做 coverage planning，也适合把失败日志丢进去让 AI 先帮你缩小范围。"
+  />
+
+  <div class="footer">先让 AI 帮你找“漏测点”，通常比直接让它写一大段测试代码更有效。</div>
 </BaseLayout>

@@ -1,63 +1,83 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PromptLab from '../components/PromptLab.astro';
 ---
 
 <BaseLayout title="AI Architect | 要件定義" current="requirements">
   <section class="hero">
     <div class="section-tag">Phase 01</div>
-    <h1>Requirements | 要件定義ワークベンチ</h1>
-    <p>曖昧な要望を、開発可能な仕様に変換するための起点です。AI を使ってヒアリング内容を構造化し、優先度・受け入れ条件・リスクを同時に整理します。</p>
+    <h1>Requirements | 把模糊需求变成可执行规格</h1>
+    <p>软件工程的很多返工，其实从需求阶段就埋下了。浏览器里的 AI 最值钱的地方，是能快速把散乱输入整理成一份能让团队对齐的起稿版。</p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
       <span class="kicker">Discovery Board</span>
-      <h3>要件インテーク</h3>
-      <p class="muted">会議メモ、チャット、既存仕様、障害履歴を AI で統合し、最初のバックログ候補を作成します。</p>
+      <h3 class="panel-title">为什么需求阶段总是反复</h3>
+      <p class="muted">真实团队里的需求常常不是一份整洁 PRD，而是会议纪要、老板口头补充、旧版本行为和客户抱怨拼出来的。</p>
       <ul class="detail-list">
-        <li>ステークホルダー抽出: 意思決定者、利用者、運用担当を自動分類</li>
-        <li>要件の分解: 機能要件 / 非機能要件 / 制約条件へ展開</li>
-        <li>競合度判定: 依存・競合・不明点をフラグ化してレビュー対象化</li>
+        <li>信息分散，谁说了算、哪个版本最新，经常讲不清。</li>
+        <li>“想要什么”说了很多，“怎么验收”却没说清。</li>
+        <li>非功能需求如性能、安全、审计、兼容性容易完全漏掉。</li>
       </ul>
       <div class="stat-grid">
-        <div class="stat-item"><small>Backlog Draft</small><strong>42</strong><small>items</small></div>
-        <div class="stat-item"><small>Ambiguity Flag</small><strong>11</strong><small>review points</small></div>
-        <div class="stat-item"><small>Coverage</small><strong>93%</strong><small>stakeholder mapped</small></div>
+        <div class="stat-item"><small>碎片输入</small><strong>多源</strong><small>chat / docs / meetings</small></div>
+        <div class="stat-item"><small>典型问题</small><strong>模糊</strong><small>undefined acceptance</small></div>
+        <div class="stat-item"><small>AI 价值</small><strong>整理</strong><small>structure first draft</small></div>
       </div>
     </article>
 
     <article class="card accent span-4">
-      <h3>AI Prompt Kit</h3>
+      <h3 class="panel-title">网页版 AI 立刻能做</h3>
       <ul class="pill-list">
-        <li>要求をユーザーストーリー形式に変換</li>
-        <li>受け入れ基準を Given/When/Then で提案</li>
-        <li>非機能要件の見落としを指摘</li>
+        <li>把会议纪要整理成用户故事</li>
+        <li>补齐验收标准与开放问题</li>
+        <li>把需求拆成 MVP 与后续迭代</li>
+        <li>提醒非功能要求和潜在风险</li>
       </ul>
-      <p style="margin-top: 1rem; opacity: 0.9; line-height: 1.7;">
-        例: 「このメモを、実装可能な要件一覧に変換し、曖昧さを赤字で示して」
-      </p>
     </article>
 
     <article class="card soft span-6">
       <span class="kicker">Quality Gate</span>
-      <h3>定義完了チェック</h3>
+      <h3 class="panel-title">好的需求输出长什么样</h3>
       <ul class="detail-list">
-        <li>すべての要件に担当者と優先度が割り当て済みか</li>
-        <li>受け入れ基準がテスト可能な文になっているか</li>
-        <li>非機能要件に測定指標があるか</li>
+        <li>每条需求都能被测试，而不是只能被理解。</li>
+        <li>关键角色、边界条件、异常路径被明确写出。</li>
+        <li>开发、测试、设计都能基于同一份材料启动工作。</li>
       </ul>
     </article>
 
     <article class="card soft span-6">
       <span class="kicker">Output</span>
-      <h3>フェーズ成果物</h3>
+      <h3 class="panel-title">最适合丢给网页 AI 的材料</h3>
       <ul class="detail-list">
-        <li>プロダクト要求一覧（MVP / 追加候補）</li>
-        <li>優先度マトリクス（Impact × Effort）</li>
-        <li>リスク登録簿（技術・運用・セキュリティ）</li>
+        <li>会议纪要、聊天记录、竞品描述、旧系统截图。</li>
+        <li>客户提需求时的原话，而不是你已经加工过的版本。</li>
+        <li>任何“说不太清楚”的点，越原始越有价值。</li>
       </ul>
     </article>
   </section>
 
-  <div class="footer">Exit Criteria: 要件レビュー承認 + スプリント投入準備完了</div>
+  <PromptLab
+    id="requirements-lab"
+    title="需求阶段 Prompt"
+    intro="把会议纪要、聊天原文或零散想法贴进来，页面会生成一条适合在 ChatGPT 里直接整理需求的 prompt。"
+    contextLabel="会议纪要 / 聊天记录 / 零散需求"
+    contextPlaceholder="例如：用户希望后台可以批量导入客户名单，最好支持 Excel；销售说要能撤回导入；运维担心数据污染；老板希望下周就能演示。"
+    promptTemplate={`请扮演资深产品经理和软件分析师，基于下面的原始需求材料，帮我把它整理成可执行的软件需求。
+
+原始材料：
+__CONTEXT__
+
+请按下面格式输出：
+1. 先总结这份需求要解决的核心问题。
+2. 提炼主要用户角色和目标。
+3. 拆分成功能需求、非功能需求、约束条件。
+4. 给出一版 MVP 范围和不应纳入首版的内容。
+5. 写出可测试的验收标准。
+6. 标出所有不明确、冲突或需要追问的问题。`}
+    promptNote="需求阶段最有价值的不是让 AI 替你定方案，而是让它帮你把“模糊”显性化。"
+  />
+
+  <div class="footer">需求写清楚，后面的设计、实现、测试才不会一直返工。</div>
 </BaseLayout>

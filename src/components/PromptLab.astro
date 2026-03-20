@@ -1,0 +1,81 @@
+---
+const {
+  id,
+  title,
+  intro,
+  contextLabel = '输入你的项目背景',
+  contextPlaceholder = '',
+  promptTemplate = '',
+  promptNote = ''
+} = Astro.props;
+---
+
+<article class="card span-12" data-prompt-lab={id} data-template={promptTemplate}>
+  <span class="kicker">Prompt Lab</span>
+  <h3 class="panel-title">{title}</h3>
+  <p class="panel-copy">{intro}</p>
+
+  <div class="prompt-lab">
+    <label>
+      <div class="section-tag" style="margin-bottom:8px;">{contextLabel}</div>
+      <textarea
+        class="prompt-input"
+        data-role="context"
+        placeholder={contextPlaceholder}
+      ></textarea>
+    </label>
+
+    <label>
+      <div class="section-tag" style="margin-bottom:8px;">生成的 Prompt</div>
+      <textarea class="prompt-preview" data-role="preview" readonly>{promptTemplate}</textarea>
+    </label>
+
+    <div class="prompt-actions">
+      <a class="button-primary" data-role="launch" href="https://chatgpt.com/" target="_blank" rel="noreferrer">
+        在 ChatGPT 里测试
+      </a>
+      <button class="button-secondary" data-role="copy" type="button">
+        复制 Prompt
+      </button>
+    </div>
+
+    {promptNote && <p class="caption">{promptNote}</p>}
+  </div>
+</article>
+
+<script>
+  const labs = document.querySelectorAll('[data-prompt-lab]');
+
+  for (const lab of labs) {
+    const template = lab.getAttribute('data-template') ?? '';
+    const context = lab.querySelector('[data-role="context"]');
+    const preview = lab.querySelector('[data-role="preview"]');
+    const launch = lab.querySelector('[data-role="launch"]');
+    const copy = lab.querySelector('[data-role="copy"]');
+
+    if (!(context instanceof HTMLTextAreaElement) || !(preview instanceof HTMLTextAreaElement) || !(launch instanceof HTMLAnchorElement) || !(copy instanceof HTMLButtonElement)) {
+      continue;
+    }
+
+    const updatePrompt = () => {
+      const value = context.value.trim() || '请把这里替换成你的项目背景、代码片段、报错信息或页面描述。';
+      const prompt = template.replace('__CONTEXT__', value);
+      preview.value = prompt;
+
+      const url = new URL('https://chatgpt.com/');
+      url.searchParams.set('q', prompt);
+      launch.href = url.toString();
+    };
+
+    context.addEventListener('input', updatePrompt);
+    copy.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(preview.value);
+      copy.textContent = '已复制';
+      window.setTimeout(() => {
+        copy.textContent = '复制 Prompt';
+      }, 1500);
+    });
+
+    updatePrompt();
+  }
+</script>

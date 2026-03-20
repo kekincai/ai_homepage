@@ -5,41 +5,69 @@ const base = import.meta.env.BASE_URL;
 
 <BaseLayout title="AI Architect | ホーム" current="home">
   <div class="topbar">
-    <div class="section-tag">Japanese Main Edition</div>
+    <div class="section-tag">Browser-First AI for Software Engineering</div>
   </div>
 
   <section class="hero">
-    <h1>AI活用 SDLC ホームページ</h1>
+    <h1>网页版 AI 在软件工程里的立刻可用场景</h1>
     <p>
-      Stitch から出力した既存デザインをベースに、日語版を中心に再構成しました。実装済みの画面（開発・テスト・デプロイ）は忠実に踏襲し、
-      未制作フェーズ（要件定義・設計・保守）も同じトーンで埋めて、1つの体験としてつながるようにしています。
+      这不是“AI 很厉害”的展示页，而是一套面向真实团队的网页端使用手册。聚焦每个人今天就能在浏览器里试起来的做法：
+      需求澄清、方案设计、代码实现、测试补全、发布上线、故障处理。
     </p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
-      <span class="kicker">Implemented</span>
-      <h2>主要3画面は実装済み</h2>
-      <p>既存の Stitch HTML から意図を抽出し、レイアウト・配色・余白バランスを保って Astro 化しました。</p>
+      <span class="kicker">Why This Matters</span>
+      <h2 class="panel-title">当下软件工程最难的，很多不是“不会写”，而是“来不及想清楚”</h2>
+      <ul class="challenge-list">
+        <li>需求来源分散，会议、聊天、文档和口头补充彼此打架。</li>
+        <li>设计决策隐含太多权衡，团队知道有风险，却很难快速说透。</li>
+        <li>实现阶段最耗时间的常常不是敲代码，而是理解上下文、补边界、写解释。</li>
+        <li>测试与发布卡在覆盖率、回归风险、配置复杂度和故障响应上。</li>
+      </ul>
       <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;">
-        <a class="card soft" href={`${base}interactive/`}><strong>開発</strong><br /><small>Interactive</small></a>
-        <a class="card soft" href={`${base}testing/`}><strong>テスト</strong><br /><small>Testing</small></a>
-        <a class="card soft" href={`${base}deployment/`}><strong>デプロイ</strong><br /><small>Deployment</small></a>
+        <a class="card soft" href={`${base}requirements/`}><strong>需求</strong><br /><small>Requirements</small></a>
+        <a class="card soft" href={`${base}design/`}><strong>设计</strong><br /><small>Design</small></a>
+        <a class="card soft" href={`${base}interactive/`}><strong>实现</strong><br /><small>Build</small></a>
+        <a class="card soft" href={`${base}testing/`}><strong>测试</strong><br /><small>Testing</small></a>
+        <a class="card soft" href={`${base}deployment/`}><strong>发布</strong><br /><small>Release</small></a>
+        <a class="card soft" href={`${base}maintenance/`}><strong>保守</strong><br /><small>Maintenance</small></a>
       </div>
     </article>
 
     <article class="card accent span-4">
-      <span class="kicker" style="background:rgba(255,255,255,.2);color:#fff;">Github Pages</span>
-      <h3>静的デプロイ対応</h3>
-      <p style="line-height:1.7;opacity:.92;">Astro の静的ビルド + GitHub Actions で自動公開します。</p>
-      <p class="metric">0 Ops</p>
+      <span class="kicker" style="background:rgba(255,255,255,.2);color:#fff;">Immediate Use</span>
+      <h3 class="panel-title">为什么优先做“网页版 AI”</h3>
+      <p style="line-height:1.8;opacity:.92;">
+        不需要接 API、不需要买新平台、不需要改现有系统。把项目上下文、页面截图、报错信息、需求草稿直接喂给浏览器里的 AI，
+        先把高频脑力活降下来。
+      </p>
+      <p class="metric">Today</p>
     </article>
 
-    <article class="card placeholder span-12">
-      <h3>これから拡張できるポイント</h3>
-      <p>要件定義、設計、保守フェーズに実データや実際の事例カードを追加していけば、そのままプロダクトサイトとして成長できます。</p>
+    <article class="card soft span-12">
+      <span class="kicker">Use It Like A Playbook</span>
+      <div class="mini-grid">
+        <div>
+          <h3 class="panel-title">每个子页面都会回答三件事</h3>
+          <ul class="step-list">
+            <li>这个环节真正卡人的地方是什么。</li>
+            <li>只用浏览器里的 AI，现在就能怎么帮你。</li>
+            <li>一条可直接跳到 ChatGPT 测试的 prompt。</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="panel-title">适合马上试的输入材料</h3>
+          <ul class="step-list">
+            <li>会议纪要、需求片段、页面截图、报错日志、代码段。</li>
+            <li>测试失败信息、接口定义、部署配置、告警摘要。</li>
+            <li>越具体越好，AI 的输出质量通常也会越高。</li>
+          </ul>
+        </div>
+      </div>
     </article>
   </section>
 
-  <div class="footer">© 2026 AI Architect</div>
+  <div class="footer">从“能聊”走到“能落地”，关键是把 prompt 写成工作流的一部分。</div>
 </BaseLayout>

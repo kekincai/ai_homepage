@@ -1,55 +1,79 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PromptLab from '../components/PromptLab.astro';
 ---
 
 <BaseLayout title="AI Architect | 設計" current="design">
   <section class="hero">
     <div class="section-tag">Phase 02</div>
-    <h1>Design | アーキテクチャ設計キャンバス</h1>
-    <p>要件をもとに、実装に耐える構造へ落とし込みます。AI 補助で設計案の比較、データフロー確認、リスクの早期露出を進めます。</p>
+    <h1>Design | 用网页 AI 做方案推演与设计评审</h1>
+    <p>设计阶段最怕两种情况：一种是拍脑袋定架构，另一种是知道有 trade-off 却没人讲透。浏览器里的 AI 很适合做“比较器”和“审稿人”。</p>
   </section>
 
   <section class="grid">
     <article class="card span-7">
       <span class="kicker">Architecture Options</span>
-      <h3>設計案比較</h3>
-      <p class="muted">モノリス、モジュラーモノリス、マイクロサービスなど複数案を同じ評価軸で比較し、意思決定記録を残します。</p>
+      <h3 class="panel-title">设计阶段真正难的是权衡，不是画框图</h3>
+      <p class="muted">同一个需求，可以做成单体、模块化单体、服务拆分、事件驱动。问题从来不是“有没有方案”，而是“这次为什么选这个”。</p>
       <div class="stat-grid">
-        <div class="stat-item"><small>Option A</small><strong>3.8</strong><small>delivery score</small></div>
-        <div class="stat-item"><small>Option B</small><strong>4.4</strong><small>scalability score</small></div>
-        <div class="stat-item"><small>Option C</small><strong>4.1</strong><small>cost score</small></div>
+        <div class="stat-item"><small>交付速度</small><strong>快慢</strong><small>delivery trade-off</small></div>
+        <div class="stat-item"><small>可扩展性</small><strong>高低</strong><small>future load</small></div>
+        <div class="stat-item"><small>复杂度</small><strong>轻重</strong><small>team burden</small></div>
       </div>
     </article>
 
     <article class="card accent span-5">
-      <h3>Decision Log</h3>
+      <h3 class="panel-title">网页版 AI 能立刻帮你</h3>
       <ul class="pill-list">
-        <li>採用: モジュラーモノリス + 非同期ジョブ</li>
-        <li>理由: 立ち上げ速度と将来拡張のバランス</li>
-        <li>保留: 認可レイヤーのサービス分離時期</li>
+        <li>对比多个架构方案的优缺点</li>
+        <li>检查 API / 数据流是否有漏项</li>
+        <li>提前暴露扩展性和可靠性风险</li>
+        <li>帮助写 ADR 或设计评审纪要</li>
       </ul>
     </article>
 
     <article class="card soft span-8">
       <span class="kicker">Data & API</span>
-      <h3>データフロー設計</h3>
+      <h3 class="panel-title">最适合让 AI 参与的设计问题</h3>
       <ul class="detail-list">
-        <li>入力イベント → バリデーション → 永続化 → 通知の責務を分離</li>
-        <li>API 境界ごとに SLA とエラーハンドリング方針を定義</li>
-        <li>監査ログと機密データマスキングを初期設計に組み込み</li>
+        <li>“这个功能适合单体内模块化，还是要提前拆服务？”</li>
+        <li>“这个 API 设计在权限、幂等、分页、错误码上有什么坑？”</li>
+        <li>“如果并发上来或失败重试发生，会在哪些地方出问题？”</li>
       </ul>
     </article>
 
     <article class="card soft span-4">
       <span class="kicker">AI Prompt</span>
-      <h3>設計レビュー補助</h3>
+      <h3 class="panel-title">输入建议</h3>
       <ul class="detail-list">
-        <li>単一障害点の候補を抽出</li>
-        <li>高トラフィック時のボトルネック予測</li>
-        <li>リカバリ戦略の改善提案</li>
+        <li>需求摘要</li>
+        <li>接口定义</li>
+        <li>表结构或数据模型</li>
+        <li>你的备选方案和顾虑</li>
       </ul>
     </article>
   </section>
 
-  <div class="footer">Exit Criteria: ADR 承認 + API 契約確定 + 監視設計ドラフト完成</div>
+  <PromptLab
+    id="design-lab"
+    title="设计阶段 Prompt"
+    intro="把需求摘要、接口草图、数据模型或者你正在犹豫的几种架构方案贴进来，页面会帮你整理成一条设计评审 prompt。"
+    contextLabel="需求摘要 / 接口草图 / 架构方案"
+    contextPlaceholder="例如：我们要做一个支持多人协作的文档编辑后台，首版团队 5 人，半年内预计到 200 家企业客户。现在在犹豫是模块化单体还是提前拆服务。"
+    promptTemplate={`请扮演经验丰富的软件架构师，帮我评审下面这份设计上下文。
+
+上下文：
+__CONTEXT__
+
+请按下面格式输出：
+1. 先总结系统目标和关键约束。
+2. 给出 2 到 3 种可行设计方向。
+3. 对每种方案分别分析交付速度、复杂度、扩展性、可维护性。
+4. 指出 API、数据流、权限、幂等、失败恢复上的风险点。
+5. 说明在当前阶段更推荐哪种方案，以及原因。
+6. 最后给出设计评审时我应该重点追问的问题。`}
+    promptNote="把你自己的顾虑一并写进去，AI 给出的建议会更像“评审意见”，而不是泛泛而谈。"
+  />
+
+  <div class="footer">设计阶段最适合让 AI 做“对比”和“挑刺”，不适合把最终判断全交给它。</div>
 </BaseLayout>
