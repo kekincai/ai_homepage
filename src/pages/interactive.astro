@@ -262,7 +262,7 @@ const defaultAfter = rawDefaultAfter.replace(/^\n+/, '');
         updateContextPreview();
       };
 
-      const activate = (key, card) => {
+      const activate = (key: string, card: Element) => {
         for (const item of cards) {
           item.classList.toggle('is-active', item === card);
         }
