@@ -15,6 +15,20 @@ const items = [
 <aside class="sidebar">
   <a class="brand" href={`${base}`}>AI Architect</a>
   <div class="side-label">開発実践ナビ</div>
+  <div class="mobile-nav">
+    <label class="mobile-nav-label" for="page-nav">ページを選択</label>
+    <select
+      id="page-nav"
+      class="mobile-nav-select"
+      aria-label="ページを選択"
+      onchange="if (this.value) window.location.href = this.value;"
+    >
+      <option value={`${base}`} selected={current === 'home'}>ホーム</option>
+      {items.map((item) => (
+        <option value={item.href} selected={item.id === current}>{item.label}</option>
+      ))}
+    </select>
+  </div>
   <nav class="nav-list">
     {items.map((item) => (
       <a class={`nav-item ${item.id === current ? 'active' : ''}`} href={item.href}>
