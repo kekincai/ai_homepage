@@ -5,15 +5,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="AI Architect | 保守" current="maintenance">
   <section class="hero">
     <div class="section-tag">Phase 06</div>
-    <h1>Maintenance</h1>
-    <p>運用保守画面は未作成のため、デプロイ画面と連続する導線として初期版を実装しています。</p>
+    <h1>Maintenance | 運用保守オペレーション</h1>
+    <p>リリース後の品質を守るため、監視、障害対応、継続改善を 1 画面で管理します。AI を活用して検知から復旧までの時間を短縮します。</p>
   </section>
 
   <section class="grid">
-    <article class="card placeholder span-12">
-      <span class="kicker">Draft Screen</span>
-      <h3>保守オペレーションセンター</h3>
-      <p>次の追加対象: SLO/SLA、障害履歴、ポストモーテム、改善アクション、AI 予兆検知ログ。</p>
+    <article class="card span-8">
+      <span class="kicker">Observability</span>
+      <h3>SLO / SLA ダッシュボード</h3>
+      <p class="muted">サービス品質を可視化し、閾値超過時はオンコールへ即時通知。週次で傾向を振り返り、恒久対策まで追跡します。</p>
+      <div class="stat-grid">
+        <div class="stat-item"><small>Availability</small><strong>99.94%</strong><small>30 days</small></div>
+        <div class="stat-item"><small>MTTR</small><strong>18m</strong><small>median</small></div>
+        <div class="stat-item"><small>Error Budget</small><strong>71%</strong><small>remaining</small></div>
+      </div>
+    </article>
+
+    <article class="card accent span-4">
+      <h3>AI Ops Assist</h3>
+      <ul class="pill-list">
+        <li>アラート要約と優先度判定</li>
+        <li>過去インシデントとの類似検索</li>
+        <li>一次切り分け手順の自動提案</li>
+      </ul>
+    </article>
+
+    <article class="card soft span-6">
+      <span class="kicker">Incident Flow</span>
+      <h3>障害対応フロー</h3>
+      <ul class="detail-list">
+        <li>検知: 監視ルールが異常を検知しチケット起票</li>
+        <li>封じ込め: 影響範囲を特定しロールバック判断</li>
+        <li>復旧: 回復確認後、再発防止アクションを登録</li>
+      </ul>
+    </article>
+
+    <article class="card soft span-6">
+      <span class="kicker">Continuous Improvement</span>
+      <h3>継続改善バックログ</h3>
+      <ul class="detail-list">
+        <li>ポストモーテムの学びを改善チケットへ変換</li>
+        <li>高頻度アラートのルール調整とノイズ削減</li>
+        <li>運用 Runbook の更新履歴を管理</li>
+      </ul>
     </article>
   </section>
+
+  <div class="footer">Exit Criteria: 重大障害の再発率低下 + 週次改善サイクル定着</div>
 </BaseLayout>

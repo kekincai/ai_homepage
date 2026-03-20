@@ -5,15 +5,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="AI Architect | 要件定義" current="requirements">
   <section class="hero">
     <div class="section-tag">Phase 01</div>
-    <h1>Requirements</h1>
-    <p>この画面は元デザイン未作成だったため、既存 UI トーンを踏襲して補完しています。</p>
+    <h1>Requirements | 要件定義ワークベンチ</h1>
+    <p>曖昧な要望を、開発可能な仕様に変換するための起点です。AI を使ってヒアリング内容を構造化し、優先度・受け入れ条件・リスクを同時に整理します。</p>
   </section>
 
   <section class="grid">
-    <article class="card placeholder span-12">
-      <span class="kicker">Draft Screen</span>
-      <h3>要件定義ワークベンチ</h3>
-      <p>次の追加対象: ステークホルダー、機能要件、非機能要件、受け入れ基準、優先度マトリクス。</p>
+    <article class="card span-8">
+      <span class="kicker">Discovery Board</span>
+      <h3>要件インテーク</h3>
+      <p class="muted">会議メモ、チャット、既存仕様、障害履歴を AI で統合し、最初のバックログ候補を作成します。</p>
+      <ul class="detail-list">
+        <li>ステークホルダー抽出: 意思決定者、利用者、運用担当を自動分類</li>
+        <li>要件の分解: 機能要件 / 非機能要件 / 制約条件へ展開</li>
+        <li>競合度判定: 依存・競合・不明点をフラグ化してレビュー対象化</li>
+      </ul>
+      <div class="stat-grid">
+        <div class="stat-item"><small>Backlog Draft</small><strong>42</strong><small>items</small></div>
+        <div class="stat-item"><small>Ambiguity Flag</small><strong>11</strong><small>review points</small></div>
+        <div class="stat-item"><small>Coverage</small><strong>93%</strong><small>stakeholder mapped</small></div>
+      </div>
+    </article>
+
+    <article class="card accent span-4">
+      <h3>AI Prompt Kit</h3>
+      <ul class="pill-list">
+        <li>要求をユーザーストーリー形式に変換</li>
+        <li>受け入れ基準を Given/When/Then で提案</li>
+        <li>非機能要件の見落としを指摘</li>
+      </ul>
+      <p style="margin-top: 1rem; opacity: 0.9; line-height: 1.7;">
+        例: 「このメモを、実装可能な要件一覧に変換し、曖昧さを赤字で示して」
+      </p>
+    </article>
+
+    <article class="card soft span-6">
+      <span class="kicker">Quality Gate</span>
+      <h3>定義完了チェック</h3>
+      <ul class="detail-list">
+        <li>すべての要件に担当者と優先度が割り当て済みか</li>
+        <li>受け入れ基準がテスト可能な文になっているか</li>
+        <li>非機能要件に測定指標があるか</li>
+      </ul>
+    </article>
+
+    <article class="card soft span-6">
+      <span class="kicker">Output</span>
+      <h3>フェーズ成果物</h3>
+      <ul class="detail-list">
+        <li>プロダクト要求一覧（MVP / 追加候補）</li>
+        <li>優先度マトリクス（Impact × Effort）</li>
+        <li>リスク登録簿（技術・運用・セキュリティ）</li>
+      </ul>
     </article>
   </section>
+
+  <div class="footer">Exit Criteria: 要件レビュー承認 + スプリント投入準備完了</div>
 </BaseLayout>

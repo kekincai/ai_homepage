@@ -5,15 +5,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="AI Architect | 設計" current="design">
   <section class="hero">
     <div class="section-tag">Phase 02</div>
-    <h1>Design</h1>
-    <p>この画面は元デザイン未作成だったため、他フェーズと同一の情報設計でプレースホルダーを用意しています。</p>
+    <h1>Design | アーキテクチャ設計キャンバス</h1>
+    <p>要件をもとに、実装に耐える構造へ落とし込みます。AI 補助で設計案の比較、データフロー確認、リスクの早期露出を進めます。</p>
   </section>
 
   <section class="grid">
-    <article class="card placeholder span-12">
-      <span class="kicker">Draft Screen</span>
-      <h3>設計フェーズキャンバス</h3>
-      <p>次の追加対象: アーキテクチャ図、データフロー、責務分割、リスクレビュー、AI 支援プロンプト集。</p>
+    <article class="card span-7">
+      <span class="kicker">Architecture Options</span>
+      <h3>設計案比較</h3>
+      <p class="muted">モノリス、モジュラーモノリス、マイクロサービスなど複数案を同じ評価軸で比較し、意思決定記録を残します。</p>
+      <div class="stat-grid">
+        <div class="stat-item"><small>Option A</small><strong>3.8</strong><small>delivery score</small></div>
+        <div class="stat-item"><small>Option B</small><strong>4.4</strong><small>scalability score</small></div>
+        <div class="stat-item"><small>Option C</small><strong>4.1</strong><small>cost score</small></div>
+      </div>
+    </article>
+
+    <article class="card accent span-5">
+      <h3>Decision Log</h3>
+      <ul class="pill-list">
+        <li>採用: モジュラーモノリス + 非同期ジョブ</li>
+        <li>理由: 立ち上げ速度と将来拡張のバランス</li>
+        <li>保留: 認可レイヤーのサービス分離時期</li>
+      </ul>
+    </article>
+
+    <article class="card soft span-8">
+      <span class="kicker">Data & API</span>
+      <h3>データフロー設計</h3>
+      <ul class="detail-list">
+        <li>入力イベント → バリデーション → 永続化 → 通知の責務を分離</li>
+        <li>API 境界ごとに SLA とエラーハンドリング方針を定義</li>
+        <li>監査ログと機密データマスキングを初期設計に組み込み</li>
+      </ul>
+    </article>
+
+    <article class="card soft span-4">
+      <span class="kicker">AI Prompt</span>
+      <h3>設計レビュー補助</h3>
+      <ul class="detail-list">
+        <li>単一障害点の候補を抽出</li>
+        <li>高トラフィック時のボトルネック予測</li>
+        <li>リカバリ戦略の改善提案</li>
+      </ul>
     </article>
   </section>
+
+  <div class="footer">Exit Criteria: ADR 承認 + API 契約確定 + 監視設計ドラフト完成</div>
 </BaseLayout>
