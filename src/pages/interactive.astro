@@ -12,7 +12,8 @@ import PromptLab from '../components/PromptLab.astro';
     <h1>実装前の整理を AI に任せる</h1>
     <p>
       開発で時間を奪うのは、コードを書くことよりも、既存コードの理解、変更範囲の把握、エラーの読み解きです。
-      ブラウザ型 AI は、実装に入る前の整理役として特に使いやすいです。
+      ブラウザ型 AI は、実装に入る前の整理役であると同時に、HTML、VBA、Shell、C#、Java などの
+      雛形を出す補助者としても使いやすいです。
     </p>
   </section>
 
@@ -35,9 +36,9 @@ import PromptLab from '../components/PromptLab.astro';
         <span class="kicker">AI の使いどころ</span>
       </div>
       <ul class="detail-list">
-        <li>既存コードと主要な呼び出し経路を説明する。</li>
-        <li>要件を実装手順と注意点に分解する。</li>
-        <li>エラーを調査順序つきで言い換える。</li>
+        <li>既存コードと主要な呼び出し経路を説明し、変更方針を整理する。</li>
+        <li>要件を実装手順に分解し、HTML や補助コードの雛形に落とす。</li>
+        <li>エラーを調査順序つきで言い換え、必要なら C#、Java、VBA、Shell などの草案を出す。</li>
       </ul>
     </article>
 
@@ -47,16 +48,17 @@ import PromptLab from '../components/PromptLab.astro';
         <span class="kicker">入力素材</span>
       </div>
       <ul class="step-list">
-        <li>コード片、PR 説明、要件メモ、ターミナルログ、画面キャプチャ。</li>
-        <li>まずは「この変更でどこを触るべきか」を整理させる使い方が安定します。</li>
+        <li>コード片、PR 説明、要件メモ、ターミナルログ、画面キャプチャ、既存画面の HTML。</li>
+        <li>まずは「この変更でどこを触るべきか」を整理させ、その後で HTML、補助スクリプト、アプリコードへ分岐させる使い方が安定します。</li>
       </ul>
     </article>
+
   </section>
 
   <PromptLab
     id="implementation-lab"
     title="開発支援用 Prompt"
-    intro="要件、コード片、エラー内容を貼ると、実装前の整理に使いやすい prompt を生成します。"
+    intro="要件、コード片、エラー内容を貼ると、実装整理やコード雛形の作成に使いやすい prompt を生成します。"
     contextLabel="要件 / コード / エラー"
     contextPlaceholder="例: React ページに多言語切り替えを追加したい。Header.tsx、i18n.ts、LanguageMenu.tsx があり、切り替え後に一部文言が更新されない。"
     promptTemplate={`あなたはシニアソフトウェアエンジニアです。以下の文脈をもとに、実装作業を前に進める支援をしてください。
@@ -70,8 +72,9 @@ __CONTEXT__
 3. 最小変更から始める実装手順を示す。
 4. 境界条件、回帰リスク、見落としやすい点を指摘する。
 5. エラーが含まれている場合は意味を説明し、調査順序を示す。
-6. 最後に実装草案または疑似コードを出す。`}
-    promptNote="いきなり大きなコード生成をさせるより、まず見取り図を整える使い方が向いています。"
+6. 最後に HTML / スクリプト / フレームワークコードのどれが適切か判断する。
+7. 必要なら、すぐ貼って試せる最小雛形を 1 つ出す。`}
+    promptNote="開発では、出力形式を先に指定すると強いです。検証用 HTML、Excel 用 VBA、運用用 Shell、C# や Java の雛形という形で使い分けると現場に乗せやすくなります。"
   />
 
   <div class="footer">開発では、AI に書かせる前に理解させるほうが失敗しにくくなります。</div>

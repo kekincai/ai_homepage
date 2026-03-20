@@ -12,7 +12,7 @@ import PromptLab from '../components/PromptLab.astro';
     <h1>抜け漏れを先に見つける</h1>
     <p>
       テストで難しいのは、ケースを書くことよりも、何を落としているかを把握することです。
-      ブラウザ型 AI は、観点出し、エッジケース補完、失敗ログの整理に向いています。
+      ブラウザ型 AI は、観点出し、エッジケース補完、チェックリストやテストコード草案の作成に向いています。
     </p>
   </section>
 
@@ -35,9 +35,9 @@ import PromptLab from '../components/PromptLab.astro';
         <span class="kicker">AI の使いどころ</span>
       </div>
       <ul class="detail-list">
-        <li>要件やコードからテスト観点を洗い出す。</li>
-        <li>エッジケースや回帰しやすい経路を補う。</li>
-        <li>失敗ログから調査順序を整理する。</li>
+        <li>要件やコードからテスト観点一覧やケース表を洗い出す。</li>
+        <li>エッジケースや回帰しやすい経路を補い、Jest、JUnit、Playwright へつながる草案にする。</li>
+        <li>失敗ログから調査順序を整理し、再現手順文や確認チェックリストに落とす。</li>
       </ul>
     </article>
 
@@ -47,16 +47,17 @@ import PromptLab from '../components/PromptLab.astro';
         <span class="kicker">入力素材</span>
       </div>
       <ul class="step-list">
-        <li>要件説明、状態遷移、関数やコンポーネントのコード、失敗ログ。</li>
-        <li>まずはテスト方針を作らせ、その後に Jest や Playwright へ落とす流れが有効です。</li>
+        <li>要件説明、状態遷移、関数やコンポーネントのコード、失敗ログ、既存テスト。</li>
+        <li>まずはテスト方針とケース表を作らせ、その後に Jest や Playwright へ落とす流れが有効です。</li>
       </ul>
     </article>
+
   </section>
 
   <PromptLab
     id="testing-lab"
     title="テスト設計用 Prompt"
-    intro="要件、実装片、失敗ログを貼ると、テスト観点整理に使いやすい prompt を生成します。"
+    intro="要件、実装片、失敗ログを貼ると、観点一覧やテストコード草案の作成に使いやすい prompt を生成します。"
     contextLabel="要件 / 実装 / 失敗ログ"
     contextPlaceholder="例: このフォームはメールログインと電話番号ログインに対応している。最近 CAPTCHA を追加したが、現状のテストは成功系しかなく、CI では disabled ボタン状態に関する失敗が出ている。"
     promptTemplate={`あなたは経験豊富なテストエンジニアです。以下の文脈をもとに、テスト設計と弱点の洗い出しを支援してください。
@@ -70,8 +71,9 @@ __CONTEXT__
 3. 見落としやすいエッジケースを列挙する。
 4. 単体テスト / 結合テスト / E2E テストに分けて提案する。
 5. 失敗ログがある場合は、根本原因候補と調査順序を示す。
-6. 最後に実行可能なテストチェックリストまたはテストコード草案を出す。`}
-    promptNote="テストコードを大量に生成させる前に、抜け漏れを見つける用途で使うのが有効です。"
+6. 最後に実行可能なテストチェックリストを出す。
+7. 必要なら Jest / JUnit / Playwright のどれで書くべきか判断し、短い草案を出す。`}
+    promptNote="テストでは、観点一覧、ケース表、再現手順の順で出力させると、既存のテスト基盤へ移しやすくなります。"
   />
 
   <div class="footer">テストでは、先に観点を広げることが、後の修正コストを下げます。</div>

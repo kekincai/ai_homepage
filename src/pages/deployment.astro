@@ -12,7 +12,7 @@ import PromptLab from '../components/PromptLab.astro';
     <h1>設定を読み解き、手順を固める</h1>
     <p>
       デプロイで難しいのは、情報が複数箇所に分かれ、失敗原因が見えにくいことです。
-      ブラウザ型 AI は、設定の説明、手順整理、CI エラーの初動切り分けに向いています。
+      ブラウザ型 AI は、設定の説明、手順整理、workflow 修正案や runbook の作成に向いています。
     </p>
   </section>
 
@@ -35,9 +35,9 @@ import PromptLab from '../components/PromptLab.astro';
         <span class="kicker">AI の使いどころ</span>
       </div>
       <ul class="detail-list">
-        <li>設定ファイルや workflow の意味を説明する。</li>
-        <li>失敗箇所の候補と確認順序を整理する。</li>
-        <li>最小構成のデプロイ手順をまとめる。</li>
+        <li>設定ファイルや workflow の意味を説明し、手順文へ落とす。</li>
+        <li>失敗箇所の候補と確認順序を整理し、調査メモや一次報告文にする。</li>
+        <li>最小構成のデプロイ手順や修正案を文章と YAML 草案でまとめる。</li>
       </ul>
     </article>
 
@@ -47,16 +47,17 @@ import PromptLab from '../components/PromptLab.astro';
         <span class="kicker">入力素材</span>
       </div>
       <ul class="step-list">
-        <li>workflow YAML、ビルドログ、Dockerfile、環境変数一覧、デプロイ先の条件。</li>
-        <li>分からない設定は、そのまま貼って説明させる使い方が有効です。</li>
+        <li>workflow YAML、ビルドログ、Dockerfile、環境変数一覧、デプロイ先の条件、既存 runbook。</li>
+        <li>分からない設定は、そのまま貼って説明させ、最後に手順書や修正 YAML の形にさせる使い方が有効です。</li>
       </ul>
     </article>
+
   </section>
 
   <PromptLab
     id="deployment-lab"
     title="デプロイ支援用 Prompt"
-    intro="設定やビルドログを貼ると、リリース支援に使いやすい prompt を生成します。"
+    intro="設定やビルドログを貼ると、手順書や workflow 修正案の作成に使いやすい prompt を生成します。"
     contextLabel="設定 / ビルドログ / デプロイ先"
     contextPlaceholder="例: Astro サイトを GitHub Pages にデプロイしたい。workflow には install と build があるが deploy が失敗する。ログには artifact と pages 設定に関する記述がある。"
     promptTemplate={`あなたは CI/CD とフロントエンド配信に詳しいプラットフォームエンジニアです。以下の文脈をもとに、リリース完了まで支援してください。
@@ -70,8 +71,9 @@ __CONTEXT__
 3. 最小構成で成功させるデプロイ手順を示す。
 4. 確認すべき環境変数、ビルドコマンド、プラットフォーム設定を列挙する。
 5. 失敗時の調査順序を高確率順に出す。
-6. 最後にリリース後の確認項目とロールバック方針を書く。`}
-    promptNote="デプロイ段階では、AI をまず説明役と一次切り分け役として使うと安定します。"
+6. 最後にリリース後の確認項目とロールバック方針を書く。
+7. 必要なら workflow YAML やシェル手順の修正草案も出す。`}
+    promptNote="デプロイでは、説明だけで終わらせず、手順書、YAML 草案、確認チェックリストまで出力させると実務で使いやすくなります。"
   />
 
   <div class="footer">リリースで大切なのは、成功する設定だけでなく、失敗したときの戻し方も先に持っておくことです。</div>

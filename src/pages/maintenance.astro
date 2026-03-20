@@ -12,7 +12,7 @@ import PromptLab from '../components/PromptLab.astro';
     <h1>ログと事実を整理し、次回に残す</h1>
     <p>
       保守で負荷が高いのは、アラート、ログ、変更履歴、ユーザー影響を短時間でつなげることです。
-      ブラウザ型 AI は、初動整理、原因候補の絞り込み、runbook 化に向いています。
+      ブラウザ型 AI は、初動整理、原因候補の絞り込み、報告文や runbook 更新案の作成に向いています。
     </p>
   </section>
 
@@ -35,9 +35,9 @@ import PromptLab from '../components/PromptLab.astro';
         <span class="kicker">AI の使いどころ</span>
       </div>
       <ul class="detail-list">
-        <li>障害の現象と影響範囲を要約する。</li>
-        <li>根本原因候補と調査順序を整理する。</li>
-        <li>対応記録を runbook や振り返り文書に整える。</li>
+        <li>障害の現象と影響範囲を要約し、共有文へ整える。</li>
+        <li>根本原因候補と調査順序を整理し、初動メモや引き継ぎ文に落とす。</li>
+        <li>対応記録を runbook、障害報告、振り返り文書に整える。</li>
       </ul>
     </article>
 
@@ -47,16 +47,17 @@ import PromptLab from '../components/PromptLab.astro';
         <span class="kicker">入力素材</span>
       </div>
       <ul class="step-list">
-        <li>アラート文、ログ、発生時刻、最近のリリース情報、ユーザー報告。</li>
-        <li>初動では結論を急がず、事実と時系列を整理させる使い方が有効です。</li>
+        <li>アラート文、ログ、発生時刻、最近のリリース情報、ユーザー報告、過去の障害記録。</li>
+        <li>初動では結論を急がず、事実と時系列を整理させ、最後に共有文や runbook 更新案へ変換させる使い方が有効です。</li>
       </ul>
     </article>
+
   </section>
 
   <PromptLab
     id="maintenance-lab"
     title="保守運用用 Prompt"
-    intro="アラート、ログ、ユーザー報告を貼ると、初動調査に使いやすい prompt を生成します。"
+    intro="アラート、ログ、ユーザー報告を貼ると、初動調査メモや報告文の作成に使いやすい prompt を生成します。"
     contextLabel="アラート / ログ / ユーザー報告 / 変更履歴"
     contextPlaceholder="例: 今日 14:05 から API 500 が急増した。payment webhook にエラーが集中している。決済成功後に注文状態が更新されないという報告が来ている。13:40 に決済の再試行ロジックをリリースした。"
     promptTemplate={`あなたはオンコール経験のある運用エンジニア兼バックエンドエンジニアです。以下の障害文脈をもとに、初動調査を支援してください。
@@ -70,8 +71,9 @@ __CONTEXT__
 3. 優先度順の調査ステップを出す。
 4. まだ不足している情報と、今すぐ確認すべき点を示す。
 5. ロールバックや機能制限が必要な判断条件を書く。
-6. 最後に障害説明文と runbook 更新案を作る。`}
-    promptNote="保守では、AI に先に事実整理をさせるほうが、初動が安定しやすくなります。"
+6. 最後に障害説明文と runbook 更新案を作る。
+7. 必要なら、社内共有用と顧客説明用の 2 種類の文章に分ける。`}
+    promptNote="保守では、事実整理に加えて、共有文、引き継ぎ文、runbook 更新案まで出させると運用の再利用性が上がります。"
   />
 
   <div class="footer">保守は、その場で直すだけでなく、次に速く動ける形で残すことが重要です。</div>
