@@ -5,48 +5,38 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI Architect | デプロイ" current="deployment">
   <section class="hero">
-    <div class="section-tag">Phase 05</div>
-    <h1>Deployment | リリースと設定理解をブラウザ型 AI で支える</h1>
-    <p>リリース段階で怖いのは「全部合っているように見えるのに出せない」状態です。ブラウザ型 AI は設定の読み解き、手順整理、CI 失敗の初動把握に役立ちます。</p>
+    <div class="section-tag">デプロイ</div>
+    <h1>設定を読み解き、手順を固める</h1>
+    <p>
+      デプロイで難しいのは、情報が複数箇所に分かれ、失敗原因が見えにくいことです。
+      ブラウザ型 AI は、設定の説明、手順整理、CI エラーの初動切り分けに向いています。
+    </p>
   </section>
 
   <section class="grid">
-    <article class="card span-8">
-      <span class="kicker">Core Challenge</span>
-      <h3 class="panel-title">デプロイの難しさは、情報が見通せないことに集まりやすい</h3>
+    <article class="card span-6">
+      <span class="kicker">課題</span>
       <ul class="challenge-list">
-        <li>workflow、環境変数、ビルドコマンド、ホスティング設定が複数箇所に散らばる。</li>
-        <li>CI エラーはプラットフォーム固有の言葉が多く、読み解きに時間がかかる。</li>
-        <li>ロールバックや監視の必要性は分かっていても、直前になると手順が曖昧になりやすい。</li>
+        <li>workflow、環境変数、ビルド設定が散らばりやすい。</li>
+        <li>CI エラーは用語が難しく、原因特定に時間がかかる。</li>
+        <li>リリース前確認やロールバックが曖昧になりやすい。</li>
       </ul>
     </article>
 
-    <article class="card accent span-4">
-      <h3 class="panel-title">ブラウザ型 AI がすぐ手伝えること</h3>
-      <ul class="pill-list">
-        <li>GitHub Actions / Docker / Nginx の設定を説明する</li>
-        <li>エラーログから失敗箇所の有力候補を絞る</li>
-        <li>最小構成のデプロイ手順とロールバック項目を作る</li>
-        <li>環境変数とビルドコマンドの確認観点を出す</li>
-      </ul>
-      <p class="metric">Ship</p>
-    </article>
-
-    <article class="card soft span-6">
-      <span class="kicker">Browser Inputs</span>
+    <article class="card span-6">
+      <span class="kicker">AI の使いどころ</span>
       <ul class="detail-list">
-        <li>workflow YAML、ビルドスクリプト、Dockerfile</li>
-        <li>ホスティング基盤のビルドログや失敗画面</li>
-        <li>環境変数の説明とデプロイ先の情報</li>
+        <li>設定ファイルや workflow の意味を説明する。</li>
+        <li>失敗箇所の候補と確認順序を整理する。</li>
+        <li>最小構成のデプロイ手順をまとめる。</li>
       </ul>
     </article>
 
-    <article class="card soft span-6">
-      <span class="kicker">Ideal Outputs</span>
-      <ul class="detail-list">
-        <li>リリース前チェックリスト</li>
-        <li>失敗原因候補の優先順位</li>
-        <li>ロールバック案とリリース後の確認項目</li>
+    <article class="card soft span-12">
+      <span class="kicker">入力素材</span>
+      <ul class="step-list">
+        <li>workflow YAML、ビルドログ、Dockerfile、環境変数一覧、デプロイ先の条件。</li>
+        <li>分からない設定は、そのまま貼って説明させる使い方が有効です。</li>
       </ul>
     </article>
   </section>
@@ -54,7 +44,7 @@ import PromptLab from '../components/PromptLab.astro';
   <PromptLab
     id="deployment-lab"
     title="デプロイ支援用 Prompt"
-    intro="workflow 設定、プラットフォームのエラー、デプロイ先の条件を貼ると、ChatGPT で使いやすいリリース支援 prompt を生成します。"
+    intro="設定やビルドログを貼ると、リリース支援に使いやすい prompt を生成します。"
     contextLabel="設定 / ビルドログ / デプロイ先"
     contextPlaceholder="例: Astro サイトを GitHub Pages にデプロイしたい。workflow には install と build があるが deploy が失敗する。ログには artifact と pages 設定に関する記述がある。"
     promptTemplate={`あなたは CI/CD とフロントエンド配信に詳しいプラットフォームエンジニアです。以下の文脈をもとに、リリース完了まで支援してください。
@@ -69,8 +59,8 @@ __CONTEXT__
 4. 確認すべき環境変数、ビルドコマンド、プラットフォーム設定を列挙する。
 5. 失敗時の調査順序を高確率順に出す。
 6. 最後にリリース後の確認項目とロールバック方針を書く。`}
-    promptNote="workflow の意味が分からない段階でも、YAML をそのまま貼って説明させる使い方ができます。"
+    promptNote="デプロイ段階では、AI をまず説明役と一次切り分け役として使うと安定します。"
   />
 
-  <div class="footer">リリース段階では、AI をまず「説明役」と「一次切り分け役」にするのが効果的です。</div>
+  <div class="footer">リリースで大切なのは、成功する設定だけでなく、失敗したときの戻し方も先に持っておくことです。</div>
 </BaseLayout>

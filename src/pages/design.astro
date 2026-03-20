@@ -5,51 +5,38 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI Architect | 設計" current="design">
   <section class="hero">
-    <div class="section-tag">Phase 02</div>
-    <h1>Design | ブラウザ型 AI で設計比較とレビューを進める</h1>
-    <p>設計段階で怖いのは、根拠の薄いまま構成を決めることと、トレードオフが見えていても言語化できないことです。ブラウザ型 AI は比較役とレビュー役として特に使いやすいです。</p>
+    <div class="section-tag">設計</div>
+    <h1>案を比較し、選ぶ理由を明確にする</h1>
+    <p>
+      設計では正解を当てることより、採用理由を説明できることが重要です。
+      ブラウザ型 AI は、構成案の比較、API やデータフローの点検、レビュー観点の洗い出しに向いています。
+    </p>
   </section>
 
   <section class="grid">
-    <article class="card span-7">
-      <span class="kicker">Architecture Options</span>
-      <h3 class="panel-title">設計で難しいのは図を描くことより、選ぶ理由を説明すること</h3>
-      <p class="muted">同じ要件でも、モノリス、モジュラーモノリス、サービス分割、イベント駆動など複数の形が考えられます。重要なのは、なぜ今回その案を採るのかを説明できることです。</p>
-      <div class="stat-grid">
-        <div class="stat-item"><small>開発速度</small><strong>速い / 遅い</strong><small>delivery trade-off</small></div>
-        <div class="stat-item"><small>拡張性</small><strong>高い / 低い</strong><small>future load</small></div>
-        <div class="stat-item"><small>複雑度</small><strong>軽い / 重い</strong><small>team burden</small></div>
-      </div>
-    </article>
-
-    <article class="card accent span-5">
-      <h3 class="panel-title">ブラウザ型 AI がすぐ支援できること</h3>
-      <ul class="pill-list">
-        <li>複数の構成案を比較し長所と短所を整理する</li>
-        <li>API やデータフローの抜け漏れを点検する</li>
-        <li>拡張性や信頼性のリスクを先に表面化する</li>
-        <li>ADR や設計レビュー記録の下書きを作る</li>
+    <article class="card span-6">
+      <span class="kicker">課題</span>
+      <ul class="challenge-list">
+        <li>構成案は複数あるが、比較基準が曖昧になりやすい。</li>
+        <li>API、権限、冪等性、障害復旧の抜け漏れが後で出る。</li>
+        <li>設計判断の根拠が記録されず、レビューが属人的になりやすい。</li>
       </ul>
     </article>
 
-    <article class="card soft span-8">
-      <span class="kicker">Data & API</span>
-      <h3 class="panel-title">AI に参加させやすい設計論点</h3>
+    <article class="card span-6">
+      <span class="kicker">AI の使いどころ</span>
       <ul class="detail-list">
-        <li>「この機能は単体の中でモジュール化すべきか、それとも先にサービス分割すべきか」</li>
-        <li>「この API 設計は権限、冪等性、ページング、エラーコードで何を落としやすいか」</li>
-        <li>「同時実行や再試行が増えたとき、どこで破綻しやすいか」</li>
+        <li>複数案の長所と短所を比較する。</li>
+        <li>API やデータフローのリスクを洗い出す。</li>
+        <li>設計レビューで確認すべき質問を整理する。</li>
       </ul>
     </article>
 
-    <article class="card soft span-4">
-      <span class="kicker">AI Prompt</span>
-      <h3 class="panel-title">入力のヒント</h3>
-      <ul class="detail-list">
-        <li>要件の要約</li>
-        <li>API 定義</li>
-        <li>テーブル設計やデータモデル</li>
-        <li>比較中の案と懸念点</li>
+    <article class="card soft span-12">
+      <span class="kicker">入力素材</span>
+      <ul class="step-list">
+        <li>要件要約、API 草案、データモデル、比較中の構成案。</li>
+        <li>迷っている点や懸念点を明記すると、AI の返答が実務寄りになります。</li>
       </ul>
     </article>
   </section>
@@ -57,9 +44,9 @@ import PromptLab from '../components/PromptLab.astro';
   <PromptLab
     id="design-lab"
     title="設計レビュー用 Prompt"
-    intro="要件要約、API 草案、データモデル、比較中の構成案を貼ると、設計レビュー向けの prompt に整形します。"
+    intro="要件要約や API 草案を貼ると、設計比較とレビューに使いやすい prompt を生成します。"
     contextLabel="要件要約 / API 草案 / 構成案"
-    contextPlaceholder="例: 複数人で共同編集できるドキュメント管理バックエンドを作りたい。初期チームは 5 人で、半年以内に 200 社程度の利用を想定している。モジュラーモノリスにするか、先にサービス分割するかで迷っている。"
+    contextPlaceholder="例: 共同編集機能を持つドキュメント管理バックエンドを作る。モジュラーモノリスにするか、先にサービス分割するかで迷っている。"
     promptTemplate={`あなたは経験豊富なソフトウェアアーキテクトです。以下の設計コンテキストをレビューしてください。
 
 コンテキスト:
@@ -68,12 +55,12 @@ __CONTEXT__
 以下の形式で出力してください:
 1. システムの目的と主要な制約を要約する。
 2. 実行可能な設計方針を 2 〜 3 案示す。
-3. 各案について開発速度、複雑度、拡張性、保守性を比較する。
-4. API、データフロー、権限、冪等性、障害復旧で注意すべき点を挙げる。
+3. 各案の開発速度、複雑度、拡張性、保守性を比較する。
+4. API、データフロー、権限、冪等性、障害復旧の注意点を挙げる。
 5. 現時点で最も推奨する案とその理由を説明する。
-6. 設計レビューで必ず確認したい質問を列挙する。`}
-    promptNote="自分が気にしている不安も一緒に入れると、AI の返答がより実際のレビューコメントに近づきます。"
+6. 設計レビューで確認したい質問を列挙する。`}
+    promptNote="設計では、AI に結論を任せるより、比較と指摘を担ってもらう使い方が効果的です。"
   />
 
-  <div class="footer">設計段階では、AI に最終判断を任せるよりも、比較とリスク指摘を担ってもらうのが効果的です。</div>
+  <div class="footer">設計の質は、採用した案だけでなく、採用しなかった案をどう捨てたかでも決まります。</div>
 </BaseLayout>

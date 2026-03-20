@@ -5,55 +5,38 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI Architect | 要件定義" current="requirements">
   <section class="hero">
-    <div class="section-tag">Phase 01</div>
-    <h1>Requirements | 曖昧な要望を実行可能な要件に変える</h1>
-    <p>ソフトウェア開発の手戻りは、実は要件段階ですでに始まっていることが多いです。ブラウザ型 AI の価値は、散らばった入力を短時間でチーム共有できる叩き台に整理できる点にあります。</p>
+    <div class="section-tag">要件定義</div>
+    <h1>曖昧な話を、実行できる要件に変える</h1>
+    <p>
+      要件定義で難しいのは、情報が足りないことではなく、情報が散らばっていることです。
+      ブラウザ型 AI は、会議メモやチャットの断片を整理し、チームが議論できる形に整える役に向いています。
+    </p>
   </section>
 
   <section class="grid">
-    <article class="card span-8">
-      <span class="kicker">Discovery Board</span>
-      <h3 class="panel-title">なぜ要件定義は何度も揺れやすいのか</h3>
-      <p class="muted">現場の要件は、整った PRD ではなく、会議メモ、口頭補足、旧仕様、顧客要望が混ざった状態で来ることがほとんどです。</p>
-      <ul class="detail-list">
-        <li>情報が分散し、誰の発言が基準なのか、どの版が最新なのかが曖昧になりやすい。</li>
-        <li>やりたいことは語られても、どう検収するかが定義されないまま進みやすい。</li>
-        <li>性能、セキュリティ、監査、互換性などの非機能要件が抜け落ちやすい。</li>
-      </ul>
-      <div class="stat-grid">
-        <div class="stat-item"><small>入力の性質</small><strong>多元</strong><small>chat / docs / meetings</small></div>
-        <div class="stat-item"><small>典型課題</small><strong>曖昧</strong><small>undefined acceptance</small></div>
-        <div class="stat-item"><small>AI の価値</small><strong>整理</strong><small>structured first draft</small></div>
-      </div>
-    </article>
-
-    <article class="card accent span-4">
-      <h3 class="panel-title">ブラウザ型 AI がすぐできること</h3>
-      <ul class="pill-list">
-        <li>会議メモをユーザーストーリーに整理する</li>
-        <li>受け入れ条件と未解決事項を補う</li>
-        <li>MVP 範囲と後続開発を切り分ける</li>
-        <li>非機能要件と潜在リスクを洗い出す</li>
+    <article class="card span-6">
+      <span class="kicker">課題</span>
+      <ul class="challenge-list">
+        <li>誰の発言を基準にするかが曖昧になりやすい。</li>
+        <li>やりたいことは語られても、受け入れ条件が定義されない。</li>
+        <li>非機能要件や制約条件が後から出てきやすい。</li>
       </ul>
     </article>
 
-    <article class="card soft span-6">
-      <span class="kicker">Quality Gate</span>
-      <h3 class="panel-title">良い要件アウトプットの条件</h3>
+    <article class="card span-6">
+      <span class="kicker">AI の使いどころ</span>
       <ul class="detail-list">
-        <li>各要件が「理解できる」だけでなく「テストできる」状態になっている。</li>
-        <li>主要ユーザー、境界条件、異常系が明文化されている。</li>
-        <li>開発、設計、テストが同じ素材から作業を始められる。</li>
+        <li>会議メモを要件一覧に整理する。</li>
+        <li>受け入れ条件と未解決事項を抽出する。</li>
+        <li>MVP 範囲と後続課題を切り分ける。</li>
       </ul>
     </article>
 
-    <article class="card soft span-6">
-      <span class="kicker">Output</span>
-      <h3 class="panel-title">AI に渡しやすい素材</h3>
-      <ul class="detail-list">
-        <li>会議メモ、チャット履歴、競合サービス説明、旧画面のスクリーンショット。</li>
-        <li>顧客の発言そのものなど、加工前の一次情報。</li>
-        <li>説明しづらい部分ほど、元の表現のまま渡す価値がある。</li>
+    <article class="card soft span-12">
+      <span class="kicker">入力素材</span>
+      <ul class="step-list">
+        <li>会議メモ、チャット履歴、顧客要望、競合サービスの説明。</li>
+        <li>まだ整理していない一次情報のほうが有効です。</li>
       </ul>
     </article>
   </section>
@@ -61,23 +44,23 @@ import PromptLab from '../components/PromptLab.astro';
   <PromptLab
     id="requirements-lab"
     title="要件定義用 Prompt"
-    intro="会議メモ、チャット原文、断片的なアイデアを貼ると、ChatGPT でそのまま使いやすい要件整理用 prompt を生成します。"
-    contextLabel="会議メモ / チャット履歴 / 断片的な要望"
-    contextPlaceholder="例: 顧客一覧を管理画面から一括インポートしたい。Excel 対応が欲しい。営業は取り消し機能を求めている。運用はデータ汚染を心配している。来週のデモまでに形にしたい。"
-    promptTemplate={`あなたは経験豊富なプロダクトマネージャー兼ソフトウェアアナリストです。以下の一次情報をもとに、実行可能な要件へ整理してください。
+    intro="会議メモやチャット原文を貼ると、要件整理向けの prompt を生成します。"
+    contextLabel="会議メモ / チャット履歴 / 要望"
+    contextPlaceholder="例: 顧客一覧を管理画面から一括インポートしたい。Excel 対応が必要。営業は取り消し機能を求めている。来週のデモまでに見せられる形にしたい。"
+    promptTemplate={`あなたは経験豊富なプロダクトマネージャー兼ソフトウェアアナリストです。以下の一次情報を、実行可能な要件へ整理してください。
 
 一次情報:
 __CONTEXT__
 
 以下の形式で出力してください:
-1. この要件が解決したい中心課題を要約する。
-2. 主な利用者とその目的を整理する。
-3. 機能要件、非機能要件、制約条件に分けて記述する。
-4. MVP に含める内容と初版では外す内容を分ける。
+1. この要件が解決したい課題を要約する。
+2. 利用者と目的を整理する。
+3. 機能要件、非機能要件、制約条件に分ける。
+4. MVP に含める内容と後続に回す内容を分ける。
 5. テスト可能な受け入れ条件を書く。
-6. 不明点、衝突点、追加確認が必要な点を列挙する。`}
-    promptNote="要件段階で大事なのは AI に答えを決めてもらうことではなく、曖昧さを見える化することです。"
+6. 不明点と追加確認が必要な点を列挙する。`}
+    promptNote="要件段階では、答えを決めるより曖昧さを見える化する使い方が有効です。"
   />
 
-  <div class="footer">要件が明確になるほど、その後の設計、実装、テストの手戻りは減ります。</div>
+  <div class="footer">要件が明確になるほど、その後の設計、開発、テストの手戻りは減ります。</div>
 </BaseLayout>

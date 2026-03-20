@@ -4,70 +4,49 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="AI Architect | ホーム" current="home">
-  <div class="topbar">
-    <div class="section-tag">Browser-First AI for Software Engineering</div>
-  </div>
-
   <section class="hero">
-    <h1>ブラウザ型 AI をソフトウェア開発の各工程で使い切る</h1>
+    <div class="section-tag">AI Architect</div>
+    <h1>AI をソフトウェア開発の流れに組み込む</h1>
     <p>
-      これは「AI がすごい」と見せるためのサイトではなく、現場のチームが今日からブラウザだけで試せる実践集です。
-      要件整理、設計検討、実装支援、テスト補完、リリース、障害対応までをひとつの流れで扱います。
+      このサイトは、ブラウザで使える AI を前提に、要件定義から保守までの実務的な使い方を整理したガイドです。
+      それぞれの工程で何が難しいのか、AI がどこを助けられるのか、そしてすぐ試せる prompt をまとめています。
     </p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
-      <span class="kicker">Why This Matters</span>
-      <h2 class="panel-title">今のソフトウェア開発で難しいのは、書けないことより整理しきれないこと</h2>
+      <span class="kicker">概要</span>
+      <h2 class="panel-title">開発で詰まりやすいのは、実装そのものより整理と判断です</h2>
       <ul class="challenge-list">
-        <li>要件の出どころが分散し、会議、チャット、文書、口頭補足が食い違いやすい。</li>
-        <li>設計判断には多くのトレードオフがあり、リスクは見えていても言語化が追いつかない。</li>
-        <li>実装で時間を奪うのは、コードを書くことよりも文脈理解、境界条件整理、エラー解釈であることが多い。</li>
-        <li>テストとリリースは、網羅性、回帰リスク、設定の複雑さ、障害対応の負荷で止まりやすい。</li>
+        <li>要件は複数の情報源に散らばり、解釈のずれが起きやすい。</li>
+        <li>設計では正解が一つではなく、比較と説明に時間がかかる。</li>
+        <li>開発、テスト、デプロイでは文脈理解と切り分けが大きな負荷になる。</li>
+        <li>保守ではログ、アラート、変更履歴をつなげて読む力が求められる。</li>
       </ul>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;">
-        <a class="card soft" href={`${base}requirements/`}><strong>要件定義</strong><br /><small>Requirements</small></a>
-        <a class="card soft" href={`${base}design/`}><strong>設計</strong><br /><small>Design</small></a>
-        <a class="card soft" href={`${base}interactive/`}><strong>実装</strong><br /><small>Build</small></a>
-        <a class="card soft" href={`${base}testing/`}><strong>テスト</strong><br /><small>Testing</small></a>
-        <a class="card soft" href={`${base}deployment/`}><strong>リリース</strong><br /><small>Release</small></a>
-        <a class="card soft" href={`${base}maintenance/`}><strong>保守運用</strong><br /><small>Maintenance</small></a>
-      </div>
     </article>
 
     <article class="card accent span-4">
-      <span class="kicker" style="background:rgba(255,255,255,.2);color:#fff;">Immediate Use</span>
-      <h3 class="panel-title">なぜまずブラウザ型 AI なのか</h3>
+      <span class="kicker" style="background:rgba(255,255,255,.2);color:#fff;">方針</span>
+      <h3 class="panel-title">まずはブラウザ型 AI から始める</h3>
       <p style="line-height:1.8;opacity:.92;">
-        API 接続も新しい基盤導入も不要で、今ある環境をほとんど変えずに始められます。プロジェクトの背景、画面キャプチャ、
-        エラー内容、要件メモをそのままブラウザ上の AI に渡し、高頻度の思考負荷をまず下げられます。
+        新しい基盤や API 連携がなくても、会議メモ、コード片、エラーログ、設定ファイルをそのまま AI に渡せます。
+        小さく試し、日々の業務に組み込める形を優先します。
       </p>
-      <p class="metric">Today</p>
+      <p class="metric">実務重視</p>
     </article>
 
     <article class="card soft span-12">
-      <span class="kicker">Use It Like A Playbook</span>
+      <span class="kicker">工程</span>
       <div class="mini-grid">
-        <div>
-          <h3 class="panel-title">各ページで答えること</h3>
-          <ul class="step-list">
-            <li>その工程で本当に詰まりやすいポイントは何か。</li>
-            <li>ブラウザ型 AI だけで今すぐ何を支援できるか。</li>
-            <li>ChatGPT にそのまま渡して試せる prompt は何か。</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="panel-title">すぐ試しやすい入力素材</h3>
-          <ul class="step-list">
-            <li>会議メモ、要件断片、画面キャプチャ、エラーログ、コード片。</li>
-            <li>テスト失敗内容、API 定義、デプロイ設定、アラート要約。</li>
-            <li>具体的に渡すほど、AI の出力品質も上がりやすい。</li>
-          </ul>
-        </div>
+        <a class="card soft" href={`${base}requirements/`}><strong>要件定義</strong><br /><small>Requirements</small></a>
+        <a class="card soft" href={`${base}design/`}><strong>設計</strong><br /><small>Design</small></a>
+        <a class="card soft" href={`${base}interactive/`}><strong>開発</strong><br /><small>Implementation</small></a>
+        <a class="card soft" href={`${base}testing/`}><strong>テスト</strong><br /><small>Testing</small></a>
+        <a class="card soft" href={`${base}deployment/`}><strong>デプロイ</strong><br /><small>Deployment</small></a>
+        <a class="card soft" href={`${base}maintenance/`}><strong>保守</strong><br /><small>Maintenance</small></a>
       </div>
     </article>
   </section>
 
-  <div class="footer">ただ話せるだけで終わらせず、prompt を実務フローの一部にすることが定着の鍵です。</div>
+  <div class="footer">各ページでは、課題、AI の使いどころ、入力しやすい素材、すぐ試せる prompt を簡潔に整理しています。</div>
 </BaseLayout>

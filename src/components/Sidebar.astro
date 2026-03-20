@@ -3,19 +3,18 @@ const { current = 'home' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
 const items = [
-  { id: 'home', href: `${base}`, icon: 'home', label: 'ホーム' },
+  { id: 'requirements', href: `${base}requirements/`, icon: 'description', label: '要件定義' },
+  { id: 'design', href: `${base}design/`, icon: 'architecture', label: '設計' },
   { id: 'interactive', href: `${base}interactive/`, icon: 'code', label: '開発' },
   { id: 'testing', href: `${base}testing/`, icon: 'biotech', label: 'テスト' },
   { id: 'deployment', href: `${base}deployment/`, icon: 'rocket_launch', label: 'デプロイ' },
-  { id: 'requirements', href: `${base}requirements/`, icon: 'description', label: '要件定義' },
-  { id: 'design', href: `${base}design/`, icon: 'architecture', label: '設計' },
   { id: 'maintenance', href: `${base}maintenance/`, icon: 'build', label: '保守' }
 ];
 ---
 
 <aside class="sidebar">
-  <div class="brand">AI Architect</div>
-  <div class="side-label">SDLC フェーズ</div>
+  <a class="brand" href={`${base}`}>AI Architect</a>
+  <div class="side-label">活用ガイド</div>
   <nav class="nav-list">
     {items.map((item) => (
       <a class={`nav-item ${item.id === current ? 'active' : ''}`} href={item.href}>

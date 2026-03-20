@@ -5,48 +5,38 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI Architect | テスト" current="testing">
   <section class="hero">
-    <div class="section-tag">Phase 04</div>
-    <h1>Testing | ブラウザ型 AI でテストの抜け漏れを減らす</h1>
-    <p>テストの難しさは、ケースを書くことだけではありません。何を検証すべきか、どこが脆いか、今回の変更がどこへ波及するかを見抜くことです。ブラウザ型 AI は抜け漏れ補完と失敗解釈に特に向いています。</p>
+    <div class="section-tag">テスト</div>
+    <h1>抜け漏れを先に見つける</h1>
+    <p>
+      テストで難しいのは、ケースを書くことよりも、何を落としているかを把握することです。
+      ブラウザ型 AI は、観点出し、エッジケース補完、失敗ログの整理に向いています。
+    </p>
   </section>
 
   <section class="grid">
-    <article class="card span-8">
-      <span class="kicker">Core Challenge</span>
-      <h3 class="panel-title">テストで困るのは書けないことより、何を落としているか分からないこと</h3>
+    <article class="card span-6">
+      <span class="kicker">課題</span>
       <ul class="challenge-list">
-        <li>分岐、異常入力、権限差、空状態などが抜けやすい。</li>
-        <li>既存テストがあっても、最新実装とズレていることがある。</li>
-        <li>失敗ログは多いのに、根本原因は見えにくい。</li>
+        <li>分岐、異常入力、権限差、空状態が抜けやすい。</li>
+        <li>既存テストと最新実装がずれていることがある。</li>
+        <li>失敗ログは多いのに、根本原因が見えにくい。</li>
       </ul>
     </article>
 
-    <article class="card accent span-4">
-      <h3 class="panel-title">ブラウザ型 AI に向く役割</h3>
-      <ul class="pill-list">
-        <li>要件やコードからテスト観点を導く</li>
-        <li>エッジケースや不正入力を補う</li>
-        <li>flaky test や失敗ログを説明する</li>
-        <li>先にテスト方針を作り、その後 Jest や Playwright に落とす</li>
-      </ul>
-      <p class="metric">Coverage</p>
-    </article>
-
-    <article class="card soft span-6">
-      <span class="kicker">Use Inputs Like This</span>
+    <article class="card span-6">
+      <span class="kicker">AI の使いどころ</span>
       <ul class="detail-list">
-        <li>要件説明と主要な状態遷移</li>
-        <li>関数やコンポーネントの実装コード</li>
-        <li>テスト失敗のスクリーンショット、スタック情報、コンソールログ</li>
+        <li>要件やコードからテスト観点を洗い出す。</li>
+        <li>エッジケースや回帰しやすい経路を補う。</li>
+        <li>失敗ログから調査順序を整理する。</li>
       </ul>
     </article>
 
-    <article class="card soft span-6">
-      <span class="kicker">Expected Output</span>
-      <ul class="detail-list">
-        <li>優先度付きのテスト項目一覧</li>
-        <li>単体 / 結合 / E2E に分けた提案</li>
-        <li>回帰を起こしやすい高リスク経路の指摘</li>
+    <article class="card soft span-12">
+      <span class="kicker">入力素材</span>
+      <ul class="step-list">
+        <li>要件説明、状態遷移、関数やコンポーネントのコード、失敗ログ。</li>
+        <li>まずはテスト方針を作らせ、その後に Jest や Playwright へ落とす流れが有効です。</li>
       </ul>
     </article>
   </section>
@@ -54,7 +44,7 @@ import PromptLab from '../components/PromptLab.astro';
   <PromptLab
     id="testing-lab"
     title="テスト設計用 Prompt"
-    intro="要件、実装片、失敗ログを貼ると、ChatGPT でそのまま使えるテスト設計用 prompt を生成します。"
+    intro="要件、実装片、失敗ログを貼ると、テスト観点整理に使いやすい prompt を生成します。"
     contextLabel="要件 / 実装 / 失敗ログ"
     contextPlaceholder="例: このフォームはメールログインと電話番号ログインに対応している。最近 CAPTCHA を追加したが、現状のテストは成功系しかなく、CI では disabled ボタン状態に関する失敗が出ている。"
     promptTemplate={`あなたは経験豊富なテストエンジニアです。以下の文脈をもとに、テスト設計と弱点の洗い出しを支援してください。
@@ -66,11 +56,11 @@ __CONTEXT__
 1. 今回のテスト目的を一文で要約する。
 2. 必ずカバーすべき主要シナリオを挙げる。
 3. 見落としやすいエッジケースを列挙する。
-4. 単体テスト / 結合テスト / E2E テストの 3 つに分けて提案する。
+4. 単体テスト / 結合テスト / E2E テストに分けて提案する。
 5. 失敗ログがある場合は、根本原因候補と調査順序を示す。
 6. 最後に実行可能なテストチェックリストまたはテストコード草案を出す。`}
-    promptNote="テストを書く前の coverage planning にも、失敗ログから調査範囲を狭める用途にも向いています。"
+    promptNote="テストコードを大量に生成させる前に、抜け漏れを見つける用途で使うのが有効です。"
   />
 
-  <div class="footer">先に AI に抜け漏れを探させるほうが、いきなり大量のテストコードを書かせるより効果的なことが多いです。</div>
+  <div class="footer">テストでは、先に観点を広げることが、後の修正コストを下げます。</div>
 </BaseLayout>

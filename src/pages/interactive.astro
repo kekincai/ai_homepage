@@ -5,63 +5,51 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI Architect | 開発" current="interactive">
   <section class="hero">
-    <div class="section-tag">Phase 03</div>
-    <h1>Implementation | ブラウザ型 AI を実装の相棒にする</h1>
-    <p>実装で最も時間を奪うのは、古いコードの理解、タスク分解、境界条件の補完、エラー解釈です。ブラウザ型 AI は、まずその高頻度の詰まりをほぐしてからエディタに入る流れと相性が良いです。</p>
+    <div class="section-tag">開発</div>
+    <h1>実装前の整理を AI に任せる</h1>
+    <p>
+      開発で時間を奪うのは、コードを書くことよりも、既存コードの理解、変更範囲の把握、エラーの読み解きです。
+      ブラウザ型 AI は、実装に入る前の整理役として特に使いやすいです。
+    </p>
   </section>
 
   <section class="grid">
-    <article class="card span-8">
-      <span class="kicker">Core Challenge</span>
-      <h3 class="panel-title">実装は「書くこと」より「方向を外さないこと」が難しい</h3>
+    <article class="card span-6">
+      <span class="kicker">課題</span>
       <ul class="challenge-list">
-        <li>見慣れないコードを触るときは、実装より文脈理解のほうが時間を使いやすい。</li>
-        <li>要件が不完全なまま進むと、境界条件や異常系が抜けやすい。</li>
-        <li>小さな変更に見えても、API、状態管理、計測、テストへ波及しやすい。</li>
+        <li>見慣れないコードでは、文脈理解に時間がかかる。</li>
+        <li>小さな変更でも、影響範囲が広がりやすい。</li>
+        <li>エラー内容を読むだけで調査が止まりやすい。</li>
       </ul>
     </article>
 
-    <article class="card span-4">
-      <span class="kicker">Browser AI Can Help</span>
-      <h3 class="panel-title">まず AI に任せやすい前処理</h3>
+    <article class="card span-6">
+      <span class="kicker">AI の使いどころ</span>
       <ul class="detail-list">
-        <li>既存コードと主要な呼び出し経路を説明させる。</li>
-        <li>要件を実装手順とリスクに分解させる。</li>
-        <li>最初のコード草案や疑似コードを作らせる。</li>
-        <li>エラー内容を実行可能な調査手順に言い換えさせる。</li>
+        <li>既存コードと主要な呼び出し経路を説明する。</li>
+        <li>要件を実装手順と注意点に分解する。</li>
+        <li>エラーを調査順序つきで言い換える。</li>
       </ul>
     </article>
 
-    <article class="card accent span-5">
-      <h3 class="panel-title">ブラウザで渡しやすい入力</h3>
-      <ul class="pill-list">
-        <li>関数やコンポーネントのコード片</li>
-        <li>PR 説明や要件メモ</li>
-        <li>ターミナルのエラーとログ</li>
-        <li>画面キャプチャと UI 説明</li>
-      </ul>
-    </article>
-
-    <article class="card soft span-7">
-      <span class="kicker">Good Use Cases</span>
-      <h3 class="panel-title">効果が出やすい依頼例</h3>
-      <ul class="detail-list">
-        <li>「このコードが何をしているか説明し、最も危険な変更点を指摘して」</li>
-        <li>「この要件をもとに、実装手順、関係しそうなファイル、必要なテスト観点を出して」</li>
-        <li>「このエラーを貼るので、いきなり書き直さず、まず原因候補を 3 つに絞って」</li>
+    <article class="card soft span-12">
+      <span class="kicker">入力素材</span>
+      <ul class="step-list">
+        <li>コード片、PR 説明、要件メモ、ターミナルログ、画面キャプチャ。</li>
+        <li>まずは「この変更でどこを触るべきか」を整理させる使い方が安定します。</li>
       </ul>
     </article>
   </section>
 
   <PromptLab
     id="implementation-lab"
-    title="実装支援用 Prompt"
-    intro="要件、コード片、エラー内容を入れると、ChatGPT でそのまま試せる実装支援用 prompt を生成します。"
+    title="開発支援用 Prompt"
+    intro="要件、コード片、エラー内容を貼ると、実装前の整理に使いやすい prompt を生成します。"
     contextLabel="要件 / コード / エラー"
     contextPlaceholder="例: React ページに多言語切り替えを追加したい。Header.tsx、i18n.ts、LanguageMenu.tsx があり、切り替え後に一部文言が更新されない。"
-    promptTemplate={`あなたはシニアソフトウェアエンジニアです。以下のプロジェクト文脈をもとに、実装作業を前に進める支援をしてください。
+    promptTemplate={`あなたはシニアソフトウェアエンジニアです。以下の文脈をもとに、実装作業を前に進める支援をしてください。
 
-プロジェクト文脈:
+文脈:
 __CONTEXT__
 
 以下の形式で出力してください:
@@ -71,8 +59,8 @@ __CONTEXT__
 4. 境界条件、回帰リスク、見落としやすい点を指摘する。
 5. エラーが含まれている場合は意味を説明し、調査順序を示す。
 6. 最後に実装草案または疑似コードを出す。`}
-    promptNote="いきなり大きなコード生成をさせる前に、実装の見取り図を整える用途に向いています。"
+    promptNote="いきなり大きなコード生成をさせるより、まず見取り図を整える使い方が向いています。"
   />
 
-  <div class="footer">まず AI に文脈整理をさせてから書き始めるほうが、最初から丸ごと生成させるより安定しやすいです。</div>
+  <div class="footer">開発では、AI に書かせる前に理解させるほうが失敗しにくくなります。</div>
 </BaseLayout>
