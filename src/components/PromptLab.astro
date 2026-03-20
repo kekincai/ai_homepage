@@ -3,7 +3,7 @@ const {
   id,
   title,
   intro,
-  contextLabel = '输入你的项目背景',
+  contextLabel = 'プロジェクトの背景を入力',
   contextPlaceholder = '',
   promptTemplate = '',
   promptNote = ''
@@ -26,16 +26,16 @@ const {
     </label>
 
     <label>
-      <div class="section-tag" style="margin-bottom:8px;">生成的 Prompt</div>
+      <div class="section-tag" style="margin-bottom:8px;">生成された Prompt</div>
       <textarea class="prompt-preview" data-role="preview" readonly>{promptTemplate}</textarea>
     </label>
 
     <div class="prompt-actions">
       <a class="button-primary" data-role="launch" href="https://chatgpt.com/" target="_blank" rel="noreferrer">
-        在 ChatGPT 里测试
+        ChatGPT で試す
       </a>
       <button class="button-secondary" data-role="copy" type="button">
-        复制 Prompt
+        Prompt をコピー
       </button>
     </div>
 
@@ -58,7 +58,7 @@ const {
     }
 
     const updatePrompt = () => {
-      const value = context.value.trim() || '请把这里替换成你的项目背景、代码片段、报错信息或页面描述。';
+      const value = context.value.trim() || 'ここにプロジェクトの背景、コード片、エラー内容、画面説明などを入力してください。';
       const prompt = template.replace('__CONTEXT__', value);
       preview.value = prompt;
 
@@ -70,9 +70,9 @@ const {
     context.addEventListener('input', updatePrompt);
     copy.addEventListener('click', async () => {
       await navigator.clipboard.writeText(preview.value);
-      copy.textContent = '已复制';
+      copy.textContent = 'コピーしました';
       window.setTimeout(() => {
-        copy.textContent = '复制 Prompt';
+        copy.textContent = 'Prompt をコピー';
       }, 1500);
     });
 

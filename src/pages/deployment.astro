@@ -6,28 +6,28 @@ import PromptLab from '../components/PromptLab.astro';
 <BaseLayout title="AI Architect | デプロイ" current="deployment">
   <section class="hero">
     <div class="section-tag">Phase 05</div>
-    <h1>Deployment | 发布上线与配置解释</h1>
-    <p>上线阶段最怕“看起来都对，但就是不能发”。浏览器里的 AI 很适合帮助我们解释配置、梳理发布步骤、理解 CI 失败点，降低上线焦虑。</p>
+    <h1>Deployment | リリースと設定理解をブラウザ型 AI で支える</h1>
+    <p>リリース段階で怖いのは「全部合っているように見えるのに出せない」状態です。ブラウザ型 AI は設定の読み解き、手順整理、CI 失敗の初動把握に役立ちます。</p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
       <span class="kicker">Core Challenge</span>
-      <h3 class="panel-title">部署难点往往集中在“信息不透明”</h3>
+      <h3 class="panel-title">デプロイの難しさは、情報が見通せないことに集まりやすい</h3>
       <ul class="challenge-list">
-        <li>工作流文件、环境变量、构建命令和托管平台设置分散在多个地方。</li>
-        <li>CI 报错常常是平台术语，读起来费劲，定位成本高。</li>
-        <li>团队知道要回滚、要监控，但临门一脚时经常没有清晰步骤。</li>
+        <li>workflow、環境変数、ビルドコマンド、ホスティング設定が複数箇所に散らばる。</li>
+        <li>CI エラーはプラットフォーム固有の言葉が多く、読み解きに時間がかかる。</li>
+        <li>ロールバックや監視の必要性は分かっていても、直前になると手順が曖昧になりやすい。</li>
       </ul>
     </article>
 
     <article class="card accent span-4">
-      <h3 class="panel-title">网页 AI 可直接帮你</h3>
+      <h3 class="panel-title">ブラウザ型 AI がすぐ手伝えること</h3>
       <ul class="pill-list">
-        <li>解释 GitHub Actions / Docker / Nginx 配置</li>
-        <li>从报错日志推测最可能的失败环节</li>
-        <li>生成最小可行部署流程和回滚清单</li>
-        <li>帮助核对环境变量与构建命令</li>
+        <li>GitHub Actions / Docker / Nginx の設定を説明する</li>
+        <li>エラーログから失敗箇所の有力候補を絞る</li>
+        <li>最小構成のデプロイ手順とロールバック項目を作る</li>
+        <li>環境変数とビルドコマンドの確認観点を出す</li>
       </ul>
       <p class="metric">Ship</p>
     </article>
@@ -35,42 +35,42 @@ import PromptLab from '../components/PromptLab.astro';
     <article class="card soft span-6">
       <span class="kicker">Browser Inputs</span>
       <ul class="detail-list">
-        <li>工作流 YAML、构建脚本、Dockerfile</li>
-        <li>托管平台构建日志和失败截图</li>
-        <li>环境变量说明与部署目标平台</li>
+        <li>workflow YAML、ビルドスクリプト、Dockerfile</li>
+        <li>ホスティング基盤のビルドログや失敗画面</li>
+        <li>環境変数の説明とデプロイ先の情報</li>
       </ul>
     </article>
 
     <article class="card soft span-6">
       <span class="kicker">Ideal Outputs</span>
       <ul class="detail-list">
-        <li>发布前 checklist</li>
-        <li>失败根因的优先级排序</li>
-        <li>回滚方案与上线后验证项</li>
+        <li>リリース前チェックリスト</li>
+        <li>失敗原因候補の優先順位</li>
+        <li>ロールバック案とリリース後の確認項目</li>
       </ul>
     </article>
   </section>
 
   <PromptLab
     id="deployment-lab"
-    title="发布阶段 Prompt"
-    intro="把工作流配置、平台报错或部署目标说明贴进来，生成一条更适合用 ChatGPT 排查和落地部署的 prompt。"
-    contextLabel="配置 / 构建日志 / 目标平台"
-    contextPlaceholder="例如：我要把一个 Astro 站点部署到 GitHub Pages，当前 workflow 已有 install 和 build，但 deploy 失败，日志里提到 artifact 和 pages 配置。"
-    promptTemplate={`请作为熟悉 CI/CD 和前端部署的平台工程师，基于下面的上下文帮助我完成发布。
+    title="デプロイ支援用 Prompt"
+    intro="workflow 設定、プラットフォームのエラー、デプロイ先の条件を貼ると、ChatGPT で使いやすいリリース支援 prompt を生成します。"
+    contextLabel="設定 / ビルドログ / デプロイ先"
+    contextPlaceholder="例: Astro サイトを GitHub Pages にデプロイしたい。workflow には install と build があるが deploy が失敗する。ログには artifact と pages 設定に関する記述がある。"
+    promptTemplate={`あなたは CI/CD とフロントエンド配信に詳しいプラットフォームエンジニアです。以下の文脈をもとに、リリース完了まで支援してください。
 
-上下文：
+文脈:
 __CONTEXT__
 
-请按下面格式输出：
-1. 先判断当前最可能卡在哪个环节。
-2. 用通俗语言解释报错或配置文件里关键字段的含义。
-3. 给出最小可行的部署步骤。
-4. 列出我应该检查的环境变量、构建命令和平台设置。
-5. 如果发布失败，给一个从高概率到低概率的排查清单。
-6. 最后补一份上线后验证和回滚建议。`}
-    promptNote="如果你只是“看不懂这段 workflow 在做什么”，也可以直接把 YAML 丢进去让它解释。"
+以下の形式で出力してください:
+1. 現在どの段階で詰まっている可能性が高いかを判断する。
+2. エラー文や設定項目の意味を平易に説明する。
+3. 最小構成で成功させるデプロイ手順を示す。
+4. 確認すべき環境変数、ビルドコマンド、プラットフォーム設定を列挙する。
+5. 失敗時の調査順序を高確率順に出す。
+6. 最後にリリース後の確認項目とロールバック方針を書く。`}
+    promptNote="workflow の意味が分からない段階でも、YAML をそのまま貼って説明させる使い方ができます。"
   />
 
-  <div class="footer">发布阶段先让 AI 做“解释器”和“排查助手”，能显著减少对平台术语的恐惧感。</div>
+  <div class="footer">リリース段階では、AI をまず「説明役」と「一次切り分け役」にするのが効果的です。</div>
 </BaseLayout>

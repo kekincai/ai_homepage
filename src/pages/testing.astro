@@ -6,28 +6,28 @@ import PromptLab from '../components/PromptLab.astro';
 <BaseLayout title="AI Architect | テスト" current="testing">
   <section class="hero">
     <div class="section-tag">Phase 04</div>
-    <h1>Testing | 用网页 AI 补齐测试盲区</h1>
-    <p>测试难的不只是写 case，而是想到该测什么、哪里最脆弱、为什么这次改动会把别处带坏。浏览器里的 AI 特别适合做“补盲”和“解释失败”。</p>
+    <h1>Testing | ブラウザ型 AI でテストの抜け漏れを減らす</h1>
+    <p>テストの難しさは、ケースを書くことだけではありません。何を検証すべきか、どこが脆いか、今回の変更がどこへ波及するかを見抜くことです。ブラウザ型 AI は抜け漏れ補完と失敗解釈に特に向いています。</p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
       <span class="kicker">Core Challenge</span>
-      <h3 class="panel-title">测试常见的痛点不是写不了，而是不知道漏了什么</h3>
+      <h3 class="panel-title">テストで困るのは書けないことより、何を落としているか分からないこと</h3>
       <ul class="challenge-list">
-        <li>功能分支、异常输入、权限差异和空状态很容易漏。</li>
-        <li>已有测试存在，但和最新实现早就不一致。</li>
-        <li>失败日志很多，真正的根因却藏得很深。</li>
+        <li>分岐、異常入力、権限差、空状態などが抜けやすい。</li>
+        <li>既存テストがあっても、最新実装とズレていることがある。</li>
+        <li>失敗ログは多いのに、根本原因は見えにくい。</li>
       </ul>
     </article>
 
     <article class="card accent span-4">
-      <h3 class="panel-title">网页 AI 适合做什么</h3>
+      <h3 class="panel-title">ブラウザ型 AI に向く役割</h3>
       <ul class="pill-list">
-        <li>从需求或代码推导测试场景</li>
-        <li>补充 edge cases 与错误输入</li>
-        <li>解释 flaky test 和失败日志</li>
-        <li>先生成测试思路，再落到 Jest / Playwright</li>
+        <li>要件やコードからテスト観点を導く</li>
+        <li>エッジケースや不正入力を補う</li>
+        <li>flaky test や失敗ログを説明する</li>
+        <li>先にテスト方針を作り、その後 Jest や Playwright に落とす</li>
       </ul>
       <p class="metric">Coverage</p>
     </article>
@@ -35,42 +35,42 @@ import PromptLab from '../components/PromptLab.astro';
     <article class="card soft span-6">
       <span class="kicker">Use Inputs Like This</span>
       <ul class="detail-list">
-        <li>需求描述 + 关键状态流转</li>
-        <li>某个函数 / 组件的实现代码</li>
-        <li>测试失败截图、栈信息、控制台日志</li>
+        <li>要件説明と主要な状態遷移</li>
+        <li>関数やコンポーネントの実装コード</li>
+        <li>テスト失敗のスクリーンショット、スタック情報、コンソールログ</li>
       </ul>
     </article>
 
     <article class="card soft span-6">
       <span class="kicker">Expected Output</span>
       <ul class="detail-list">
-        <li>优先级排序后的测试清单</li>
-        <li>按单测 / 集成 / E2E 分类的建议</li>
-        <li>最容易产生回归的高风险路径</li>
+        <li>優先度付きのテスト項目一覧</li>
+        <li>単体 / 結合 / E2E に分けた提案</li>
+        <li>回帰を起こしやすい高リスク経路の指摘</li>
       </ul>
     </article>
   </section>
 
   <PromptLab
     id="testing-lab"
-    title="测试阶段 Prompt"
-    intro="把需求、实现片段或失败日志贴进来，让页面先把 prompt 组织好，再跳到 ChatGPT 里生成测试方案或定位问题。"
-    contextLabel="需求 / 实现 / 测试失败日志"
-    contextPlaceholder="例如：这个表单支持邮箱登录和手机号登录，最近加了验证码逻辑。现有测试只覆盖成功路径，CI 中出现了一个与 disabled 按钮状态相关的失败。"
-    promptTemplate={`请扮演资深测试工程师，基于下面的上下文帮我设计测试并找出薄弱点。
+    title="テスト設計用 Prompt"
+    intro="要件、実装片、失敗ログを貼ると、ChatGPT でそのまま使えるテスト設計用 prompt を生成します。"
+    contextLabel="要件 / 実装 / 失敗ログ"
+    contextPlaceholder="例: このフォームはメールログインと電話番号ログインに対応している。最近 CAPTCHA を追加したが、現状のテストは成功系しかなく、CI では disabled ボタン状態に関する失敗が出ている。"
+    promptTemplate={`あなたは経験豊富なテストエンジニアです。以下の文脈をもとに、テスト設計と弱点の洗い出しを支援してください。
 
-上下文：
+文脈:
 __CONTEXT__
 
-请按下面格式输出：
-1. 用一句话总结这次测试目标。
-2. 列出必须覆盖的核心场景。
-3. 列出最容易遗漏的 edge cases。
-4. 按 单元测试 / 集成测试 / E2E 测试 三类给建议。
-5. 如果给了失败日志，推断最可能的根因和排查顺序。
-6. 最后给出一份可执行的测试清单或示例测试代码草案。`}
-    promptNote="适合在写测试前做 coverage planning，也适合把失败日志丢进去让 AI 先帮你缩小范围。"
+以下の形式で出力してください:
+1. 今回のテスト目的を一文で要約する。
+2. 必ずカバーすべき主要シナリオを挙げる。
+3. 見落としやすいエッジケースを列挙する。
+4. 単体テスト / 結合テスト / E2E テストの 3 つに分けて提案する。
+5. 失敗ログがある場合は、根本原因候補と調査順序を示す。
+6. 最後に実行可能なテストチェックリストまたはテストコード草案を出す。`}
+    promptNote="テストを書く前の coverage planning にも、失敗ログから調査範囲を狭める用途にも向いています。"
   />
 
-  <div class="footer">先让 AI 帮你找“漏测点”，通常比直接让它写一大段测试代码更有效。</div>
+  <div class="footer">先に AI に抜け漏れを探させるほうが、いきなり大量のテストコードを書かせるより効果的なことが多いです。</div>
 </BaseLayout>

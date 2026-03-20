@@ -6,73 +6,73 @@ import PromptLab from '../components/PromptLab.astro';
 <BaseLayout title="AI Architect | 保守" current="maintenance">
   <section class="hero">
     <div class="section-tag">Phase 06</div>
-    <h1>Maintenance | 故障响应、监控解释与知识沉淀</h1>
-    <p>上线后最现实的挑战是：告警太多、日志太乱、交接太快。浏览器里的 AI 很适合做第一层“读日志、讲人话、给排查顺序”的帮手。</p>
+    <h1>Maintenance | 障害対応、監視解釈、知見の蓄積</h1>
+    <p>リリース後の現実的な課題は、アラートが多いこと、ログが読みにくいこと、引き継ぎが早いことです。ブラウザ型 AI は最初の「ログを読んで人間向けに整理する役」として使いやすいです。</p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
       <span class="kicker">Observability</span>
-      <h3 class="panel-title">维护阶段真正耗人的，是“先看懂发生了什么”</h3>
-      <p class="muted">很多事故处理并不是技术上完全无解，而是第一时间没人能把告警、日志、近期变更和用户影响串起来。</p>
+      <h3 class="panel-title">保守で最も負荷が高いのは、まず何が起きたかを理解すること</h3>
+      <p class="muted">多くの障害対応は、技術的に不可能なのではなく、アラート、ログ、直近変更、ユーザー影響を最初に結びつけられないことが問題になります。</p>
       <div class="stat-grid">
-        <div class="stat-item"><small>告警问题</small><strong>多</strong><small>too noisy</small></div>
-        <div class="stat-item"><small>日志问题</small><strong>乱</strong><small>hard to read</small></div>
-        <div class="stat-item"><small>知识问题</small><strong>散</strong><small>runbook drift</small></div>
+        <div class="stat-item"><small>アラート課題</small><strong>多い</strong><small>too noisy</small></div>
+        <div class="stat-item"><small>ログ課題</small><strong>複雑</strong><small>hard to read</small></div>
+        <div class="stat-item"><small>知識課題</small><strong>分散</strong><small>runbook drift</small></div>
       </div>
     </article>
 
     <article class="card accent span-4">
-      <h3 class="panel-title">网页 AI 可直接承担</h3>
+      <h3 class="panel-title">ブラウザ型 AI が直接担いやすいこと</h3>
       <ul class="pill-list">
-        <li>告警摘要和影响范围解释</li>
-        <li>从日志里提炼最可疑的异常链路</li>
-        <li>生成第一轮排查步骤</li>
-        <li>把 incident 复盘写成可复用 runbook</li>
+        <li>アラート要約と影響範囲の説明</li>
+        <li>ログから疑わしい異常経路を抽出する</li>
+        <li>初動の調査手順を作る</li>
+        <li>インシデントの振り返りを再利用可能な runbook に変える</li>
       </ul>
     </article>
 
     <article class="card soft span-6">
       <span class="kicker">Incident Flow</span>
-      <h3 class="panel-title">适合立刻试的场景</h3>
+      <h3 class="panel-title">すぐ試しやすい場面</h3>
       <ul class="detail-list">
-        <li>把一段混乱的错误日志变成“人能看懂”的故障叙述。</li>
-        <li>根据最近改动和报错时间线，推断优先排查对象。</li>
-        <li>把复盘纪要改写成下次值班能用的 runbook。</li>
+        <li>読みにくいエラーログを、人が追える障害説明に変える。</li>
+        <li>直近変更と発生時刻から、優先的に見るべき箇所を推定する。</li>
+        <li>振り返りメモを、次回当番が使える runbook に書き換える。</li>
       </ul>
     </article>
 
     <article class="card soft span-6">
       <span class="kicker">Continuous Improvement</span>
-      <h3 class="panel-title">输入建议</h3>
+      <h3 class="panel-title">入力のヒント</h3>
       <ul class="detail-list">
-        <li>监控告警文案、栈信息、时间线、近期发布记录。</li>
-        <li>用户反馈原文，而不是只给一句“出问题了”。</li>
-        <li>上次事故处理过程和当前值班人的疑问。</li>
+        <li>監視アラート文、スタック情報、時系列、最近のリリース記録。</li>
+        <li>「不具合です」の一言ではなく、ユーザーの生の報告。</li>
+        <li>前回対応の流れや、現在の担当者が分からない点。</li>
       </ul>
     </article>
   </section>
 
   <PromptLab
     id="maintenance-lab"
-    title="运维保守 Prompt"
-    intro="把告警、日志、用户反馈和近期发布信息贴进来，让页面先把 prompt 组织成故障排查助手，再跳去 ChatGPT 里分析。"
-    contextLabel="告警 / 日志 / 用户反馈 / 变更记录"
-    contextPlaceholder="例如：今天 14:05 开始 API 500 激增，Sentry 报错集中在 payment webhook，用户反馈支付成功但订单状态未更新。今天 13:40 刚上线了支付重试逻辑。"
-    promptTemplate={`请扮演有值班经验的运维和后端工程师，基于下面的故障上下文协助我做第一轮排查。
+    title="保守運用用 Prompt"
+    intro="アラート、ログ、ユーザー報告、最近の変更情報を入れると、障害切り分けに使いやすい prompt を生成します。"
+    contextLabel="アラート / ログ / ユーザー報告 / 変更履歴"
+    contextPlaceholder="例: 今日 14:05 から API 500 が急増した。Sentry のエラーは payment webhook に集中している。ユーザーからは決済は成功したが注文状態が更新されないという報告が来ている。13:40 に決済の再試行ロジックをリリースした。"
+    promptTemplate={`あなたはオンコール経験のある運用エンジニア兼バックエンドエンジニアです。以下の障害文脈をもとに、初動調査を支援してください。
 
-故障上下文：
+障害文脈:
 __CONTEXT__
 
-请按下面格式输出：
-1. 先总结现象、影响范围和紧急程度。
-2. 推断最可能的 3 个根因，并说明依据。
-3. 给出一份从高优先级到低优先级的排查步骤。
-4. 说明哪些信息还缺失，应该立刻补充什么。
-5. 如果需要回滚或降级，给出判断条件。
-6. 最后帮我写一版事故说明和后续 runbook 更新建议。`}
-    promptNote="维护阶段不要一开始就让 AI 给结论，先让它帮你整理事实、推断优先级，会更稳。"
+以下の形式で出力してください:
+1. 現象、影響範囲、緊急度を要約する。
+2. 最も可能性の高い根本原因を 3 つ挙げ、根拠を示す。
+3. 優先度順の調査ステップを出す。
+4. まだ不足している情報と、今すぐ確認すべき点を示す。
+5. ロールバックや機能制限が必要な判断条件を書く。
+6. 最後に障害説明文と runbook 更新案を作る。`}
+    promptNote="保守では、最初から AI に結論を出させるより、事実整理と優先順位付けを手伝わせるほうが安定します。"
   />
 
-  <div class="footer">维护不是被动救火，关键是把“这次怎么处理的”沉淀成下次更快的动作。</div>
+  <div class="footer">保守は場当たり的な消火ではなく、今回の対応を次回の速さに変えることが重要です。</div>
 </BaseLayout>

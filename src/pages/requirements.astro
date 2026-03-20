@@ -6,78 +6,78 @@ import PromptLab from '../components/PromptLab.astro';
 <BaseLayout title="AI Architect | 要件定義" current="requirements">
   <section class="hero">
     <div class="section-tag">Phase 01</div>
-    <h1>Requirements | 把模糊需求变成可执行规格</h1>
-    <p>软件工程的很多返工，其实从需求阶段就埋下了。浏览器里的 AI 最值钱的地方，是能快速把散乱输入整理成一份能让团队对齐的起稿版。</p>
+    <h1>Requirements | 曖昧な要望を実行可能な要件に変える</h1>
+    <p>ソフトウェア開発の手戻りは、実は要件段階ですでに始まっていることが多いです。ブラウザ型 AI の価値は、散らばった入力を短時間でチーム共有できる叩き台に整理できる点にあります。</p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
       <span class="kicker">Discovery Board</span>
-      <h3 class="panel-title">为什么需求阶段总是反复</h3>
-      <p class="muted">真实团队里的需求常常不是一份整洁 PRD，而是会议纪要、老板口头补充、旧版本行为和客户抱怨拼出来的。</p>
+      <h3 class="panel-title">なぜ要件定義は何度も揺れやすいのか</h3>
+      <p class="muted">現場の要件は、整った PRD ではなく、会議メモ、口頭補足、旧仕様、顧客要望が混ざった状態で来ることがほとんどです。</p>
       <ul class="detail-list">
-        <li>信息分散，谁说了算、哪个版本最新，经常讲不清。</li>
-        <li>“想要什么”说了很多，“怎么验收”却没说清。</li>
-        <li>非功能需求如性能、安全、审计、兼容性容易完全漏掉。</li>
+        <li>情報が分散し、誰の発言が基準なのか、どの版が最新なのかが曖昧になりやすい。</li>
+        <li>やりたいことは語られても、どう検収するかが定義されないまま進みやすい。</li>
+        <li>性能、セキュリティ、監査、互換性などの非機能要件が抜け落ちやすい。</li>
       </ul>
       <div class="stat-grid">
-        <div class="stat-item"><small>碎片输入</small><strong>多源</strong><small>chat / docs / meetings</small></div>
-        <div class="stat-item"><small>典型问题</small><strong>模糊</strong><small>undefined acceptance</small></div>
-        <div class="stat-item"><small>AI 价值</small><strong>整理</strong><small>structure first draft</small></div>
+        <div class="stat-item"><small>入力の性質</small><strong>多元</strong><small>chat / docs / meetings</small></div>
+        <div class="stat-item"><small>典型課題</small><strong>曖昧</strong><small>undefined acceptance</small></div>
+        <div class="stat-item"><small>AI の価値</small><strong>整理</strong><small>structured first draft</small></div>
       </div>
     </article>
 
     <article class="card accent span-4">
-      <h3 class="panel-title">网页版 AI 立刻能做</h3>
+      <h3 class="panel-title">ブラウザ型 AI がすぐできること</h3>
       <ul class="pill-list">
-        <li>把会议纪要整理成用户故事</li>
-        <li>补齐验收标准与开放问题</li>
-        <li>把需求拆成 MVP 与后续迭代</li>
-        <li>提醒非功能要求和潜在风险</li>
+        <li>会議メモをユーザーストーリーに整理する</li>
+        <li>受け入れ条件と未解決事項を補う</li>
+        <li>MVP 範囲と後続開発を切り分ける</li>
+        <li>非機能要件と潜在リスクを洗い出す</li>
       </ul>
     </article>
 
     <article class="card soft span-6">
       <span class="kicker">Quality Gate</span>
-      <h3 class="panel-title">好的需求输出长什么样</h3>
+      <h3 class="panel-title">良い要件アウトプットの条件</h3>
       <ul class="detail-list">
-        <li>每条需求都能被测试，而不是只能被理解。</li>
-        <li>关键角色、边界条件、异常路径被明确写出。</li>
-        <li>开发、测试、设计都能基于同一份材料启动工作。</li>
+        <li>各要件が「理解できる」だけでなく「テストできる」状態になっている。</li>
+        <li>主要ユーザー、境界条件、異常系が明文化されている。</li>
+        <li>開発、設計、テストが同じ素材から作業を始められる。</li>
       </ul>
     </article>
 
     <article class="card soft span-6">
       <span class="kicker">Output</span>
-      <h3 class="panel-title">最适合丢给网页 AI 的材料</h3>
+      <h3 class="panel-title">AI に渡しやすい素材</h3>
       <ul class="detail-list">
-        <li>会议纪要、聊天记录、竞品描述、旧系统截图。</li>
-        <li>客户提需求时的原话，而不是你已经加工过的版本。</li>
-        <li>任何“说不太清楚”的点，越原始越有价值。</li>
+        <li>会議メモ、チャット履歴、競合サービス説明、旧画面のスクリーンショット。</li>
+        <li>顧客の発言そのものなど、加工前の一次情報。</li>
+        <li>説明しづらい部分ほど、元の表現のまま渡す価値がある。</li>
       </ul>
     </article>
   </section>
 
   <PromptLab
     id="requirements-lab"
-    title="需求阶段 Prompt"
-    intro="把会议纪要、聊天原文或零散想法贴进来，页面会生成一条适合在 ChatGPT 里直接整理需求的 prompt。"
-    contextLabel="会议纪要 / 聊天记录 / 零散需求"
-    contextPlaceholder="例如：用户希望后台可以批量导入客户名单，最好支持 Excel；销售说要能撤回导入；运维担心数据污染；老板希望下周就能演示。"
-    promptTemplate={`请扮演资深产品经理和软件分析师，基于下面的原始需求材料，帮我把它整理成可执行的软件需求。
+    title="要件定義用 Prompt"
+    intro="会議メモ、チャット原文、断片的なアイデアを貼ると、ChatGPT でそのまま使いやすい要件整理用 prompt を生成します。"
+    contextLabel="会議メモ / チャット履歴 / 断片的な要望"
+    contextPlaceholder="例: 顧客一覧を管理画面から一括インポートしたい。Excel 対応が欲しい。営業は取り消し機能を求めている。運用はデータ汚染を心配している。来週のデモまでに形にしたい。"
+    promptTemplate={`あなたは経験豊富なプロダクトマネージャー兼ソフトウェアアナリストです。以下の一次情報をもとに、実行可能な要件へ整理してください。
 
-原始材料：
+一次情報:
 __CONTEXT__
 
-请按下面格式输出：
-1. 先总结这份需求要解决的核心问题。
-2. 提炼主要用户角色和目标。
-3. 拆分成功能需求、非功能需求、约束条件。
-4. 给出一版 MVP 范围和不应纳入首版的内容。
-5. 写出可测试的验收标准。
-6. 标出所有不明确、冲突或需要追问的问题。`}
-    promptNote="需求阶段最有价值的不是让 AI 替你定方案，而是让它帮你把“模糊”显性化。"
+以下の形式で出力してください:
+1. この要件が解決したい中心課題を要約する。
+2. 主な利用者とその目的を整理する。
+3. 機能要件、非機能要件、制約条件に分けて記述する。
+4. MVP に含める内容と初版では外す内容を分ける。
+5. テスト可能な受け入れ条件を書く。
+6. 不明点、衝突点、追加確認が必要な点を列挙する。`}
+    promptNote="要件段階で大事なのは AI に答えを決めてもらうことではなく、曖昧さを見える化することです。"
   />
 
-  <div class="footer">需求写清楚，后面的设计、实现、测试才不会一直返工。</div>
+  <div class="footer">要件が明確になるほど、その後の設計、実装、テストの手戻りは減ります。</div>
 </BaseLayout>

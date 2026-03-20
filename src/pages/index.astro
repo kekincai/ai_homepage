@@ -9,39 +9,39 @@ const base = import.meta.env.BASE_URL;
   </div>
 
   <section class="hero">
-    <h1>网页版 AI 在软件工程里的立刻可用场景</h1>
+    <h1>ブラウザ型 AI をソフトウェア開発の各工程で使い切る</h1>
     <p>
-      这不是“AI 很厉害”的展示页，而是一套面向真实团队的网页端使用手册。聚焦每个人今天就能在浏览器里试起来的做法：
-      需求澄清、方案设计、代码实现、测试补全、发布上线、故障处理。
+      これは「AI がすごい」と見せるためのサイトではなく、現場のチームが今日からブラウザだけで試せる実践集です。
+      要件整理、設計検討、実装支援、テスト補完、リリース、障害対応までをひとつの流れで扱います。
     </p>
   </section>
 
   <section class="grid">
     <article class="card span-8">
       <span class="kicker">Why This Matters</span>
-      <h2 class="panel-title">当下软件工程最难的，很多不是“不会写”，而是“来不及想清楚”</h2>
+      <h2 class="panel-title">今のソフトウェア開発で難しいのは、書けないことより整理しきれないこと</h2>
       <ul class="challenge-list">
-        <li>需求来源分散，会议、聊天、文档和口头补充彼此打架。</li>
-        <li>设计决策隐含太多权衡，团队知道有风险，却很难快速说透。</li>
-        <li>实现阶段最耗时间的常常不是敲代码，而是理解上下文、补边界、写解释。</li>
-        <li>测试与发布卡在覆盖率、回归风险、配置复杂度和故障响应上。</li>
+        <li>要件の出どころが分散し、会議、チャット、文書、口頭補足が食い違いやすい。</li>
+        <li>設計判断には多くのトレードオフがあり、リスクは見えていても言語化が追いつかない。</li>
+        <li>実装で時間を奪うのは、コードを書くことよりも文脈理解、境界条件整理、エラー解釈であることが多い。</li>
+        <li>テストとリリースは、網羅性、回帰リスク、設定の複雑さ、障害対応の負荷で止まりやすい。</li>
       </ul>
       <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;">
-        <a class="card soft" href={`${base}requirements/`}><strong>需求</strong><br /><small>Requirements</small></a>
-        <a class="card soft" href={`${base}design/`}><strong>设计</strong><br /><small>Design</small></a>
-        <a class="card soft" href={`${base}interactive/`}><strong>实现</strong><br /><small>Build</small></a>
-        <a class="card soft" href={`${base}testing/`}><strong>测试</strong><br /><small>Testing</small></a>
-        <a class="card soft" href={`${base}deployment/`}><strong>发布</strong><br /><small>Release</small></a>
-        <a class="card soft" href={`${base}maintenance/`}><strong>保守</strong><br /><small>Maintenance</small></a>
+        <a class="card soft" href={`${base}requirements/`}><strong>要件定義</strong><br /><small>Requirements</small></a>
+        <a class="card soft" href={`${base}design/`}><strong>設計</strong><br /><small>Design</small></a>
+        <a class="card soft" href={`${base}interactive/`}><strong>実装</strong><br /><small>Build</small></a>
+        <a class="card soft" href={`${base}testing/`}><strong>テスト</strong><br /><small>Testing</small></a>
+        <a class="card soft" href={`${base}deployment/`}><strong>リリース</strong><br /><small>Release</small></a>
+        <a class="card soft" href={`${base}maintenance/`}><strong>保守運用</strong><br /><small>Maintenance</small></a>
       </div>
     </article>
 
     <article class="card accent span-4">
       <span class="kicker" style="background:rgba(255,255,255,.2);color:#fff;">Immediate Use</span>
-      <h3 class="panel-title">为什么优先做“网页版 AI”</h3>
+      <h3 class="panel-title">なぜまずブラウザ型 AI なのか</h3>
       <p style="line-height:1.8;opacity:.92;">
-        不需要接 API、不需要买新平台、不需要改现有系统。把项目上下文、页面截图、报错信息、需求草稿直接喂给浏览器里的 AI，
-        先把高频脑力活降下来。
+        API 接続も新しい基盤導入も不要で、今ある環境をほとんど変えずに始められます。プロジェクトの背景、画面キャプチャ、
+        エラー内容、要件メモをそのままブラウザ上の AI に渡し、高頻度の思考負荷をまず下げられます。
       </p>
       <p class="metric">Today</p>
     </article>
@@ -50,24 +50,24 @@ const base = import.meta.env.BASE_URL;
       <span class="kicker">Use It Like A Playbook</span>
       <div class="mini-grid">
         <div>
-          <h3 class="panel-title">每个子页面都会回答三件事</h3>
+          <h3 class="panel-title">各ページで答えること</h3>
           <ul class="step-list">
-            <li>这个环节真正卡人的地方是什么。</li>
-            <li>只用浏览器里的 AI，现在就能怎么帮你。</li>
-            <li>一条可直接跳到 ChatGPT 测试的 prompt。</li>
+            <li>その工程で本当に詰まりやすいポイントは何か。</li>
+            <li>ブラウザ型 AI だけで今すぐ何を支援できるか。</li>
+            <li>ChatGPT にそのまま渡して試せる prompt は何か。</li>
           </ul>
         </div>
         <div>
-          <h3 class="panel-title">适合马上试的输入材料</h3>
+          <h3 class="panel-title">すぐ試しやすい入力素材</h3>
           <ul class="step-list">
-            <li>会议纪要、需求片段、页面截图、报错日志、代码段。</li>
-            <li>测试失败信息、接口定义、部署配置、告警摘要。</li>
-            <li>越具体越好，AI 的输出质量通常也会越高。</li>
+            <li>会議メモ、要件断片、画面キャプチャ、エラーログ、コード片。</li>
+            <li>テスト失敗内容、API 定義、デプロイ設定、アラート要約。</li>
+            <li>具体的に渡すほど、AI の出力品質も上がりやすい。</li>
           </ul>
         </div>
       </div>
     </article>
   </section>
 
-  <div class="footer">从“能聊”走到“能落地”，关键是把 prompt 写成工作流的一部分。</div>
+  <div class="footer">ただ話せるだけで終わらせず、prompt を実務フローの一部にすることが定着の鍵です。</div>
 </BaseLayout>
