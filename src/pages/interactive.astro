@@ -1,6 +1,51 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PromptLab from '../components/PromptLab.astro';
+const implementationPlaybooks = [
+  {
+    key: 'text',
+    label: '文章',
+    icon: 'article',
+    title: '仕様変更を、すぐ動ける説明文に変える',
+    useCase: '多言語切り替えの不具合修正に入る前に、関係ファイル、影響範囲、確認観点を短い作業メモへ落とす。',
+    deliverable: 'PR 下書き、実装方針メモ、レビュー依頼文',
+    contextLabel: '要件 / コード / 不具合内容',
+    contextPlaceholder: '例: React の多言語切り替え不具合。Header.tsx、i18n.ts、LanguageMenu.tsx が関係し、一部文言だけ更新されない。',
+    prompt: `React の多言語切り替え不具合を調査しています。Header.tsx、i18n.ts、LanguageMenu.tsx が関係しています。切り替え後に一部文言だけ更新されません。\n\nこの状況をもとに、以下を日本語で作成してください。\n1. 問題の要約\n2. 影響範囲の候補\n3. 先に確認すべきファイルと理由\n4. 修正方針の短いメモ\n5. レビュー依頼に使える説明文`
+  },
+  {
+    key: 'html',
+    label: 'HTML',
+    icon: 'html',
+    title: '検証用の画面を、ブラウザで即確認できる形にする',
+    useCase: '社内向けの CSV インポート確認画面を、デザイナーを待たずに HTML モックとして先に出す。',
+    deliverable: '検証用 HTML、メールテンプレート、簡易 UI モック',
+    contextLabel: '画面要件 / 見た目の条件',
+    contextPlaceholder: '例: CSV インポート確認ページ。件数カード、エラー一覧、再アップロード、取込開始ボタンが必要。',
+    prompt: `管理画面用の CSV インポート確認ページを HTML だけで作ってください。\n\n要件:\n- アップロード済みファイル名を表示\n- 取込件数、警告件数、エラー件数をカードで表示\n- エラー一覧テーブルを表示\n- 「再アップロード」と「取込開始」ボタンを配置\n- 配色は白と青緑を基調にし、管理画面らしく落ち着いた見た目にする\n\n出力は 1 ファイルで動く HTML にしてください。`
+  },
+  {
+    key: 'script',
+    label: 'スクリプト',
+    icon: 'terminal',
+    title: '繰り返し作業を、すぐ回せる自動化に置き換える',
+    useCase: '毎朝のログ整形や Excel 貼り付け作業を、VBA や Shell の下書きで一気に減らす。',
+    deliverable: 'VBA、Shell、PowerShell、SQL の草案',
+    contextLabel: '作業手順 / 入出力条件',
+    contextPlaceholder: '例: export フォルダの最新 CSV を整形し、failed 行だけ別ファイルに出したい。zsh で動かす。',
+    prompt: `毎朝 export フォルダに出力される CSV を整形したいです。\n\nやりたいこと:\n- 最新の CSV を 1 つ読む\n- 不要列を削除する\n- status が failed の行だけ別 CSV に出す\n- 件数をコンソールに表示する\n- Mac の zsh で動く Shell スクリプトにする\n\nコメント付きで、すぐ試せる最小構成のスクリプトを出してください。`
+  },
+  {
+    key: 'framework',
+    label: 'フレームワークコード',
+    icon: 'deployed_code',
+    title: '既存アプリに貼れる雛形を、先に整えてから進める',
+    useCase: '決済 webhook 受信処理の追加時に、C# や Java の controller、service、DTO の叩き台を先に作る。',
+    deliverable: 'C#、Java、React、Spring、ASP.NET の雛形',
+    contextLabel: '機能要件 / 対象フレームワーク',
+    contextPlaceholder: '例: Spring Boot API に payment webhook を追加したい。Controller、DTO、Service の最小雛形が欲しい。',
+    prompt: `Spring Boot の API に payment webhook エンドポイントを追加したいです。\n\n要件:\n- POST /api/webhooks/payment を追加\n- 署名ヘッダーを受け取る\n- リクエストボディを DTO にマッピングする\n- service に処理を委譲する\n- ログを残す\n- 異常系では 400 を返す\n\nController、DTO、Service の最小雛形を Java で出してください。`
+  }
+];
 ---
 
 <BaseLayout title="AI開発実践ガイド | 開発" current="interactive">
@@ -55,27 +100,173 @@ import PromptLab from '../components/PromptLab.astro';
 
   </section>
 
-  <PromptLab
-    id="implementation-lab"
-    title="開発支援用 Prompt"
-    intro="要件、コード片、エラー内容を貼ると、実装整理やコード雛形の作成に使いやすい prompt を生成します。"
-    contextLabel="要件 / コード / エラー"
-    contextPlaceholder="例: React ページに多言語切り替えを追加したい。Header.tsx、i18n.ts、LanguageMenu.tsx があり、切り替え後に一部文言が更新されない。"
-    promptTemplate={`あなたはシニアソフトウェアエンジニアです。以下の文脈をもとに、実装作業を前に進める支援をしてください。
+  <article
+    class="card span-12 integrated-lab"
+    data-integrated-lab
+    data-default-template={implementationPlaybooks[0].prompt}
+    data-default-label={implementationPlaybooks[0].contextLabel}
+    data-default-placeholder={implementationPlaybooks[0].contextPlaceholder}
+  >
+    <div class="card-head">
+      <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+      <span class="kicker">Prompt Lab</span>
+    </div>
+    <h3 class="panel-title">開発支援用 Prompt</h3>
+    <p class="panel-copy">
+      出力タイプごとにカードを切り替えると、ユースケース、成果物、prompt が連動して変わります。
+      開発では「何を書かせるか」より先に「何として出させるか」を決めるのが有効です。
+    </p>
 
-文脈:
-__CONTEXT__
+    <div class="playbook-deck" aria-label="開発出力タイプの切り替え">
+      {implementationPlaybooks.map((playbook, index) => (
+        <button
+          class={`playbook-card-button ${index === 0 ? 'is-active' : ''}`}
+          type="button"
+          data-playbook-card={playbook.key}
+          data-template={playbook.prompt}
+          data-context-label={playbook.contextLabel}
+          data-context-placeholder={playbook.contextPlaceholder}
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">{playbook.icon}</span>
+          <strong>{playbook.label}</strong>
+          <small>{playbook.title}</small>
+          <em>{playbook.deliverable}</em>
+        </button>
+      ))}
+    </div>
 
-以下の形式で出力してください:
-1. タスク理解を短く言い換える。
-2. 修正が必要そうなモジュールやファイル種別を挙げる。
-3. 最小変更から始める実装手順を示す。
-4. 境界条件、回帰リスク、見落としやすい点を指摘する。
-5. エラーが含まれている場合は意味を説明し、調査順序を示す。
-6. 最後に HTML / スクリプト / フレームワークコードのどれが適切か判断する。
-7. 必要なら、すぐ貼って試せる最小雛形を 1 つ出す。`}
-    promptNote="開発では、出力形式を先に指定すると強いです。検証用 HTML、Excel 用 VBA、運用用 Shell、C# や Java の雛形という形で使い分けると現場に乗せやすくなります。"
-  />
+    <div class="playbook-live">
+      {implementationPlaybooks.map((playbook, index) => (
+        <section
+          class={`playbook-live-panel ${index === 0 ? 'is-active' : ''}`}
+          data-live-panel={playbook.key}
+        >
+          <div class="playbook-live-meta">
+            <div class="card-head">
+              <span class="material-symbols-outlined" aria-hidden="true">{playbook.icon}</span>
+              <span class="kicker">{playbook.label}</span>
+            </div>
+            <h4 class="panel-title">{playbook.title}</h4>
+            <div class="detail-list">
+              <div>
+                <strong class="playbook-label">ユースケース</strong>
+                <p class="muted">{playbook.useCase}</p>
+              </div>
+              <div>
+                <strong class="playbook-label">出力されるもの</strong>
+                <p class="muted">{playbook.deliverable}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <div class="prompt-lab" data-prompt-lab="implementation-lab" data-template={implementationPlaybooks[0].prompt}>
+      <label>
+        <div class="card-head card-head-compact">
+          <span class="material-symbols-outlined" aria-hidden="true">edit_note</span>
+          <div class="section-tag" data-role="context-label">{implementationPlaybooks[0].contextLabel}</div>
+        </div>
+        <textarea
+          class="prompt-input"
+          data-role="context"
+          placeholder={implementationPlaybooks[0].contextPlaceholder}
+        ></textarea>
+      </label>
+
+      <label>
+        <div class="card-head card-head-compact">
+          <span class="material-symbols-outlined" aria-hidden="true">text_snippet</span>
+          <div class="section-tag">生成された Prompt</div>
+        </div>
+        <textarea class="prompt-preview" data-role="preview" readonly>{implementationPlaybooks[0].prompt}</textarea>
+      </label>
+
+      <div class="prompt-actions">
+        <a class="button-primary" data-role="launch" href="https://chatgpt.com/" target="_blank" rel="noreferrer">
+          <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+          ChatGPT で試す
+        </a>
+        <button class="button-secondary" data-role="copy" type="button">
+          <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+          Prompt をコピー
+        </button>
+      </div>
+
+      <p class="caption">
+        文章、HTML、スクリプト、フレームワークコードで出口を切り替えると、同じ開発課題でも AI の使い方が大きく変わります。
+      </p>
+    </div>
+  </article>
 
   <div class="footer">開発では、AI に書かせる前に理解させるほうが失敗しにくくなります。</div>
 </BaseLayout>
+
+<script>
+  const lab = document.querySelector('[data-integrated-lab]');
+
+  if (lab instanceof HTMLElement) {
+    const cards = lab.querySelectorAll('[data-playbook-card]');
+    const panels = lab.querySelectorAll('[data-live-panel]');
+    const promptLab = lab.querySelector('[data-prompt-lab]');
+    const context = lab.querySelector('[data-role="context"]');
+    const preview = lab.querySelector('[data-role="preview"]');
+    const launch = lab.querySelector('[data-role="launch"]');
+    const copy = lab.querySelector('[data-role="copy"]');
+    const contextLabel = lab.querySelector('[data-role="context-label"]');
+
+    if (
+      promptLab instanceof HTMLElement &&
+      context instanceof HTMLTextAreaElement &&
+      preview instanceof HTMLTextAreaElement &&
+      launch instanceof HTMLAnchorElement &&
+      copy instanceof HTMLButtonElement &&
+      contextLabel instanceof HTMLElement
+    ) {
+      const updatePrompt = () => {
+        const template = promptLab.getAttribute('data-template') ?? '';
+        const value = context.value.trim() || 'ここに要件、コード片、画面要件、エラー内容、作業条件などを入力してください。';
+        const prompt = template.replace('__CONTEXT__', value);
+        preview.value = prompt;
+
+        const url = new URL('https://chatgpt.com/');
+        url.searchParams.set('q', prompt);
+        launch.href = url.toString();
+      };
+
+      const activate = (key, card) => {
+        for (const item of cards) {
+          item.classList.toggle('is-active', item === card);
+        }
+
+        for (const panel of panels) {
+          panel.classList.toggle('is-active', panel.getAttribute('data-live-panel') === key);
+        }
+
+        promptLab.setAttribute('data-template', card.getAttribute('data-template') ?? '');
+        contextLabel.textContent = card.getAttribute('data-context-label') ?? '';
+        context.placeholder = card.getAttribute('data-context-placeholder') ?? '';
+        updatePrompt();
+      };
+
+      for (const card of cards) {
+        card.addEventListener('click', () => {
+          const key = card.getAttribute('data-playbook-card');
+          if (key) activate(key, card);
+        });
+      }
+
+      context.addEventListener('input', updatePrompt);
+      copy.addEventListener('click', async () => {
+        await navigator.clipboard.writeText(preview.value);
+        copy.textContent = 'コピーしました';
+        window.setTimeout(() => {
+          copy.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">content_copy</span>Prompt をコピー';
+        }, 1500);
+      });
+
+      updatePrompt();
+    }
+  }
+</script>
