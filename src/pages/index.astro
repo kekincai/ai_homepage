@@ -71,7 +71,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </article>
 
-    <article class="card span-12 flow-board">
+    <article class="card span-12 flow-board" data-flow-board>
       <div class="flow-header">
         <div>
           <div class="card-head">
@@ -123,3 +123,28 @@ const base = import.meta.env.BASE_URL;
 
   <div class="footer">各ページでは、その工程で何を出力させると役立つか、どの既存環境へつなげやすいか、すぐ試せる prompt とあわせて整理しています。</div>
 </BaseLayout>
+
+<script>
+  const flowBoards = document.querySelectorAll('[data-flow-board]');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        }
+      },
+      {
+        threshold: 0.35
+      }
+    );
+
+    for (const board of flowBoards) {
+      observer.observe(board);
+    }
+  } else {
+    for (const board of flowBoards) {
+      board.classList.add('is-visible');
+    }
+  }
+</script>
