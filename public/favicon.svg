@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AI Architect favicon">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#005f6b" />
+      <stop offset="100%" stop-color="#00dff8" />
+    </linearGradient>
+    <linearGradient id="kFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9ef6ff" />
+      <stop offset="100%" stop-color="#dffcff" />
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="18" fill="url(#bg)" />
+
+  <!-- Background K as a runway-like structure -->
+  <g opacity="0.33">
+    <path d="M18 14h6.5v36H18z" fill="url(#kFill)" transform="skewX(-12)" />
+    <path d="M25.5 31 49 14h9L34.8 31.4 58.5 50h-9.6L25.5 32.7z" fill="url(#kFill)" />
+    <path d="M21.4 18.5v5" stroke="#0f7784" stroke-width="1" stroke-linecap="round" opacity=".4" />
+    <path d="M21.4 26v5" stroke="#0f7784" stroke-width="1" stroke-linecap="round" opacity=".4" />
+    <path d="M21.4 33.5v5" stroke="#0f7784" stroke-width="1" stroke-linecap="round" opacity=".4" />
+    <path d="M36.5 23.2 43.8 18" stroke="#0f7784" stroke-width=".9" stroke-linecap="round" opacity=".25" />
+    <path d="M36.7 39.7 45.7 46.6" stroke="#0f7784" stroke-width=".9" stroke-linecap="round" opacity=".22" />
+  </g>
+
+  <!-- Foreground AI mark -->
+  <g fill="#ffffff">
+    <path d="M12.5 47 21.1 18.6h6.1L35.8 47h-6l-1.7-6H20.3l-1.7 6Zm9.1-10.7h5.1L24.2 27Z" />
+    <rect x="38.2" y="18.6" width="5.2" height="28.4" rx="2.6" />
+  </g>
+
+  <!-- Subtle ground line to reinforce runway feel -->
+  <path d="M12 50.5h40.5" stroke="#8df6ff" stroke-width="1.8" stroke-linecap="round" opacity=".38" />
+</svg>
