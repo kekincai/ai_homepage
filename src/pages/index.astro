@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="AI Architect | ホーム" current="home">
+  <div class="topbar">
+    <div class="section-tag">Japanese Main Edition</div>
+  </div>
+
+  <section class="hero">
+    <h1>AI活用 SDLC ホームページ</h1>
+    <p>
+      Stitch から出力した既存デザインをベースに、日語版を中心に再構成しました。実装済みの画面（開発・テスト・デプロイ）は忠実に踏襲し、
+      未制作フェーズ（要件定義・設計・保守）も同じトーンで埋めて、1つの体験としてつながるようにしています。
+    </p>
+  </section>
+
+  <section class="grid">
+    <article class="card span-8">
+      <span class="kicker">Implemented</span>
+      <h2>主要3画面は実装済み</h2>
+      <p>既存の Stitch HTML から意図を抽出し、レイアウト・配色・余白バランスを保って Astro 化しました。</p>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;">
+        <a class="card soft" href={`${base}interactive/`}><strong>開発</strong><br /><small>Interactive</small></a>
+        <a class="card soft" href={`${base}testing/`}><strong>テスト</strong><br /><small>Testing</small></a>
+        <a class="card soft" href={`${base}deployment/`}><strong>デプロイ</strong><br /><small>Deployment</small></a>
+      </div>
+    </article>
+
+    <article class="card accent span-4">
+      <span class="kicker" style="background:rgba(255,255,255,.2);color:#fff;">Github Pages</span>
+      <h3>静的デプロイ対応</h3>
+      <p style="line-height:1.7;opacity:.92;">Astro の静的ビルド + GitHub Actions で自動公開します。</p>
+      <p class="metric">0 Ops</p>
+    </article>
+
+    <article class="card placeholder span-12">
+      <h3>これから拡張できるポイント</h3>
+      <p>要件定義、設計、保守フェーズに実データや実際の事例カードを追加していけば、そのままプロダクトサイトとして成長できます。</p>
+    </article>
+  </section>
+
+  <div class="footer">© 2026 AI Architect</div>
+</BaseLayout>

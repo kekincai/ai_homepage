@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="AI Architect | 開発" current="interactive">
+  <section class="hero">
+    <div class="section-tag">Phase 03</div>
+    <h1>開発フェーズ | AI活用事例ライブラリ</h1>
+    <p>要件をコードに変換する工程で、LLM を開発アシストとして使う代表パターンを整理しています。</p>
+  </section>
+
+  <section class="grid">
+    <article class="card span-8">
+      <span class="kicker">AI: Requirements Analysis</span>
+      <h3>NLPによる要件定義プロンプト</h3>
+      <p>非構造化テキストから要件を抽出し、バックログ形式へ再編成。文書化の作業時間を大幅に削減します。</p>
+      <p class="metric">効率 3x</p>
+    </article>
+
+    <article class="card span-4">
+      <span class="kicker">AI: Code Generation</span>
+      <h3>LLMによるコード生成</h3>
+      <p>自然言語の指示から実装案、テスト下書き、リファクタリング候補まで連動して生成します。</p>
+    </article>
+
+    <article class="card accent span-5">
+      <h3>Anomaly Detection</h3>
+      <ul class="pill-list">
+        <li>リアルタイム異常検知</li>
+        <li>変更影響範囲の自動要約</li>
+        <li>リリース前の品質ゲート補助</li>
+      </ul>
+    </article>
+
+    <article class="card span-7">
+      <h3>Stitch 元デザイン</h3>
+      <div class="image-panel">
+        <img src={`${base}interactive-screen.png`} alt="interactive screen" />
+      </div>
+    </article>
+  </section>
+
+  <div class="footer">導入アプローチ: Audit → POC → Scaling</div>
+</BaseLayout>

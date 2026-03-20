@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="AI Architect | デプロイ" current="deployment">
+  <section class="hero">
+    <div class="section-tag">Phase 05</div>
+    <h1>Deployment | Maintenance</h1>
+    <p>ローカルで完成した実装をクラウドへ安全に届け、運用フェーズで安定稼働を維持するための実践パターンです。</p>
+  </section>
+
+  <section class="grid">
+    <article class="card span-8">
+      <span class="kicker">Bridging Code to Cloud</span>
+      <h3>CI/CD とクラウド構成の標準化</h3>
+      <p>パイプラインの定義、環境差分の管理、ロールバック導線の設計をテンプレート化して、デプロイ失敗率を下げます。</p>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;">
+        <div class="card soft"><strong>CI/CD Pipelines</strong><p>自動ビルドと自動配信</p></div>
+        <div class="card soft"><strong>Cloud Infra</strong><p>環境ごとの構成管理</p></div>
+      </div>
+    </article>
+
+    <article class="card accent span-4">
+      <h3>The AI Advantage</h3>
+      <ul class="pill-list">
+        <li>GitHub Actions 雛形の生成</li>
+        <li>ログから異常兆候を検出</li>
+        <li>設定ファイルの説明と監査</li>
+      </ul>
+      <p class="metric">99.9%</p>
+    </article>
+
+    <article class="card span-12">
+      <h3>Stitch 元デザイン</h3>
+      <div class="image-panel">
+        <img src={`${base}deployment-screen.png`} alt="deployment screen" />
+      </div>
+    </article>
+  </section>
+
+  <div class="footer">Prompt Example: Next.js を main push で自動デプロイ</div>
+</BaseLayout>

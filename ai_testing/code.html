@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SDLC AI Showcase - Testing &amp; Quality Assurance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#765a00",
+              "primary-fixed-dim": "#00daf3",
+              "error": "#ba1a1a",
+              "on-surface-variant": "#3b494c",
+              "secondary-fixed-dim": "#bbc8d0",
+              "surface-tint": "#006875",
+              "on-secondary-container": "#5a666d",
+              "on-tertiary-fixed-variant": "#594400",
+              "tertiary-fixed": "#ffdf96",
+              "on-secondary-fixed-variant": "#3c494f",
+              "on-primary-fixed": "#001f24",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#eceef0",
+              "secondary-fixed": "#d7e4ec",
+              "tertiary-fixed-dim": "#f3bf26",
+              "surface-container-low": "#f2f4f6",
+              "on-primary": "#ffffff",
+              "inverse-primary": "#00daf3",
+              "primary-fixed": "#9cf0ff",
+              "inverse-on-surface": "#eff1f3",
+              "on-tertiary-fixed": "#251a00",
+              "secondary": "#546067",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-variant": "#e0e3e5",
+              "surface-bright": "#f8f9fb",
+              "outline": "#6b7a7d",
+              "surface-dim": "#d8dadc",
+              "outline-variant": "#bac9cc",
+              "primary": "#006875",
+              "on-error": "#ffffff",
+              "on-primary-fixed-variant": "#004f58",
+              "on-background": "#191c1e",
+              "background": "#f8f9fb",
+              "on-primary-container": "#00626e",
+              "secondary-container": "#d7e4ec",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#2d3133",
+              "on-secondary-fixed": "#111d23",
+              "primary-container": "#00e5ff",
+              "surface": "#f8f9fb",
+              "on-tertiary-container": "#6f5500",
+              "error-container": "#ffdad6",
+              "surface-container-high": "#e6e8ea",
+              "tertiary-container": "#fec931",
+              "surface-container-highest": "#e0e3e5",
+              "on-surface": "#191c1e"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 z-50 bg-[#f8f9fb] dark:bg-slate-900 flex justify-between items-center px-12 py-4 max-w-full">
+<div class="text-xl font-extrabold tracking-tighter text-[#006875] dark:text-[#00e5ff]">SDLC AI Showcase</div>
+<nav class="hidden md:flex items-center gap-8 font-['Manrope'] text-sm tracking-tight">
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#00e5ff] transition-colors duration-200" href="#">Requirements</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#00e5ff] transition-colors duration-200" href="#">Design</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#00e5ff] transition-colors duration-200" href="#">Coding</a>
+<a class="text-[#006875] dark:text-[#00e5ff] font-bold border-b-2 border-[#00e5ff] pb-1 hover:text-[#00e5ff] transition-colors duration-200" href="#">Testing</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#00e5ff] transition-colors duration-200" href="#">Deployment</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">search</span>
+<span class="material-symbols-outlined text-primary">notifications</span>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-20 bg-[#f2f4f6] dark:bg-slate-950 flex flex-col gap-2 p-6 hidden lg:flex">
+<div class="mb-8">
+<h2 class="text-[#006875] text-lg font-bold">SDLC Stages</h2>
+<p class="font-['Manrope'] text-xs uppercase tracking-[0.05rem] font-semibold text-slate-500">AI Integration Points</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-[#e6e8ea] dark:hover:bg-slate-800 transition-all font-['Manrope'] text-xs uppercase tracking-[0.05rem] font-semibold" href="#">
+<span class="material-symbols-outlined">description</span> Requirements
+                </a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-[#e6e8ea] dark:hover:bg-slate-800 transition-all font-['Manrope'] text-xs uppercase tracking-[0.05rem] font-semibold" href="#">
+<span class="material-symbols-outlined">architecture</span> Design
+                </a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-[#e6e8ea] dark:hover:bg-slate-800 transition-all font-['Manrope'] text-xs uppercase tracking-[0.05rem] font-semibold" href="#">
+<span class="material-symbols-outlined">code</span> Coding
+                </a>
+<a class="flex items-center gap-3 bg-[#ffffff] dark:bg-slate-800 text-[#006875] dark:text-[#00e5ff] rounded-lg px-4 py-3 shadow-[0px_24px_48px_rgba(0,104,117,0.06)] font-['Manrope'] text-xs uppercase tracking-[0.05rem] font-semibold" href="#">
+<span class="material-symbols-outlined">biotech</span> Testing
+                </a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-[#e6e8ea] dark:hover:bg-slate-800 transition-all font-['Manrope'] text-xs uppercase tracking-[0.05rem] font-semibold" href="#">
+<span class="material-symbols-outlined">rocket_launch</span> Deployment
+                </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 p-8 md:p-12 lg:p-16 min-h-screen">
+<!-- Architectural Breadcrumb -->
+<div class="mb-12">
+<p class="font-['Manrope'] text-xs uppercase tracking-[0.05rem] font-semibold text-primary mb-1">SDLC Phase 04</p>
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-on-surface flex items-center gap-4">
+                    Testing <span class="text-outline-variant font-light">|</span> <span class="text-primary-container bg-primary px-3 py-1 rounded-xl text-2xl align-middle">QA</span>
+</h1>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Core Concept Card -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl p-8 shadow-[0px_24px_48px_rgba(0,104,117,0.06)] border-none">
+<div class="flex items-start justify-between mb-6">
+<h3 class="text-2xl font-bold tracking-tight text-primary">The Precision Layer</h3>
+<span class="material-symbols-outlined text-primary-container text-4xl">verified_user</span>
+</div>
+<p class="text-lg leading-relaxed text-secondary mb-8">
+                        Testing is the rigorous process of evaluating a software application to find gaps, errors, or missing requirements. It ensures that the final product not only functions but delivers a seamless user experience.
+                    </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="p-6 bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-primary mb-2">schema</span>
+<h4 class="font-bold mb-1">Unit Testing</h4>
+<p class="text-sm text-on-surface-variant">Validating individual components or functions in isolation to ensure logic accuracy.</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-primary mb-2">account_tree</span>
+<h4 class="font-bold mb-1">Integration Testing</h4>
+<p class="text-sm text-on-surface-variant">Checking how different modules work together to prevent communication failures.</p>
+</div>
+</div>
+</div>
+<!-- AI Augmentation Card -->
+<div class="md:col-span-4 bg-primary text-on-primary rounded-xl p-8 relative overflow-hidden flex flex-col justify-between">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-9xl">psychology</span>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold mb-4">AI Integration</h3>
+<ul class="space-y-4 text-sm font-medium">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container">auto_awesome</span>
+<span>Automated generation of complex test suites and scenarios.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container">troubleshoot</span>
+<span>Edge case identification through synthetic data modeling.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container">history_edu</span>
+<span>Natural language bug reporting and log explanation.</span>
+</li>
+</ul>
+</div>
+<div class="mt-8 pt-6 border-t border-on-primary/10">
+<p class="text-xs uppercase tracking-widest opacity-70">Efficiency Boost</p>
+<p class="text-3xl font-bold">~40% Faster</p>
+</div>
+</div>
+<!-- Prompt Showcase (Glassmorphism inspired) -->
+<div class="md:col-span-12 bg-surface-container-low/50 backdrop-blur-xl rounded-xl p-8 border-none relative">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-fixed-dim">terminal</span>
+<span class="font-['Manrope'] text-xs uppercase tracking-[0.05rem] font-semibold text-secondary">PROMPT BLUEPRINT</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/20 shadow-inner">
+<p class="font-mono text-sm md:text-base text-primary">
+                                    "Write Jest unit tests for the following utility function, including edge cases for null and undefined inputs."
+                                </p>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<a class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-xl hover:scale-105 transition-transform shadow-[0px_24px_48px_rgba(0,104,117,0.15)]" href="https://chat.openai.com" target="_blank">
+                                Launch ChatGPT with Prompt
+                                <span class="material-symbols-outlined">open_in_new</span>
+</a>
+<p class="text-center text-xs text-on-surface-variant italic">Direct integration available for enterprise accounts</p>
+</div>
+</div>
+</div>
+<!-- Visual Element -->
+<div class="md:col-span-12 h-64 rounded-xl overflow-hidden relative">
+<img alt="Data visualization dashboard" class="w-full h-full object-cover" data-alt="Abstract glowing network of lines and data points representing software quality metrics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz9ZgRuknJ63C28eBQPKZDyYzL-aDbe3eJ8ZVhmQusL1kONoCqIWIGEnpEqOK1jZv8WWTQ2Ud0OnqLfc2f7Rr1bDwmqheH-UZ8-wKarIOEVnAB23XTYXnrDBfVXxU4NHskeDEgxofY-UrLg4gD9ZXlyPH0lvLXE6q_StgcsQafy6NluPC-RDwsOxQRqlA9nxGbWGzW0U2ByVUEgdgk0g3zjwhBCyk9jbDOdIy4cna8pgGpxf5tllEa-L7j2yZ7eZntNFz6Ijzl8g0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-8">
+<h3 class="text-on-primary text-xl font-bold">Zero-Defect Vision</h3>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-8 mt-auto bg-[#f8f9fb] dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-4">
+<div class="font-bold text-[#006875] flex items-center gap-2">
+<span class="material-symbols-outlined">architecture</span>
+                AI SDLC Architect
+            </div>
+<p class="font-['Manrope'] text-xs text-slate-500">© 2024 AI SDLC Architect. Built for Precision.</p>
+<div class="flex gap-6">
+<a class="font-['Manrope'] text-xs text-slate-400 hover:text-[#00e5ff] transition-colors" href="#">Documentation</a>
+<a class="font-['Manrope'] text-xs text-slate-400 hover:text-[#00e5ff] transition-colors" href="#">Methodology</a>
+<a class="font-['Manrope'] text-xs text-slate-400 hover:text-[#00e5ff] transition-colors" href="#">Privacy</a>
+</div>
+</div>
+</footer>
+</body></html>
