@@ -35,15 +35,49 @@ const base = import.meta.env.BASE_URL;
       <p class="metric">実務重視</p>
     </article>
 
-    <article class="card soft span-12">
-      <span class="kicker">工程</span>
-      <div class="mini-grid">
-        <a class="card soft" href={`${base}requirements/`}><strong>要件定義</strong><br /><small>Requirements</small></a>
-        <a class="card soft" href={`${base}design/`}><strong>設計</strong><br /><small>Design</small></a>
-        <a class="card soft" href={`${base}interactive/`}><strong>開発</strong><br /><small>Implementation</small></a>
-        <a class="card soft" href={`${base}testing/`}><strong>テスト</strong><br /><small>Testing</small></a>
-        <a class="card soft" href={`${base}deployment/`}><strong>デプロイ</strong><br /><small>Deployment</small></a>
-        <a class="card soft" href={`${base}maintenance/`}><strong>保守</strong><br /><small>Maintenance</small></a>
+    <article class="card span-12 flow-board">
+      <div class="flow-header">
+        <div>
+          <span class="kicker">開発フロー</span>
+          <h3 class="panel-title">各工程は分かれているのではなく、連続してつながっています</h3>
+        </div>
+        <p class="flow-copy">
+          AI は単独の工程だけを速くする道具ではありません。前の工程で整理した情報を次へ渡し、
+          判断と説明の負荷を軽くしながら、全体の流れを滑らかにする使い方が効果的です。
+        </p>
+      </div>
+
+      <div class="flow-grid">
+        <a class="flow-step" href={`${base}requirements/`}>
+          <em>01</em>
+          <strong>要件定義</strong>
+          <small>散らばった情報を整理し、課題、利用者、受け入れ条件を明確にする。</small>
+        </a>
+        <a class="flow-step" href={`${base}design/`}>
+          <em>02</em>
+          <strong>設計</strong>
+          <small>複数案を比較し、採用理由とリスクを言語化する。</small>
+        </a>
+        <a class="flow-step" href={`${base}interactive/`}>
+          <em>03</em>
+          <strong>開発</strong>
+          <small>既存コードの理解、変更範囲の把握、実装手順の整理を進める。</small>
+        </a>
+        <a class="flow-step" href={`${base}testing/`}>
+          <em>04</em>
+          <strong>テスト</strong>
+          <small>観点の抜け漏れを減らし、失敗時の切り分けを速くする。</small>
+        </a>
+        <a class="flow-step" href={`${base}deployment/`}>
+          <em>05</em>
+          <strong>デプロイ</strong>
+          <small>設定を読み解き、手順と確認項目を整えてリリースを安定させる。</small>
+        </a>
+        <a class="flow-step" href={`${base}maintenance/`}>
+          <em>06</em>
+          <strong>保守</strong>
+          <small>ログと事実を整理し、対応を次回へ引き継げる形で残す。</small>
+        </a>
       </div>
     </article>
   </section>
