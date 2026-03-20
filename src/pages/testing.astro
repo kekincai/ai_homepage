@@ -61,10 +61,8 @@ import PromptLab from '../components/PromptLab.astro';
     contextLabel="要件 / 実装 / 失敗ログ"
     contextPlaceholder="例: このフォームはメールログインと電話番号ログインに対応している。最近 CAPTCHA を追加したが、現状のテストは成功系しかなく、CI では disabled ボタン状態に関する失敗が出ている。"
     promptTemplate={`あなたは経験豊富なテストエンジニアです。以下の文脈をもとに、テスト設計と弱点の洗い出しを支援してください。
-
 文脈:
 __CONTEXT__
-
 以下の形式で出力してください:
 1. 今回のテスト目的を一文で要約する。
 2. 必ずカバーすべき主要シナリオを挙げる。

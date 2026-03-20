@@ -10,7 +10,7 @@ const implementationPlaybooks = [
     deliverable: 'PR 下書き、実装方針メモ、レビュー依頼文',
     contextLabel: '要件 / コード / 不具合内容',
     contextPlaceholder: '例: React の多言語切り替え不具合。Header.tsx、i18n.ts、LanguageMenu.tsx が関係し、一部文言だけ更新されない。',
-    prompt: `React の多言語切り替え不具合を調査しています。Header.tsx、i18n.ts、LanguageMenu.tsx が関係しています。切り替え後に一部文言だけ更新されません。\n\nこの状況をもとに、以下を日本語で作成してください。\n1. 問題の要約\n2. 影響範囲の候補\n3. 先に確認すべきファイルと理由\n4. 修正方針の短いメモ\n5. レビュー依頼に使える説明文`
+    prompt: `以下の開発コンテキストをもとに、実装前の整理文を作成してください。\n開発コンテキスト:\n__CONTEXT__\n以下の形式で日本語で出力してください:\n1. 問題の要約\n2. 影響範囲の候補\n3. 先に確認すべきファイルと理由\n4. 修正方針の短いメモ\n5. レビュー依頼に使える説明文`
   },
   {
     key: 'html',
@@ -21,7 +21,7 @@ const implementationPlaybooks = [
     deliverable: '検証用 HTML、メールテンプレート、簡易 UI モック',
     contextLabel: '画面要件 / 見た目の条件',
     contextPlaceholder: '例: CSV インポート確認ページ。件数カード、エラー一覧、再アップロード、取込開始ボタンが必要。',
-    prompt: `管理画面用の CSV インポート確認ページを HTML だけで作ってください。\n\n要件:\n- アップロード済みファイル名を表示\n- 取込件数、警告件数、エラー件数をカードで表示\n- エラー一覧テーブルを表示\n- 「再アップロード」と「取込開始」ボタンを配置\n- 配色は白と青緑を基調にし、管理画面らしく落ち着いた見た目にする\n\n出力は 1 ファイルで動く HTML にしてください。`
+    prompt: `以下の画面要件をもとに、1 ファイルで動く HTML を作成してください。\n画面要件:\n__CONTEXT__\n条件:\n- そのままブラウザで確認できる構成にする\n- 最低限の CSS を含める\n- 管理画面らしい落ち着いた見た目にする\n- 必要なボタン、一覧、状態表示を含める`
   },
   {
     key: 'script',
@@ -32,7 +32,7 @@ const implementationPlaybooks = [
     deliverable: 'VBA、Shell、PowerShell、SQL の草案',
     contextLabel: '作業手順 / 入出力条件',
     contextPlaceholder: '例: export フォルダの最新 CSV を整形し、failed 行だけ別ファイルに出したい。zsh で動かす。',
-    prompt: `毎朝 export フォルダに出力される CSV を整形したいです。\n\nやりたいこと:\n- 最新の CSV を 1 つ読む\n- 不要列を削除する\n- status が failed の行だけ別 CSV に出す\n- 件数をコンソールに表示する\n- Mac の zsh で動く Shell スクリプトにする\n\nコメント付きで、すぐ試せる最小構成のスクリプトを出してください。`
+    prompt: `以下の作業条件をもとに、自動化スクリプトの草案を作成してください。\n作業条件:\n__CONTEXT__\n以下の方針で出力してください:\n- すぐ試せる最小構成にする\n- コメントを付ける\n- 入力と出力を明示する\n- Shell / PowerShell / VBA / SQL のうち適切な形式を選ぶ\n- 最後に実行時の注意点も書く`
   },
   {
     key: 'framework',
@@ -43,9 +43,13 @@ const implementationPlaybooks = [
     deliverable: 'C#、Java、React、Spring、ASP.NET の雛形',
     contextLabel: '機能要件 / 対象フレームワーク',
     contextPlaceholder: '例: Spring Boot API に payment webhook を追加したい。Controller、DTO、Service の最小雛形が欲しい。',
-    prompt: `Spring Boot の API に payment webhook エンドポイントを追加したいです。\n\n要件:\n- POST /api/webhooks/payment を追加\n- 署名ヘッダーを受け取る\n- リクエストボディを DTO にマッピングする\n- service に処理を委譲する\n- ログを残す\n- 異常系では 400 を返す\n\nController、DTO、Service の最小雛形を Java で出してください。`
+    prompt: `以下の機能要件をもとに、既存アプリへ貼り込みやすい実装雛形を作成してください。\n機能要件:\n__CONTEXT__\n出力条件:\n- 適切なフレームワークと言語を判断する\n- Controller / Service / DTO など必要な単位に分ける\n- 最小構成に絞る\n- ログや異常系の扱いも含める\n- すぐ実装に着手できる粒度にする`
   }
 ];
+
+const [rawDefaultBefore, rawDefaultAfter = ''] = implementationPlaybooks[0].prompt.split('__CONTEXT__');
+const defaultBefore = rawDefaultBefore.replace(/\n+$/, '');
+const defaultAfter = rawDefaultAfter.replace(/^\n+/, '');
 ---
 
 <BaseLayout title="AI開発実践ガイド | 開発" current="interactive">
@@ -180,7 +184,11 @@ const implementationPlaybooks = [
           <span class="material-symbols-outlined" aria-hidden="true">text_snippet</span>
           <div class="section-tag">生成された Prompt</div>
         </div>
-        <textarea class="prompt-preview" data-role="preview" readonly>{implementationPlaybooks[0].prompt}</textarea>
+        <div class="prompt-preview-stack">
+          <textarea class="prompt-preview prompt-preview-block" data-role="preview-before">{defaultBefore}</textarea>
+          <textarea class="prompt-preview prompt-preview-block prompt-preview-context" data-role="preview-context" readonly></textarea>
+          <textarea class="prompt-preview prompt-preview-block" data-role="preview-after">{defaultAfter}</textarea>
+        </div>
       </label>
 
       <div class="prompt-actions">
@@ -211,7 +219,9 @@ const implementationPlaybooks = [
     const panels = lab.querySelectorAll('[data-live-panel]');
     const promptLab = lab.querySelector('[data-prompt-lab]');
     const context = lab.querySelector('[data-role="context"]');
-    const preview = lab.querySelector('[data-role="preview"]');
+    const previewBefore = lab.querySelector('[data-role="preview-before"]');
+    const previewContext = lab.querySelector('[data-role="preview-context"]');
+    const previewAfter = lab.querySelector('[data-role="preview-after"]');
     const launch = lab.querySelector('[data-role="launch"]');
     const copy = lab.querySelector('[data-role="copy"]');
     const contextLabel = lab.querySelector('[data-role="context-label"]');
@@ -219,20 +229,37 @@ const implementationPlaybooks = [
     if (
       promptLab instanceof HTMLElement &&
       context instanceof HTMLTextAreaElement &&
-      preview instanceof HTMLTextAreaElement &&
+      previewBefore instanceof HTMLTextAreaElement &&
+      previewContext instanceof HTMLTextAreaElement &&
+      previewAfter instanceof HTMLTextAreaElement &&
       launch instanceof HTMLAnchorElement &&
       copy instanceof HTMLButtonElement &&
       contextLabel instanceof HTMLElement
     ) {
-      const updatePrompt = () => {
-        const template = promptLab.getAttribute('data-template') ?? '';
-        const value = context.value.trim() || 'ここに要件、コード片、画面要件、エラー内容、作業条件などを入力してください。';
-        const prompt = template.replace('__CONTEXT__', value);
-        preview.value = prompt;
+      const getCombinedPrompt = () => {
+        return [previewBefore.value, previewContext.value, previewAfter.value]
+          .filter((part) => part.length > 0)
+          .join('');
+      };
 
+      const updateLaunch = () => {
         const url = new URL('https://chatgpt.com/');
-        url.searchParams.set('q', prompt);
+        url.searchParams.set('q', getCombinedPrompt());
         launch.href = url.toString();
+      };
+
+      const updateContextPreview = () => {
+        const value = context.value.trim() || 'ここに要件、コード片、画面要件、エラー内容、作業条件などを入力してください。';
+        previewContext.value = value;
+        updateLaunch();
+      };
+
+      const resetPromptTemplate = () => {
+        const template = promptLab.getAttribute('data-template') ?? '';
+        const [before, after = ''] = template.split('__CONTEXT__');
+        previewBefore.value = before.replace(/\n+$/, '');
+        previewAfter.value = after.replace(/^\n+/, '');
+        updateContextPreview();
       };
 
       const activate = (key, card) => {
@@ -247,7 +274,7 @@ const implementationPlaybooks = [
         promptLab.setAttribute('data-template', card.getAttribute('data-template') ?? '');
         contextLabel.textContent = card.getAttribute('data-context-label') ?? '';
         context.placeholder = card.getAttribute('data-context-placeholder') ?? '';
-        updatePrompt();
+        resetPromptTemplate();
       };
 
       for (const card of cards) {
@@ -257,16 +284,19 @@ const implementationPlaybooks = [
         });
       }
 
-      context.addEventListener('input', updatePrompt);
+      context.addEventListener('input', updateContextPreview);
+      for (const field of [previewBefore, previewContext, previewAfter]) {
+        field.addEventListener('input', updateLaunch);
+      }
       copy.addEventListener('click', async () => {
-        await navigator.clipboard.writeText(preview.value);
+        await navigator.clipboard.writeText(getCombinedPrompt());
         copy.textContent = 'コピーしました';
         window.setTimeout(() => {
           copy.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">content_copy</span>Prompt をコピー';
         }, 1500);
       });
 
-      updatePrompt();
+      resetPromptTemplate();
     }
   }
 </script>

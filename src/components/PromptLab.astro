@@ -8,6 +8,10 @@ const {
   promptTemplate = '',
   promptNote = ''
 } = Astro.props;
+
+const [rawTemplateBefore, rawTemplateAfter = ''] = promptTemplate.split('__CONTEXT__');
+const templateBefore = rawTemplateBefore.replace(/\n+$/, '');
+const templateAfter = rawTemplateAfter.replace(/^\n+/, '');
 ---
 
 <article class="card span-12" data-prompt-lab={id} data-template={promptTemplate}>
@@ -36,7 +40,11 @@ const {
         <span class="material-symbols-outlined" aria-hidden="true">text_snippet</span>
         <div class="section-tag">生成された Prompt</div>
       </div>
-      <textarea class="prompt-preview" data-role="preview" readonly>{promptTemplate}</textarea>
+      <div class="prompt-preview-stack">
+        <textarea class="prompt-preview prompt-preview-block" data-role="preview-before">{templateBefore}</textarea>
+        <textarea class="prompt-preview prompt-preview-block prompt-preview-context" data-role="preview-context" readonly></textarea>
+        <textarea class="prompt-preview prompt-preview-block" data-role="preview-after">{templateAfter}</textarea>
+      </div>
     </label>
 
     <div class="prompt-actions">
@@ -60,33 +68,52 @@ const {
   for (const lab of labs) {
     const template = lab.getAttribute('data-template') ?? '';
     const context = lab.querySelector('[data-role="context"]');
-    const preview = lab.querySelector('[data-role="preview"]');
+    const previewBefore = lab.querySelector('[data-role="preview-before"]');
+    const previewContext = lab.querySelector('[data-role="preview-context"]');
+    const previewAfter = lab.querySelector('[data-role="preview-after"]');
     const launch = lab.querySelector('[data-role="launch"]');
     const copy = lab.querySelector('[data-role="copy"]');
-
-    if (!(context instanceof HTMLTextAreaElement) || !(preview instanceof HTMLTextAreaElement) || !(launch instanceof HTMLAnchorElement) || !(copy instanceof HTMLButtonElement)) {
+    if (
+      !(context instanceof HTMLTextAreaElement) ||
+      !(previewBefore instanceof HTMLTextAreaElement) ||
+      !(previewContext instanceof HTMLTextAreaElement) ||
+      !(previewAfter instanceof HTMLTextAreaElement) ||
+      !(launch instanceof HTMLAnchorElement) ||
+      !(copy instanceof HTMLButtonElement)
+    ) {
       continue;
     }
 
-    const updatePrompt = () => {
-      const value = context.value.trim() || 'ここにプロジェクトの背景、コード片、エラー内容、画面説明などを入力してください。';
-      const prompt = template.replace('__CONTEXT__', value);
-      preview.value = prompt;
+    const getCombinedPrompt = () => {
+      return [previewBefore.value, previewContext.value, previewAfter.value]
+        .filter((part) => part.length > 0)
+        .join('');
+    };
 
+    const updateLaunch = () => {
       const url = new URL('https://chatgpt.com/');
-      url.searchParams.set('q', prompt);
+      url.searchParams.set('q', getCombinedPrompt());
       launch.href = url.toString();
     };
 
-    context.addEventListener('input', updatePrompt);
+    const updateContextPreview = () => {
+      const value = context.value.trim() || 'ここにプロジェクトの背景、コード片、エラー内容、画面説明などを入力してください。';
+      previewContext.value = value;
+      updateLaunch();
+    };
+
+    context.addEventListener('input', updateContextPreview);
+    for (const field of [previewBefore, previewContext, previewAfter]) {
+      field.addEventListener('input', updateLaunch);
+    }
     copy.addEventListener('click', async () => {
-      await navigator.clipboard.writeText(preview.value);
+      await navigator.clipboard.writeText(getCombinedPrompt());
       copy.textContent = 'コピーしました';
       window.setTimeout(() => {
         copy.textContent = 'Prompt をコピー';
       }, 1500);
     });
 
-    updatePrompt();
+    updateContextPreview();
   }
 </script>

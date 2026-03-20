@@ -61,10 +61,8 @@ import PromptLab from '../components/PromptLab.astro';
     contextLabel="設定 / ビルドログ / デプロイ先"
     contextPlaceholder="例: Astro サイトを GitHub Pages にデプロイしたい。workflow には install と build があるが deploy が失敗する。ログには artifact と pages 設定に関する記述がある。"
     promptTemplate={`あなたは CI/CD とフロントエンド配信に詳しいプラットフォームエンジニアです。以下の文脈をもとに、リリース完了まで支援してください。
-
 文脈:
 __CONTEXT__
-
 以下の形式で出力してください:
 1. 現在どの段階で詰まっている可能性が高いかを判断する。
 2. エラー文や設定項目の意味を平易に説明する。

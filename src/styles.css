@@ -574,6 +574,30 @@ a {
   border: 1px solid rgba(186, 201, 204, 0.4);
 }
 
+.prompt-preview-stack {
+  display: grid;
+  gap: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(186, 201, 204, 0.4);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.prompt-preview-block {
+  min-height: 88px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.prompt-preview-context {
+  min-height: 120px;
+  border-top: none;
+  border-bottom: none;
+  color: var(--secondary);
+}
+
 .prompt-actions {
   display: flex;
   flex-wrap: wrap;
