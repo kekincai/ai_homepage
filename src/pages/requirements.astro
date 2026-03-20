@@ -5,7 +5,10 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI開発実践ガイド | 要件定義" current="requirements">
   <section class="hero">
-    <div class="section-tag">要件定義</div>
+    <div class="hero-tag">
+      <span class="material-symbols-outlined" aria-hidden="true">description</span>
+      <div class="section-tag">要件定義</div>
+    </div>
     <h1>曖昧な話を、実行できる要件に変える</h1>
     <p>
       要件定義で難しいのは、情報が足りないことではなく、情報が散らばっていることです。
@@ -15,7 +18,10 @@ import PromptLab from '../components/PromptLab.astro';
 
   <section class="grid">
     <article class="card span-6">
-      <span class="kicker">課題</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">error</span>
+        <span class="kicker">課題</span>
+      </div>
       <ul class="challenge-list">
         <li>誰の発言を基準にするかが曖昧になりやすい。</li>
         <li>やりたいことは語られても、受け入れ条件が定義されない。</li>
@@ -24,7 +30,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card span-6">
-      <span class="kicker">AI の使いどころ</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span>
+        <span class="kicker">AI の使いどころ</span>
+      </div>
       <ul class="detail-list">
         <li>会議メモを要件一覧に整理する。</li>
         <li>受け入れ条件と未解決事項を抽出する。</li>
@@ -33,7 +42,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card soft span-12">
-      <span class="kicker">入力素材</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>
+        <span class="kicker">入力素材</span>
+      </div>
       <ul class="step-list">
         <li>会議メモ、チャット履歴、顧客要望、競合サービスの説明。</li>
         <li>まだ整理していない一次情報のほうが有効です。</li>

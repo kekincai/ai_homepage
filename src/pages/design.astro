@@ -5,7 +5,10 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI開発実践ガイド | 設計" current="design">
   <section class="hero">
-    <div class="section-tag">設計</div>
+    <div class="hero-tag">
+      <span class="material-symbols-outlined" aria-hidden="true">architecture</span>
+      <div class="section-tag">設計</div>
+    </div>
     <h1>案を比較し、選ぶ理由を明確にする</h1>
     <p>
       設計では正解を当てることより、採用理由を説明できることが重要です。
@@ -15,7 +18,10 @@ import PromptLab from '../components/PromptLab.astro';
 
   <section class="grid">
     <article class="card span-6">
-      <span class="kicker">課題</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">hub</span>
+        <span class="kicker">課題</span>
+      </div>
       <ul class="challenge-list">
         <li>構成案は複数あるが、比較基準が曖昧になりやすい。</li>
         <li>API、権限、冪等性、障害復旧の抜け漏れが後で出る。</li>
@@ -24,7 +30,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card span-6">
-      <span class="kicker">AI の使いどころ</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">schema</span>
+        <span class="kicker">AI の使いどころ</span>
+      </div>
       <ul class="detail-list">
         <li>複数案の長所と短所を比較する。</li>
         <li>API やデータフローのリスクを洗い出す。</li>
@@ -33,7 +42,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card soft span-12">
-      <span class="kicker">入力素材</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">folder_open</span>
+        <span class="kicker">入力素材</span>
+      </div>
       <ul class="step-list">
         <li>要件要約、API 草案、データモデル、比較中の構成案。</li>
         <li>迷っている点や懸念点を明記すると、AI の返答が実務寄りになります。</li>

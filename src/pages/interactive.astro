@@ -5,7 +5,10 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI開発実践ガイド | 開発" current="interactive">
   <section class="hero">
-    <div class="section-tag">開発</div>
+    <div class="hero-tag">
+      <span class="material-symbols-outlined" aria-hidden="true">code_blocks</span>
+      <div class="section-tag">開発</div>
+    </div>
     <h1>実装前の整理を AI に任せる</h1>
     <p>
       開発で時間を奪うのは、コードを書くことよりも、既存コードの理解、変更範囲の把握、エラーの読み解きです。
@@ -15,7 +18,10 @@ import PromptLab from '../components/PromptLab.astro';
 
   <section class="grid">
     <article class="card span-6">
-      <span class="kicker">課題</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">bug_report</span>
+        <span class="kicker">課題</span>
+      </div>
       <ul class="challenge-list">
         <li>見慣れないコードでは、文脈理解に時間がかかる。</li>
         <li>小さな変更でも、影響範囲が広がりやすい。</li>
@@ -24,7 +30,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card span-6">
-      <span class="kicker">AI の使いどころ</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">terminal</span>
+        <span class="kicker">AI の使いどころ</span>
+      </div>
       <ul class="detail-list">
         <li>既存コードと主要な呼び出し経路を説明する。</li>
         <li>要件を実装手順と注意点に分解する。</li>
@@ -33,7 +42,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card soft span-12">
-      <span class="kicker">入力素材</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">snippet_folder</span>
+        <span class="kicker">入力素材</span>
+      </div>
       <ul class="step-list">
         <li>コード片、PR 説明、要件メモ、ターミナルログ、画面キャプチャ。</li>
         <li>まずは「この変更でどこを触るべきか」を整理させる使い方が安定します。</li>

@@ -5,7 +5,10 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI開発実践ガイド | デプロイ" current="deployment">
   <section class="hero">
-    <div class="section-tag">デプロイ</div>
+    <div class="hero-tag">
+      <span class="material-symbols-outlined" aria-hidden="true">rocket_launch</span>
+      <div class="section-tag">デプロイ</div>
+    </div>
     <h1>設定を読み解き、手順を固める</h1>
     <p>
       デプロイで難しいのは、情報が複数箇所に分かれ、失敗原因が見えにくいことです。
@@ -15,7 +18,10 @@ import PromptLab from '../components/PromptLab.astro';
 
   <section class="grid">
     <article class="card span-6">
-      <span class="kicker">課題</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">deployed_code_alert</span>
+        <span class="kicker">課題</span>
+      </div>
       <ul class="challenge-list">
         <li>workflow、環境変数、ビルド設定が散らばりやすい。</li>
         <li>CI エラーは用語が難しく、原因特定に時間がかかる。</li>
@@ -24,7 +30,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card span-6">
-      <span class="kicker">AI の使いどころ</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">cloud_sync</span>
+        <span class="kicker">AI の使いどころ</span>
+      </div>
       <ul class="detail-list">
         <li>設定ファイルや workflow の意味を説明する。</li>
         <li>失敗箇所の候補と確認順序を整理する。</li>
@@ -33,7 +42,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card soft span-12">
-      <span class="kicker">入力素材</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">folder_managed</span>
+        <span class="kicker">入力素材</span>
+      </div>
       <ul class="step-list">
         <li>workflow YAML、ビルドログ、Dockerfile、環境変数一覧、デプロイ先の条件。</li>
         <li>分からない設定は、そのまま貼って説明させる使い方が有効です。</li>

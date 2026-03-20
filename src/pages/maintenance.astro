@@ -5,7 +5,10 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI開発実践ガイド | 保守" current="maintenance">
   <section class="hero">
-    <div class="section-tag">保守</div>
+    <div class="hero-tag">
+      <span class="material-symbols-outlined" aria-hidden="true">build</span>
+      <div class="section-tag">保守</div>
+    </div>
     <h1>ログと事実を整理し、次回に残す</h1>
     <p>
       保守で負荷が高いのは、アラート、ログ、変更履歴、ユーザー影響を短時間でつなげることです。
@@ -15,7 +18,10 @@ import PromptLab from '../components/PromptLab.astro';
 
   <section class="grid">
     <article class="card span-6">
-      <span class="kicker">課題</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">warning</span>
+        <span class="kicker">課題</span>
+      </div>
       <ul class="challenge-list">
         <li>アラートが多く、どこから見るべきか迷いやすい。</li>
         <li>ログはあるが、影響範囲や原因のつながりが見えにくい。</li>
@@ -24,7 +30,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card span-6">
-      <span class="kicker">AI の使いどころ</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">manage_search</span>
+        <span class="kicker">AI の使いどころ</span>
+      </div>
       <ul class="detail-list">
         <li>障害の現象と影響範囲を要約する。</li>
         <li>根本原因候補と調査順序を整理する。</li>
@@ -33,7 +42,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card soft span-12">
-      <span class="kicker">入力素材</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">topic</span>
+        <span class="kicker">入力素材</span>
+      </div>
       <ul class="step-list">
         <li>アラート文、ログ、発生時刻、最近のリリース情報、ユーザー報告。</li>
         <li>初動では結論を急がず、事実と時系列を整理させる使い方が有効です。</li>

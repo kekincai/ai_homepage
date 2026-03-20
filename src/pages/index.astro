@@ -5,7 +5,10 @@ const base = import.meta.env.BASE_URL;
 
 <BaseLayout title="AI開発実践ガイド | ホーム" current="home">
   <section class="hero">
-    <div class="section-tag">AI開発実践ガイド</div>
+    <div class="hero-tag">
+      <span class="material-symbols-outlined" aria-hidden="true">dashboard</span>
+      <div class="section-tag">AI開発実践ガイド</div>
+    </div>
     <h1>AI をソフトウェア開発の流れに組み込む</h1>
     <p>
       このサイトは、ブラウザで使える AI を前提に、要件定義から保守までの実務的な使い方を整理したガイドです。
@@ -15,7 +18,10 @@ const base = import.meta.env.BASE_URL;
 
   <section class="grid">
     <article class="card span-8">
-      <span class="kicker">概要</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">insights</span>
+        <span class="kicker">概要</span>
+      </div>
       <h2 class="panel-title">開発で詰まりやすいのは、実装そのものより整理と判断です</h2>
       <ul class="challenge-list">
         <li>要件は複数の情報源に散らばり、解釈のずれが起きやすい。</li>
@@ -26,7 +32,10 @@ const base = import.meta.env.BASE_URL;
     </article>
 
     <article class="card accent span-4">
-      <span class="kicker" style="background:rgba(255,255,255,.2);color:#fff;">方針</span>
+      <div class="card-head accent">
+        <span class="material-symbols-outlined" aria-hidden="true">bolt</span>
+        <span class="kicker" style="background:rgba(255,255,255,.2);color:#fff;">方針</span>
+      </div>
       <h3 class="panel-title">まずはブラウザ型 AI から始める</h3>
       <p style="line-height:1.8;opacity:.92;">
         新しい基盤や API 連携がなくても、会議メモ、コード片、エラーログ、設定ファイルをそのまま AI に渡せます。
@@ -38,7 +47,10 @@ const base = import.meta.env.BASE_URL;
     <article class="card span-12 flow-board">
       <div class="flow-header">
         <div>
-          <span class="kicker">開発フロー</span>
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">timeline</span>
+            <span class="kicker">開発フロー</span>
+          </div>
           <h3 class="panel-title">各工程は分かれているのではなく、連続してつながっています</h3>
         </div>
         <p class="flow-copy">

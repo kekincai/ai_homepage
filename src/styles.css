@@ -184,6 +184,53 @@ a {
   color: var(--secondary);
 }
 
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.hero-tag .material-symbols-outlined {
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.card-head-compact {
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.card-head .material-symbols-outlined {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(0, 104, 117, 0.08);
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+
+.card-head-compact .material-symbols-outlined {
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 0.98rem;
+}
+
+.card-head.accent .material-symbols-outlined {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
 .hero h1 {
   margin: 0;
   font-size: clamp(2rem, 4vw, 3.3rem);
@@ -375,6 +422,10 @@ a {
 .prompt-lab {
   display: grid;
   gap: 16px;
+}
+
+.prompt-lab label {
+  display: grid;
 }
 
 .prompt-input,

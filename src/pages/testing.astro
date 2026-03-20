@@ -5,7 +5,10 @@ import PromptLab from '../components/PromptLab.astro';
 
 <BaseLayout title="AI開発実践ガイド | テスト" current="testing">
   <section class="hero">
-    <div class="section-tag">テスト</div>
+    <div class="hero-tag">
+      <span class="material-symbols-outlined" aria-hidden="true">biotech</span>
+      <div class="section-tag">テスト</div>
+    </div>
     <h1>抜け漏れを先に見つける</h1>
     <p>
       テストで難しいのは、ケースを書くことよりも、何を落としているかを把握することです。
@@ -15,7 +18,10 @@ import PromptLab from '../components/PromptLab.astro';
 
   <section class="grid">
     <article class="card span-6">
-      <span class="kicker">課題</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">rule</span>
+        <span class="kicker">課題</span>
+      </div>
       <ul class="challenge-list">
         <li>分岐、異常入力、権限差、空状態が抜けやすい。</li>
         <li>既存テストと最新実装がずれていることがある。</li>
@@ -24,7 +30,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card span-6">
-      <span class="kicker">AI の使いどころ</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">fact_check</span>
+        <span class="kicker">AI の使いどころ</span>
+      </div>
       <ul class="detail-list">
         <li>要件やコードからテスト観点を洗い出す。</li>
         <li>エッジケースや回帰しやすい経路を補う。</li>
@@ -33,7 +42,10 @@ import PromptLab from '../components/PromptLab.astro';
     </article>
 
     <article class="card soft span-12">
-      <span class="kicker">入力素材</span>
+      <div class="card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">assignment</span>
+        <span class="kicker">入力素材</span>
+      </div>
       <ul class="step-list">
         <li>要件説明、状態遷移、関数やコンポーネントのコード、失敗ログ。</li>
         <li>まずはテスト方針を作らせ、その後に Jest や Playwright へ落とす流れが有効です。</li>
