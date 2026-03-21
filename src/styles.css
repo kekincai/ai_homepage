@@ -539,6 +539,15 @@ a {
   min-width: 0;
 }
 
+.section-block > .span-12,
+.section-block > .span-8,
+.section-block > .span-7,
+.section-block > .span-6,
+.section-block > .span-5,
+.section-block > .span-4 {
+  grid-column: 1 / -1;
+}
+
 .section-block + .section-block {
   margin-top: 42px;
 }
@@ -1647,5 +1656,283 @@ a {
 
   .playbook-card-button {
     min-width: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    padding: 12px 12px 10px;
+  }
+
+  .brand {
+    gap: 10px;
+    margin-bottom: 0.15rem;
+    font-size: 0.95rem;
+  }
+
+  .side-label {
+    margin-bottom: 0.6rem;
+    font-size: 0.62rem;
+  }
+
+  .mobile-nav-label {
+    margin-bottom: 6px;
+    font-size: 0.72rem;
+  }
+
+  .mobile-nav-select {
+    padding: 12px 44px 12px 14px;
+    border-radius: 16px;
+    font-size: 0.95rem;
+  }
+
+  .main {
+    padding: 18px 14px 24px;
+  }
+
+  .hero-tag {
+    margin-bottom: 8px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 8vw, 2.35rem);
+    line-height: 1.04;
+  }
+
+  .hero p {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .grid {
+    gap: 14px;
+    margin-top: 1.5rem;
+  }
+
+  .card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .panel-title {
+    font-size: 1.22rem;
+  }
+
+  .panel-copy {
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .challenge-list,
+  .step-list {
+    gap: 8px;
+  }
+
+  .challenge-list li,
+  .step-list li {
+    padding: 10px 12px;
+    line-height: 1.6;
+  }
+
+  .detail-list,
+  .detail-list p,
+  .detail-list li {
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .section-block {
+    gap: 14px;
+    margin-top: 8px;
+    padding-top: 12px;
+  }
+
+  .section-block + .section-block {
+    margin-top: 28px;
+  }
+
+  .section-block + .section-block::before {
+    top: -12px;
+    height: 2px;
+  }
+
+  .section-block-head {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: start;
+    justify-self: stretch;
+    padding: 4px 0 4px;
+  }
+
+  .section-block-head .card-head {
+    width: 34px;
+    gap: 5px;
+  }
+
+  .section-block-head .card-head .material-symbols-outlined {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.05rem;
+  }
+
+  .section-block-head .card-head .kicker {
+    min-width: 1.45rem;
+    height: 1.45rem;
+    font-size: 0.76rem;
+  }
+
+  .section-block-copywrap {
+    width: auto;
+    padding-bottom: 12px;
+  }
+
+  .section-block-copywrap::after {
+    width: 120px;
+    height: 3px;
+  }
+
+  .section-block-title {
+    margin-bottom: 8px;
+    font-size: 1.38rem;
+    line-height: 1.08;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  .section-block-copy {
+    font-size: 0.94rem;
+    line-height: 1.58;
+  }
+
+  .playbook-deck {
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .playbook-card-button {
+    padding: 14px;
+    border-radius: 16px;
+    gap: 8px;
+  }
+
+  .playbook-live {
+    margin-bottom: 12px;
+  }
+
+  .playbook-live-meta,
+  .playbook-prompt-box {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .prompt-input,
+  .prompt-preview {
+    min-height: 124px;
+    padding: 14px;
+    border-radius: 12px;
+    line-height: 1.58;
+    font-size: 0.94rem;
+  }
+
+  .prompt-preview {
+    min-height: 180px;
+  }
+
+  .prompt-preview-block {
+    min-height: 72px;
+  }
+
+  .prompt-preview-context {
+    min-height: 100px;
+  }
+
+  .button-primary,
+  .button-secondary {
+    width: 100%;
+    padding: 12px 16px;
+  }
+
+  .caption {
+    font-size: 0.84rem;
+    line-height: 1.58;
+  }
+
+  .case-top-grid,
+  .case-flow-grid {
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .case-top-card,
+  .case-flow-card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .case-card-head {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .case-card-head .material-symbols-outlined {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .case-thread {
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .case-message {
+    gap: 8px;
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .case-message-head {
+    gap: 8px;
+  }
+
+  .case-message pre,
+  .case-response-lead {
+    font-size: 0.92rem;
+    line-height: 1.58;
+  }
+
+  .case-preview-shell img {
+    border-radius: 14px;
+  }
+
+  .flow-header {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .flow-copy {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .flow-step {
+    min-height: auto;
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .flow-step strong {
+    font-size: 1rem;
+  }
+
+  .flow-step small {
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+
+  .project-meta-mobile {
+    margin: 6px 14px 18px;
+    padding-top: 10px;
   }
 }
