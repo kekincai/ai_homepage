@@ -68,148 +68,184 @@ const defaultAfter = rawDefaultAfter.replace(/^\n+/, '');
   </section>
 
   <section class="grid">
-    <article class="card span-6">
-      <div class="card-head">
-        <span class="material-symbols-outlined" aria-hidden="true">bug_report</span>
-        <span class="kicker">課題</span>
+    <div class="section-block span-12">
+      <div class="section-block-head">
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">explore</span>
+          <span class="kicker">1</span>
+        </div>
+        <div class="section-block-copywrap">
+          <h2 class="section-block-title">開発工程の論点</h2>
+          <p class="section-block-copy">開発で負荷がかかりやすい点と、AI に渡すと効果が出やすい素材を整理しています。</p>
+        </div>
       </div>
-      <ul class="challenge-list">
-        <li>見慣れないコードでは、文脈理解に時間がかかる。</li>
-        <li>小さな変更でも、影響範囲が広がりやすい。</li>
-        <li>エラー内容を読むだけで調査が止まりやすい。</li>
-      </ul>
-    </article>
-
-    <article class="card span-6">
-      <div class="card-head">
-        <span class="material-symbols-outlined" aria-hidden="true">terminal</span>
-        <span class="kicker">AI の使いどころ</span>
-      </div>
-      <ul class="detail-list">
-        <li>既存コードと主要な呼び出し経路を説明し、変更方針を整理する。</li>
-        <li>要件を実装手順に分解し、HTML や補助コードの雛形に落とす。</li>
-        <li>エラーを調査順序つきで言い換え、必要なら C#、Java、VBA、Shell などの草案を出す。</li>
-      </ul>
-    </article>
-
-    <article class="card soft span-12">
-      <div class="card-head">
-        <span class="material-symbols-outlined" aria-hidden="true">snippet_folder</span>
-        <span class="kicker">入力素材</span>
-      </div>
-      <ul class="step-list">
-        <li>コード片、PR 説明、要件メモ、ターミナルログ、画面キャプチャ、既存画面の HTML。</li>
-        <li>まずは「この変更でどこを触るべきか」を整理させ、その後で HTML、補助スクリプト、アプリコードへ分岐させる使い方が安定します。</li>
-      </ul>
-    </article>
-
-  </section>
-
-  <article
-    class="card span-12 integrated-lab"
-    data-integrated-lab
-    data-default-template={implementationPlaybooks[0].prompt}
-    data-default-label={implementationPlaybooks[0].contextLabel}
-    data-default-placeholder={implementationPlaybooks[0].contextPlaceholder}
-  >
-    <div class="card-head">
-      <span class="material-symbols-outlined" aria-hidden="true">chat</span>
-      <span class="kicker">Prompt Lab</span>
-    </div>
-    <h3 class="panel-title">開発支援用 Prompt</h3>
-    <p class="panel-copy">
-      出力タイプごとに、ユースケース、成果物、prompt が連動して切り替わります。
-      開発では、何を書かせるかより先に、どの形で出させるかを決めると使いやすくなります。
-    </p>
-
-    <div class="playbook-deck" aria-label="開発出力タイプの切り替え">
-      {implementationPlaybooks.map((playbook, index) => (
-        <button
-          class={`playbook-card-button ${index === 0 ? 'is-active' : ''}`}
-          type="button"
-          data-playbook-card={playbook.key}
-          data-template={playbook.prompt}
-          data-context-label={playbook.contextLabel}
-          data-context-placeholder={playbook.contextPlaceholder}
-        >
-          <span class="material-symbols-outlined" aria-hidden="true">{playbook.icon}</span>
-          <strong>{playbook.label}</strong>
-          <small>{playbook.title}</small>
-          <em>{playbook.deliverable}</em>
-        </button>
-      ))}
-    </div>
-
-    <div class="playbook-live">
-      {implementationPlaybooks.map((playbook, index) => (
-        <section
-          class={`playbook-live-panel ${index === 0 ? 'is-active' : ''}`}
-          data-live-panel={playbook.key}
-        >
-          <div class="playbook-live-meta">
-            <div class="card-head">
-              <span class="material-symbols-outlined" aria-hidden="true">{playbook.icon}</span>
-              <span class="kicker">{playbook.label}</span>
-            </div>
-            <h4 class="panel-title">{playbook.title}</h4>
-            <div class="detail-list">
-              <div>
-                <strong class="playbook-label">ユースケース</strong>
-                <p class="muted">{playbook.useCase}</p>
-              </div>
-              <div>
-                <strong class="playbook-label">出力されるもの</strong>
-                <p class="muted">{playbook.deliverable}</p>
-              </div>
-            </div>
+      <div class="grid section-block-grid">
+        <article class="card span-6">
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">bug_report</span>
+            <span class="kicker">課題</span>
           </div>
-        </section>
-      ))}
+          <ul class="challenge-list">
+            <li>見慣れないコードでは、文脈理解に時間がかかる。</li>
+            <li>小さな変更でも、影響範囲が広がりやすい。</li>
+            <li>エラー内容を読むだけで調査が止まりやすい。</li>
+          </ul>
+        </article>
+
+        <article class="card span-6">
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">terminal</span>
+            <span class="kicker">AI の使いどころ</span>
+          </div>
+          <ul class="detail-list">
+            <li>既存コードと主要な呼び出し経路を説明し、変更方針を整理する。</li>
+            <li>要件を実装手順に分解し、HTML や補助コードの雛形に落とす。</li>
+            <li>エラーを調査順序つきで言い換え、必要なら C#、Java、VBA、Shell などの草案を出す。</li>
+          </ul>
+        </article>
+
+        <article class="card soft span-12">
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">snippet_folder</span>
+            <span class="kicker">入力素材</span>
+          </div>
+          <ul class="step-list">
+            <li>コード片、PR 説明、要件メモ、ターミナルログ、画面キャプチャ、既存画面の HTML。</li>
+            <li>まずは「この変更でどこを触るべきか」を整理させ、その後で HTML、補助スクリプト、アプリコードへ分岐させる使い方が安定します。</li>
+          </ul>
+        </article>
+      </div>
     </div>
 
-    <div class="prompt-lab" data-prompt-lab="implementation-lab" data-template={implementationPlaybooks[0].prompt}>
-      <label>
-        <div class="card-head card-head-compact">
-          <span class="material-symbols-outlined" aria-hidden="true">edit_note</span>
-          <div class="section-tag" data-role="context-label">{implementationPlaybooks[0].contextLabel}</div>
+    <div class="section-block span-12">
+      <div class="section-block-head">
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+          <span class="kicker">2</span>
         </div>
-        <textarea
-          class="prompt-input"
-          data-role="context"
-          placeholder={implementationPlaybooks[0].contextPlaceholder}
-        ></textarea>
-      </label>
+        <div class="section-block-copywrap">
+          <h2 class="section-block-title">Prompt 設計</h2>
+          <p class="section-block-copy">出力タイプを切り替えながら、そのまま試せる prompt を作成できるようにしています。</p>
+        </div>
+      </div>
+      <article
+        class="card span-12 integrated-lab"
+        data-integrated-lab
+        data-default-template={implementationPlaybooks[0].prompt}
+        data-default-label={implementationPlaybooks[0].contextLabel}
+        data-default-placeholder={implementationPlaybooks[0].contextPlaceholder}
+      >
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+          <span class="kicker">Prompt Lab</span>
+        </div>
+        <h3 class="panel-title">開発支援用 Prompt</h3>
+        <p class="panel-copy">
+          出力タイプごとに、ユースケース、成果物、prompt が連動して切り替わります。
+          開発では、何を書かせるかより先に、どの形で出させるかを決めると使いやすくなります。
+        </p>
 
-      <label>
-        <div class="card-head card-head-compact">
-          <span class="material-symbols-outlined" aria-hidden="true">text_snippet</span>
-          <div class="section-tag">生成された Prompt</div>
+        <div class="playbook-deck" aria-label="開発出力タイプの切り替え">
+          {implementationPlaybooks.map((playbook, index) => (
+            <button
+              class={`playbook-card-button ${index === 0 ? 'is-active' : ''}`}
+              type="button"
+              data-playbook-card={playbook.key}
+              data-template={playbook.prompt}
+              data-context-label={playbook.contextLabel}
+              data-context-placeholder={playbook.contextPlaceholder}
+            >
+              <span class="material-symbols-outlined" aria-hidden="true">{playbook.icon}</span>
+              <strong>{playbook.label}</strong>
+              <small>{playbook.title}</small>
+              <em>{playbook.deliverable}</em>
+            </button>
+          ))}
         </div>
-        <div class="prompt-preview-stack">
-          <textarea class="prompt-preview prompt-preview-block" data-role="preview-before">{defaultBefore}</textarea>
-          <textarea class="prompt-preview prompt-preview-block prompt-preview-context" data-role="preview-context" readonly></textarea>
-          <textarea class="prompt-preview prompt-preview-block" data-role="preview-after">{defaultAfter}</textarea>
-        </div>
-      </label>
 
-      <div class="prompt-actions">
-        <a class="button-primary" data-role="launch" href="https://chatgpt.com/" target="_blank" rel="noreferrer">
-          <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
-          ChatGPT で試す
-        </a>
-        <button class="button-secondary" data-role="copy" type="button">
-          <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
-          Prompt をコピー
-        </button>
+        <div class="playbook-live">
+          {implementationPlaybooks.map((playbook, index) => (
+            <section
+              class={`playbook-live-panel ${index === 0 ? 'is-active' : ''}`}
+              data-live-panel={playbook.key}
+            >
+              <div class="playbook-live-meta">
+                <div class="card-head">
+                  <span class="material-symbols-outlined" aria-hidden="true">{playbook.icon}</span>
+                  <span class="kicker">{playbook.label}</span>
+                </div>
+                <h4 class="panel-title">{playbook.title}</h4>
+                <div class="detail-list">
+                  <div>
+                    <strong class="playbook-label">ユースケース</strong>
+                    <p class="muted">{playbook.useCase}</p>
+                  </div>
+                  <div>
+                    <strong class="playbook-label">出力されるもの</strong>
+                    <p class="muted">{playbook.deliverable}</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          ))}
+        </div>
+
+        <div class="prompt-lab" data-prompt-lab="implementation-lab" data-template={implementationPlaybooks[0].prompt}>
+          <label>
+            <div class="card-head card-head-compact">
+              <span class="material-symbols-outlined" aria-hidden="true">edit_note</span>
+              <div class="section-tag" data-role="context-label">{implementationPlaybooks[0].contextLabel}</div>
+            </div>
+            <textarea
+              class="prompt-input"
+              data-role="context"
+              placeholder={implementationPlaybooks[0].contextPlaceholder}
+            ></textarea>
+          </label>
+
+          <label>
+            <div class="card-head card-head-compact">
+              <span class="material-symbols-outlined" aria-hidden="true">text_snippet</span>
+              <div class="section-tag">生成された Prompt</div>
+            </div>
+            <div class="prompt-preview-stack">
+              <textarea class="prompt-preview prompt-preview-block" data-role="preview-before">{defaultBefore}</textarea>
+              <textarea class="prompt-preview prompt-preview-block prompt-preview-context" data-role="preview-context" readonly></textarea>
+              <textarea class="prompt-preview prompt-preview-block" data-role="preview-after">{defaultAfter}</textarea>
+            </div>
+          </label>
+
+          <div class="prompt-actions">
+            <a class="button-primary" data-role="launch" href="https://chatgpt.com/" target="_blank" rel="noreferrer">
+              <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+              ChatGPT で試す
+            </a>
+            <button class="button-secondary" data-role="copy" type="button">
+              <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+              Prompt をコピー
+            </button>
+          </div>
+
+          <p class="caption">
+            文章、HTML、スクリプト、フレームワークコードで出口を切り替えると、同じ開発課題でも AI の使い方が大きく変わります。
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-block span-12">
+      <div class="section-block-head">
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">toggle_on</span>
+          <span class="kicker">3</span>
+        </div>
+        <div class="section-block-copywrap">
+          <h2 class="section-block-title">ケース分析</h2>
+          <p class="section-block-copy">開発らしい 1 ケースに絞り、従来の進め方、生成 AI 導入後、prompt、返答イメージを一続きで確認できます。</p>
+        </div>
       </div>
 
-      <p class="caption">
-        文章、HTML、スクリプト、フレームワークコードで出口を切り替えると、同じ開発課題でも AI の使い方が大きく変わります。
-      </p>
-    </div>
-  </article>
-
-  <CaseStudy
+      <CaseStudy
     title="Spring Boot に決済 webhook を追加する例"
     intro="開発段階では、実装前の整理と最小雛形づくりを早く回せるかが重要です。ここでは、既存 API に webhook 受信処理を追加するケースを例にしています。"
     fitTitle="向いている課題"
@@ -232,6 +268,8 @@ const defaultAfter = rawDefaultAfter.replace(/^\n+/, '');
     responseLabel="返答イメージ"
     responseLead="ChatGPT には、最初から完成品を期待するのではなく、貼り込みやすい骨組みを出させる使い方が向いています。"
   />
+    </div>
+  </section>
 
   <div class="footer">開発では、完成品を期待するより、叩き台を素早く出させる使い方が安定します。最後の実装判断は人が行います。</div>
 </BaseLayout>

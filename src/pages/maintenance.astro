@@ -18,50 +18,73 @@ import CaseStudy from '../components/CaseStudy.astro';
   </section>
 
   <section class="grid">
-    <article class="card span-6">
-      <div class="card-head">
-        <span class="material-symbols-outlined" aria-hidden="true">warning</span>
-        <span class="kicker">課題</span>
+    <div class="section-block span-12">
+      <div class="section-block-head">
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">explore</span>
+          <span class="kicker">1</span>
+        </div>
+        <div class="section-block-copywrap">
+          <h2 class="section-block-title">保守工程の論点</h2>
+          <p class="section-block-copy">初動で詰まりやすいポイントと、時系列整理に使いやすい入力素材をまとめています。</p>
+        </div>
       </div>
-      <ul class="challenge-list">
-        <li>アラートが多く、どこから見るべきか迷いやすい。</li>
-        <li>ログはあるが、影響範囲や原因のつながりが見えにくい。</li>
-        <li>対応内容が蓄積されず、同じ調査を繰り返しやすい。</li>
-      </ul>
-    </article>
+      <div class="grid section-block-grid">
+        <article class="card span-6">
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">warning</span>
+            <span class="kicker">課題</span>
+          </div>
+          <ul class="challenge-list">
+            <li>アラートが多く、どこから見るべきか迷いやすい。</li>
+            <li>ログはあるが、影響範囲や原因のつながりが見えにくい。</li>
+            <li>対応内容が蓄積されず、同じ調査を繰り返しやすい。</li>
+          </ul>
+        </article>
 
-    <article class="card span-6">
-      <div class="card-head">
-        <span class="material-symbols-outlined" aria-hidden="true">manage_search</span>
-        <span class="kicker">AI の使いどころ</span>
+        <article class="card span-6">
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">manage_search</span>
+            <span class="kicker">AI の使いどころ</span>
+          </div>
+          <ul class="detail-list">
+            <li>障害の現象と影響範囲を要約し、共有文へ整える。</li>
+            <li>根本原因候補と調査順序を整理し、初動メモや引き継ぎ文に落とす。</li>
+            <li>対応記録を runbook、障害報告、振り返り文書に整える。</li>
+          </ul>
+        </article>
+
+        <article class="card soft span-12">
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">topic</span>
+            <span class="kicker">入力素材</span>
+          </div>
+          <ul class="step-list">
+            <li>アラート文、ログ、発生時刻、最近のリリース情報、ユーザー報告、過去の障害記録。</li>
+            <li>初動では結論を急がず、事実と時系列を整理させ、最後に共有文や runbook 更新案へ変換させる使い方が有効です。</li>
+          </ul>
+        </article>
       </div>
-      <ul class="detail-list">
-        <li>障害の現象と影響範囲を要約し、共有文へ整える。</li>
-        <li>根本原因候補と調査順序を整理し、初動メモや引き継ぎ文に落とす。</li>
-        <li>対応記録を runbook、障害報告、振り返り文書に整える。</li>
-      </ul>
-    </article>
+    </div>
 
-    <article class="card soft span-12">
-      <div class="card-head">
-        <span class="material-symbols-outlined" aria-hidden="true">topic</span>
-        <span class="kicker">入力素材</span>
+    <div class="section-block span-12">
+      <div class="section-block-head">
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+          <span class="kicker">2</span>
+        </div>
+        <div class="section-block-copywrap">
+          <h2 class="section-block-title">Prompt 設計</h2>
+          <p class="section-block-copy">アラート、ログ、変更履歴を同時に渡して、初動メモと共有文へ分かれるように整えています。</p>
+        </div>
       </div>
-      <ul class="step-list">
-        <li>アラート文、ログ、発生時刻、最近のリリース情報、ユーザー報告、過去の障害記録。</li>
-        <li>初動では結論を急がず、事実と時系列を整理させ、最後に共有文や runbook 更新案へ変換させる使い方が有効です。</li>
-      </ul>
-    </article>
-
-  </section>
-
-  <PromptLab
-    id="maintenance-lab"
-    title="保守運用用 Prompt"
-    intro="アラート、ログ、ユーザー報告を貼ると、初動調査メモや報告文の作成に使いやすい prompt を生成します。"
-    contextLabel="アラート / ログ / ユーザー報告 / 変更履歴"
-    contextPlaceholder="例: 今日 14:05 から API 500 が急増した。payment webhook にエラーが集中している。決済成功後に注文状態が更新されないという報告が来ている。13:40 に決済の再試行ロジックをリリースした。"
-    promptTemplate={`あなたはオンコール経験のある運用エンジニア兼バックエンドエンジニアです。以下の障害文脈をもとに、初動調査を支援してください。
+      <PromptLab
+        id="maintenance-lab"
+        title="保守運用用 Prompt"
+        intro="アラート、ログ、ユーザー報告を貼ると、初動調査メモや報告文の作成に使いやすい prompt を生成します。"
+        contextLabel="アラート / ログ / ユーザー報告 / 変更履歴"
+        contextPlaceholder="例: 今日 14:05 から API 500 が急増した。payment webhook にエラーが集中している。決済成功後に注文状態が更新されないという報告が来ている。13:40 に決済の再試行ロジックをリリースした。"
+        promptTemplate={`あなたはオンコール経験のある運用エンジニア兼バックエンドエンジニアです。以下の障害文脈をもとに、初動調査を支援してください。
 障害文脈:
 __CONTEXT__
 以下の形式で出力してください:
@@ -72,30 +95,44 @@ __CONTEXT__
 5. ロールバックや機能制限が必要な判断条件を書く。
 6. 最後に障害説明文と runbook 更新案を作る。
 7. 必要なら、社内共有用と顧客説明用の 2 種類の文章に分ける。`}
-    promptNote="保守では、事実整理に加えて、共有文、引き継ぎ文、runbook 更新案まで出させると運用の再利用性が上がります。"
-  />
+        promptNote="保守では、事実整理に加えて、共有文、引き継ぎ文、runbook 更新案まで出させると運用の再利用性が上がります。"
+      />
+    </div>
 
-  <CaseStudy
-    title="決済 webhook 障害の初動を整理する例"
-    intro="保守では、結論を急ぐより、事実と時系列を揃えて次の確認を決めることが重要です。"
-    fitTitle="向いている課題"
-    fitBody="アラート、ユーザー報告、最近のリリースが同時にあり、どこから確認すべきか迷う障害です。"
-    outputTitle="得たい成果物"
-    outputBody="現象要約、影響範囲、調査順序、共有文、runbook 更新案です。"
-    problem="payment webhook にエラーが集中し、決済後に注文状態が更新されないという問い合わせが増えている。"
-    before="ログ、アラート、変更履歴を別々に見てしまい、共有文と調査方針が後回しになりがちです。"
-    after="発生時刻、最近の変更、ユーザー影響をまとめて AI に渡し、現象要約と調査順序を先に出してから動きます。"
-    impact="初動の共有が早くなり、調査の優先順位とロールバック判断の材料が揃いやすくなります。"
-    role="散らばった障害情報を、初動メモと引き継ぎ可能な文章へ変換することです。"
-    promptBody={`以下の障害文脈をもとに、初動調査を支援してください。
+    <div class="section-block span-12">
+      <div class="section-block-head">
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">toggle_on</span>
+          <span class="kicker">3</span>
+        </div>
+        <div class="section-block-copywrap">
+          <h2 class="section-block-title">ケース分析</h2>
+          <p class="section-block-copy">障害の初動で、事実整理から共有文までどうつながるかを保守の流れで追える構成にしています。</p>
+        </div>
+      </div>
+      <CaseStudy
+        title="決済 webhook 障害の初動を整理する例"
+        intro="保守では、結論を急ぐより、事実と時系列を揃えて次の確認を決めることが重要です。"
+        fitTitle="向いている課題"
+        fitBody="アラート、ユーザー報告、最近のリリースが同時にあり、どこから確認すべきか迷う障害です。"
+        outputTitle="得たい成果物"
+        outputBody="現象要約、影響範囲、調査順序、共有文、runbook 更新案です。"
+        problem="payment webhook にエラーが集中し、決済後に注文状態が更新されないという問い合わせが増えている。"
+        before="ログ、アラート、変更履歴を別々に見てしまい、共有文と調査方針が後回しになりがちです。"
+        after="発生時刻、最近の変更、ユーザー影響をまとめて AI に渡し、現象要約と調査順序を先に出してから動きます。"
+        impact="初動の共有が早くなり、調査の優先順位とロールバック判断の材料が揃いやすくなります。"
+        role="散らばった障害情報を、初動メモと引き継ぎ可能な文章へ変換することです。"
+        promptBody={`以下の障害文脈をもとに、初動調査を支援してください。
 障害文脈:
 - 今日 14:05 から API 500 が急増
 - payment webhook にエラーが集中
 - 決済成功後に注文状態が更新されない報告
 - 13:40 に決済の再試行ロジックをリリース`}
-    responseLabel="返答イメージ"
-    responseLead="返答では、断定より先に『何が起きているか』と『次に何を見るか』が整理されていることが重要です。"
-  />
+        responseLabel="返答イメージ"
+        responseLead="返答では、断定より先に『何が起きているか』と『次に何を見るか』が整理されていることが重要です。"
+      />
+    </div>
+  </section>
 
   <div class="footer">保守では、事実を早く揃えて共有できることが重要です。原因の断定と対処判断は、慎重に人が進めます。</div>
 </BaseLayout>

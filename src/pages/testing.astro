@@ -18,50 +18,73 @@ import CaseStudy from '../components/CaseStudy.astro';
   </section>
 
   <section class="grid">
-    <article class="card span-6">
-      <div class="card-head">
-        <span class="material-symbols-outlined" aria-hidden="true">rule</span>
-        <span class="kicker">課題</span>
+    <div class="section-block span-12">
+      <div class="section-block-head">
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">explore</span>
+          <span class="kicker">1</span>
+        </div>
+        <div class="section-block-copywrap">
+          <h2 class="section-block-title">テスト工程の論点</h2>
+          <p class="section-block-copy">見落としやすい観点と、AI に渡すとケース表へ変換しやすい素材を整理しています。</p>
+        </div>
       </div>
-      <ul class="challenge-list">
-        <li>分岐、異常入力、権限差、空状態が抜けやすい。</li>
-        <li>既存テストと最新実装がずれていることがある。</li>
-        <li>失敗ログは多いのに、根本原因が見えにくい。</li>
-      </ul>
-    </article>
+      <div class="grid section-block-grid">
+        <article class="card span-6">
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">rule</span>
+            <span class="kicker">課題</span>
+          </div>
+          <ul class="challenge-list">
+            <li>分岐、異常入力、権限差、空状態が抜けやすい。</li>
+            <li>既存テストと最新実装がずれていることがある。</li>
+            <li>失敗ログは多いのに、根本原因が見えにくい。</li>
+          </ul>
+        </article>
 
-    <article class="card span-6">
-      <div class="card-head">
-        <span class="material-symbols-outlined" aria-hidden="true">fact_check</span>
-        <span class="kicker">AI の使いどころ</span>
+        <article class="card span-6">
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">fact_check</span>
+            <span class="kicker">AI の使いどころ</span>
+          </div>
+          <ul class="detail-list">
+            <li>要件やコードからテスト観点一覧やケース表を洗い出す。</li>
+            <li>エッジケースや回帰しやすい経路を補い、Jest、JUnit、Playwright へつながる草案にする。</li>
+            <li>失敗ログから調査順序を整理し、再現手順文や確認チェックリストに落とす。</li>
+          </ul>
+        </article>
+
+        <article class="card soft span-12">
+          <div class="card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">assignment</span>
+            <span class="kicker">入力素材</span>
+          </div>
+          <ul class="step-list">
+            <li>要件説明、状態遷移、関数やコンポーネントのコード、失敗ログ、既存テスト。</li>
+            <li>まずはテスト方針とケース表を作らせ、その後に Jest や Playwright へ落とす流れが有効です。</li>
+          </ul>
+        </article>
       </div>
-      <ul class="detail-list">
-        <li>要件やコードからテスト観点一覧やケース表を洗い出す。</li>
-        <li>エッジケースや回帰しやすい経路を補い、Jest、JUnit、Playwright へつながる草案にする。</li>
-        <li>失敗ログから調査順序を整理し、再現手順文や確認チェックリストに落とす。</li>
-      </ul>
-    </article>
+    </div>
 
-    <article class="card soft span-12">
-      <div class="card-head">
-        <span class="material-symbols-outlined" aria-hidden="true">assignment</span>
-        <span class="kicker">入力素材</span>
+    <div class="section-block span-12">
+      <div class="section-block-head">
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+          <span class="kicker">2</span>
+        </div>
+        <div class="section-block-copywrap">
+          <h2 class="section-block-title">Prompt 設計</h2>
+          <p class="section-block-copy">要件、実装、失敗ログをケース表と確認順序へ変えやすいように、入力の粒度を揃えます。</p>
+        </div>
       </div>
-      <ul class="step-list">
-        <li>要件説明、状態遷移、関数やコンポーネントのコード、失敗ログ、既存テスト。</li>
-        <li>まずはテスト方針とケース表を作らせ、その後に Jest や Playwright へ落とす流れが有効です。</li>
-      </ul>
-    </article>
-
-  </section>
-
-  <PromptLab
-    id="testing-lab"
-    title="テスト設計用 Prompt"
-    intro="要件、実装片、失敗ログを貼ると、観点一覧やテストコード草案の作成に使いやすい prompt を生成します。"
-    contextLabel="要件 / 実装 / 失敗ログ"
-    contextPlaceholder="例: このフォームはメールログインと電話番号ログインに対応している。最近 CAPTCHA を追加したが、現状のテストは成功系しかなく、CI では disabled ボタン状態に関する失敗が出ている。"
-    promptTemplate={`あなたは経験豊富なテストエンジニアです。以下の文脈をもとに、テスト設計と弱点の洗い出しを支援してください。
+      <PromptLab
+        id="testing-lab"
+        title="テスト設計用 Prompt"
+        intro="要件、実装片、失敗ログを貼ると、観点一覧やテストコード草案の作成に使いやすい prompt を生成します。"
+        contextLabel="要件 / 実装 / 失敗ログ"
+        contextPlaceholder="例: このフォームはメールログインと電話番号ログインに対応している。最近 CAPTCHA を追加したが、現状のテストは成功系しかなく、CI では disabled ボタン状態に関する失敗が出ている。"
+        promptTemplate={`あなたは経験豊富なテストエンジニアです。以下の文脈をもとに、テスト設計と弱点の洗い出しを支援してください。
 文脈:
 __CONTEXT__
 以下の形式で出力してください:
@@ -72,30 +95,44 @@ __CONTEXT__
 5. 失敗ログがある場合は、根本原因候補と調査順序を示す。
 6. 最後に実行可能なテストチェックリストを出す。
 7. 必要なら Jest / JUnit / Playwright のどれで書くべきか判断し、短い草案を出す。`}
-    promptNote="テストでは、観点一覧、ケース表、再現手順の順で出力させると、既存のテスト基盤へ移しやすくなります。"
-  />
+        promptNote="テストでは、観点一覧、ケース表、再現手順の順で出力させると、既存のテスト基盤へ移しやすくなります。"
+      />
+    </div>
 
-  <CaseStudy
-    title="CAPTCHA 追加後のログインフォームを見直す例"
-    intro="テストでは、成功系より抜けやすい分岐を先に見つけることが大事です。ここでは、ログインフォームの回帰確認を例にしています。"
-    fitTitle="向いている課題"
-    fitBody="機能追加は小さいが、既存フローへの影響が読みにくく、テスト観点が漏れやすい変更です。"
-    outputTitle="得たい成果物"
-    outputBody="観点一覧、ケース表、Playwright や Jest に落とせるテスト草案です。"
-    problem="メールログインと電話番号ログインのフォームに CAPTCHA を追加した結果、既存テストの不足が見えてきた。"
-    before="成功系だけを追ってしまい、disabled 状態、異常入力、権限差などの確認が後回しになります。"
-    after="要件と失敗ログを AI に渡し、主要シナリオ、エッジケース、再現手順を先に一覧化してからテストへ落とします。"
-    impact="回帰漏れが減り、再現確認とテスト実装の順番が明確になります。"
-    role="要件と失敗ログを、実行可能なケース表と確認チェックリストへ変換することです。"
-    promptBody={`以下の文脈をもとに、テスト設計と弱点の洗い出しを支援してください。
+    <div class="section-block span-12">
+      <div class="section-block-head">
+        <div class="card-head">
+          <span class="material-symbols-outlined" aria-hidden="true">toggle_on</span>
+          <span class="kicker">3</span>
+        </div>
+        <div class="section-block-copywrap">
+          <h2 class="section-block-title">ケース分析</h2>
+          <p class="section-block-copy">回帰しやすい変更に対して、どんな観点が追加されるかをテストの流れで見られる構成にしています。</p>
+        </div>
+      </div>
+      <CaseStudy
+        title="CAPTCHA 追加後のログインフォームを見直す例"
+        intro="テストでは、成功系より抜けやすい分岐を先に見つけることが大事です。ここでは、ログインフォームの回帰確認を例にしています。"
+        fitTitle="向いている課題"
+        fitBody="機能追加は小さいが、既存フローへの影響が読みにくく、テスト観点が漏れやすい変更です。"
+        outputTitle="得たい成果物"
+        outputBody="観点一覧、ケース表、Playwright や Jest に落とせるテスト草案です。"
+        problem="メールログインと電話番号ログインのフォームに CAPTCHA を追加した結果、既存テストの不足が見えてきた。"
+        before="成功系だけを追ってしまい、disabled 状態、異常入力、権限差などの確認が後回しになります。"
+        after="要件と失敗ログを AI に渡し、主要シナリオ、エッジケース、再現手順を先に一覧化してからテストへ落とします。"
+        impact="回帰漏れが減り、再現確認とテスト実装の順番が明確になります。"
+        role="要件と失敗ログを、実行可能なケース表と確認チェックリストへ変換することです。"
+        promptBody={`以下の文脈をもとに、テスト設計と弱点の洗い出しを支援してください。
 文脈:
 - メールログインと電話番号ログインに対応
 - CAPTCHA を追加
 - 現状のテストは成功系しかない
 - CI では disabled ボタン状態に関する失敗が出ている`}
-    responseLabel="返答イメージ"
-    responseLead="返答では、失敗しやすい経路が順番付きで出てくることが重要です。"
-  />
+        responseLabel="返答イメージ"
+        responseLead="返答では、失敗しやすい経路が順番付きで出てくることが重要です。"
+      />
+    </div>
+  </section>
 
   <div class="footer">テストでは、見落としを減らす補助として AI が効きます。品質の保証と受け入れ判断は、人が行います。</div>
 </BaseLayout>
