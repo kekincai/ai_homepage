@@ -1,4 +1,6 @@
 ---
+import ProjectMeta from './ProjectMeta.astro';
+
 const { current = 'home' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
@@ -46,4 +48,5 @@ const items = [
       </a>
     ))}
   </nav>
+  <ProjectMeta />
 </aside>

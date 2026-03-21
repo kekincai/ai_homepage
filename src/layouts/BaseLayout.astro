@@ -1,5 +1,6 @@
 ---
 import Sidebar from '../components/Sidebar.astro';
+import ProjectMeta from '../components/ProjectMeta.astro';
 import '../styles.css';
 
 const { title = 'AI開発実践ガイド', current = 'home' } = Astro.props;
@@ -25,5 +26,6 @@ const { title = 'AI開発実践ガイド', current = 'home' } = Astro.props;
         <slot />
       </main>
     </div>
+    <ProjectMeta mobile={true} />
   </body>
 </html>
