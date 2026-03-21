@@ -1,0 +1,411 @@
+---
+interface Props {
+  title: string;
+  intro: string;
+  fitTitle: string;
+  fitBody: string;
+  outputTitle: string;
+  outputBody: string;
+  problem: string;
+  before: string;
+  after: string;
+  impact: string;
+  role: string;
+  promptBody: string;
+  responseLead: string;
+  responseLabel?: string;
+  responseSnippet?: string;
+  previewHref?: string;
+  previewImageSrc?: string;
+}
+
+const {
+  title,
+  intro,
+  fitTitle,
+  fitBody,
+  outputTitle,
+  outputBody,
+  problem,
+  before,
+  after,
+  impact,
+  role,
+  promptBody,
+  responseLead,
+  responseSnippet = '',
+  responseLabel = '出力イメージ',
+  previewHref = 'https://chatgpt.com/s/t_69bdf3b49a548191a29e332153231e44',
+  previewImageSrc = 'https://ogimg.chatgpt.com/?postId=t_69bdf3b49a548191a29e332153231e44'
+} = Astro.props;
+---
+
+<article class="card soft span-12 case-study">
+  <div class="card-head">
+    <span class="material-symbols-outlined" aria-hidden="true">preview</span>
+    <span class="kicker">ケース</span>
+  </div>
+  <h3 class="panel-title">{title}</h3>
+  <p class="panel-copy">{intro}</p>
+
+  <div class="case-top-grid">
+    <section class="case-top-card">
+      <div class="case-card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">flag</span>
+        <strong>{fitTitle}</strong>
+      </div>
+      <p>{fitBody}</p>
+    </section>
+    <section class="case-top-card">
+      <div class="case-card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>
+        <strong>{outputTitle}</strong>
+      </div>
+      <p>{outputBody}</p>
+    </section>
+  </div>
+
+  <div class="case-flow-grid">
+    <section class="case-flow-card">
+      <div class="case-card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">help</span>
+        <strong>問題</strong>
+      </div>
+      <p>{problem}</p>
+    </section>
+    <section class="case-flow-card">
+      <div class="case-card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">history</span>
+        <strong>生成 AI 以前</strong>
+      </div>
+      <p>{before}</p>
+    </section>
+    <section class="case-flow-card accent">
+      <div class="case-card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span>
+        <strong>生成 AI 以後</strong>
+      </div>
+      <p>{after}</p>
+    </section>
+    <section class="case-flow-card">
+      <div class="case-card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">trending_up</span>
+        <strong>改善される点</strong>
+      </div>
+      <p>{impact}</p>
+    </section>
+    <section class="case-flow-card wide dark">
+      <div class="case-card-head">
+        <span class="material-symbols-outlined" aria-hidden="true">conversion_path</span>
+        <strong>この prompt の役割</strong>
+      </div>
+      <p>{role}</p>
+    </section>
+  </div>
+
+  <div class="case-thread">
+    <section class="case-message user">
+      <div class="case-message-head">
+        <span class="material-symbols-outlined" aria-hidden="true">edit_note</span>
+        <div>
+          <strong>あなた</strong>
+          <small>入力した prompt</small>
+        </div>
+      </div>
+      <pre>{promptBody}</pre>
+    </section>
+
+    <a
+      class="case-message assistant"
+      href={previewHref}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="ChatGPT の共有プレビューを開く"
+    >
+      <div class="case-message-head">
+        <span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span>
+        <div>
+          <strong>ChatGPT</strong>
+          <small>{responseLabel}</small>
+        </div>
+      </div>
+      <p class="case-response-lead">{responseLead}</p>
+      {
+        responseSnippet ? (
+          <pre>{responseSnippet}</pre>
+        ) : (
+          <div class="case-preview-shell">
+            <img src={previewImageSrc} alt="ChatGPT の返答イメージ" />
+          </div>
+        )
+      }
+    </a>
+  </div>
+</article>
+
+<style>
+  .case-study {
+    margin-top: 18px;
+  }
+
+  .case-top-grid,
+  .case-flow-grid {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .case-top-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-flow-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-top-card,
+  .case-flow-card {
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.84);
+    border: 1px solid rgba(0, 104, 117, 0.08);
+    box-shadow: 0 14px 26px rgba(0, 104, 117, 0.05);
+    animation: case-rise 0.5s ease both;
+  }
+
+  .case-top-card p,
+  .case-flow-card p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .case-flow-card:nth-child(2) {
+    animation-delay: 0.05s;
+  }
+
+  .case-flow-card:nth-child(3) {
+    animation-delay: 0.1s;
+  }
+
+  .case-flow-card:nth-child(4) {
+    animation-delay: 0.15s;
+  }
+
+  .case-flow-card:nth-child(5) {
+    animation-delay: 0.2s;
+  }
+
+  .case-flow-card.accent {
+    background:
+      radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.14), transparent 36%),
+      rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 104, 117, 0.16);
+  }
+
+  .case-flow-card.wide {
+    grid-column: span 2;
+  }
+
+  .case-flow-card.dark {
+    background: linear-gradient(135deg, rgba(0, 104, 117, 0.95), rgba(0, 166, 184, 0.9));
+    color: #fff;
+  }
+
+  .case-flow-card.dark .case-card-head .material-symbols-outlined {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+  }
+
+  .case-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .case-card-head .material-symbols-outlined {
+    width: 1.95rem;
+    height: 1.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(0, 104, 117, 0.1);
+    color: var(--primary);
+    box-shadow: inset 0 0 0 1px rgba(0, 104, 117, 0.08);
+  }
+
+  .case-thread {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .case-message {
+    position: relative;
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 22px;
+    border: 1px solid rgba(0, 104, 117, 0.1);
+    box-shadow: 0 12px 28px rgba(0, 104, 117, 0.05);
+    max-width: min(100%, 560px);
+    animation: case-chat-in 0.55s ease both;
+  }
+
+  .case-message::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    width: 16px;
+    height: 16px;
+    background: inherit;
+    border: inherit;
+    transform: rotate(45deg);
+  }
+
+  .case-message.user {
+    margin-left: 12px;
+    justify-self: start;
+    border-top-left-radius: 8px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(242, 244, 246, 0.95));
+  }
+
+  .case-message.user::before {
+    left: -8px;
+    border-right: none;
+    border-top: none;
+  }
+
+  .case-message.assistant {
+    margin-right: 12px;
+    justify-self: end;
+    width: min(100%, 500px);
+    border-top-right-radius: 8px;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.12), transparent 34%),
+      linear-gradient(180deg, rgba(243, 252, 254, 0.98), rgba(236, 248, 250, 0.95));
+    animation-delay: 0.1s;
+  }
+
+  .case-message.assistant:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(0, 104, 117, 0.08);
+    border-color: rgba(0, 104, 117, 0.18);
+  }
+
+  .case-message.assistant::before {
+    right: -8px;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .case-message-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .case-message-head .material-symbols-outlined {
+    width: 1.85rem;
+    height: 1.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(0, 104, 117, 0.1);
+    color: var(--primary);
+  }
+
+  .case-message-head strong,
+  .case-message-head small {
+    display: block;
+  }
+
+  .case-message-head small {
+    color: var(--secondary);
+    font-size: 0.8rem;
+  }
+
+  .case-message pre {
+    margin: 0;
+    padding: 12px 13px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(186, 201, 204, 0.42);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+
+  .case-preview-shell {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(186, 201, 204, 0.42);
+    background: rgba(255, 255, 255, 0.94);
+    aspect-ratio: 1200 / 630;
+  }
+
+  .case-preview-shell img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .case-response-lead {
+    margin: 0;
+    color: var(--secondary);
+    line-height: 1.65;
+  }
+
+  @keyframes case-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes case-chat-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .case-top-grid,
+    .case-flow-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .case-flow-card.wide {
+      grid-column: span 1;
+    }
+
+    .case-message,
+    .case-message.assistant {
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .case-message::before {
+      display: none;
+    }
+  }
+</style>

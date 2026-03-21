@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PromptLab from '../components/PromptLab.astro';
+import CaseStudy from '../components/CaseStudy.astro';
 ---
 
 <BaseLayout title="AI開発実践ガイド | 保守" current="maintenance">
@@ -72,6 +73,28 @@ __CONTEXT__
 6. 最後に障害説明文と runbook 更新案を作る。
 7. 必要なら、社内共有用と顧客説明用の 2 種類の文章に分ける。`}
     promptNote="保守では、事実整理に加えて、共有文、引き継ぎ文、runbook 更新案まで出させると運用の再利用性が上がります。"
+  />
+
+  <CaseStudy
+    title="決済 webhook 障害の初動を整理する例"
+    intro="保守では、結論を急ぐより、事実と時系列を揃えて次の確認を決めることが重要です。"
+    fitTitle="向いている課題"
+    fitBody="アラート、ユーザー報告、最近のリリースが同時にあり、どこから確認すべきか迷う障害です。"
+    outputTitle="得たい成果物"
+    outputBody="現象要約、影響範囲、調査順序、共有文、runbook 更新案です。"
+    problem="payment webhook にエラーが集中し、決済後に注文状態が更新されないという問い合わせが増えている。"
+    before="ログ、アラート、変更履歴を別々に見てしまい、共有文と調査方針が後回しになりがちです。"
+    after="発生時刻、最近の変更、ユーザー影響をまとめて AI に渡し、現象要約と調査順序を先に出してから動きます。"
+    impact="初動の共有が早くなり、調査の優先順位とロールバック判断の材料が揃いやすくなります。"
+    role="散らばった障害情報を、初動メモと引き継ぎ可能な文章へ変換することです。"
+    promptBody={`以下の障害文脈をもとに、初動調査を支援してください。
+障害文脈:
+- 今日 14:05 から API 500 が急増
+- payment webhook にエラーが集中
+- 決済成功後に注文状態が更新されない報告
+- 13:40 に決済の再試行ロジックをリリース`}
+    responseLabel="返答イメージ"
+    responseLead="返答では、断定より先に『何が起きているか』と『次に何を見るか』が整理されていることが重要です。"
   />
 
   <div class="footer">保守では、事実を早く揃えて共有できることが重要です。原因の断定と対処判断は、慎重に人が進めます。</div>

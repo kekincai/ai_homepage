@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PromptLab from '../components/PromptLab.astro';
+import CaseStudy from '../components/CaseStudy.astro';
 ---
 
 <BaseLayout title="AI開発実践ガイド | デプロイ" current="deployment">
@@ -72,6 +73,28 @@ __CONTEXT__
 6. 最後にリリース後の確認項目とロールバック方針を書く。
 7. 必要なら workflow YAML やシェル手順の修正草案も出す。`}
     promptNote="デプロイでは、説明だけで終わらせず、手順書、YAML 草案、確認チェックリストまで出力させると実務で使いやすくなります。"
+  />
+
+  <CaseStudy
+    title="Astro サイトを GitHub Pages に載せる例"
+    intro="デプロイでは、エラー文の意味を理解し、次に何を確認するかを素早く決めることが重要です。"
+    fitTitle="向いている課題"
+    fitBody="workflow と Pages 設定が絡み、どこで失敗しているか判断しづらい静的サイトの公開です。"
+    outputTitle="得たい成果物"
+    outputBody="最小のデプロイ手順、YAML 修正案、確認チェックリストです。"
+    problem="Astro サイトを GitHub Pages に公開したいが、artifact と Pages 設定まわりで deploy が失敗している。"
+    before="ログを上から読み続けて原因を探すため、設定漏れと実行順のどちらが問題か切り分けにくくなります。"
+    after="workflow、ログ、公開先条件をまとめて AI に渡し、詰まっている段階、確認順序、修正案を先に整理します。"
+    impact="調査時間が短くなり、修正の優先順位と再試行手順がはっきりします。"
+    role="設定断片とログを、実行可能なデプロイ手順と修正案へ変換することです。"
+    promptBody={`以下の文脈をもとに、GitHub Pages へのデプロイ完了まで支援してください。
+文脈:
+- Astro の静的サイト
+- GitHub Actions で build は通る
+- deploy で artifact / pages 設定のエラーが出る
+- Source は GitHub Actions を使いたい`}
+    responseLabel="返答イメージ"
+    responseLead="返答では、まず『どこで詰まっているか』が明確になることが大切です。"
   />
 
   <div class="footer">デプロイでは、設定と手順を言語化すると事故が減ります。最終確認と本番判断は、人が担います。</div>

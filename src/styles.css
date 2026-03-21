@@ -710,6 +710,305 @@ a {
   line-height: 1.65;
 }
 
+.example-callout {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 104, 117, 0.12);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(242, 244, 246, 0.94));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.example-callout-stack {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.example-story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.example-story-card {
+  position: relative;
+  padding: 18px 18px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 104, 117, 0.08);
+  box-shadow: 0 16px 28px rgba(0, 104, 117, 0.05);
+  animation: story-card-rise 0.55s ease both;
+}
+
+.example-story-card p {
+  margin: 0;
+  line-height: 1.75;
+}
+
+.example-story-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.example-story-head .material-symbols-outlined {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(0, 104, 117, 0.1);
+  color: var(--primary);
+  box-shadow: inset 0 0 0 1px rgba(0, 104, 117, 0.08);
+}
+
+.example-top-stat {
+  border-radius: 22px;
+  border: 1px solid rgba(0, 104, 117, 0.08);
+  box-shadow: 0 18px 34px rgba(0, 104, 117, 0.05);
+}
+
+.example-story-problem {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 196, 0, 0.12), transparent 34%),
+    rgba(255, 255, 255, 0.88);
+}
+
+.example-story-before {
+  background:
+    linear-gradient(180deg, rgba(247, 249, 250, 0.96), rgba(240, 244, 246, 0.92));
+}
+
+.example-story-after {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.14), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(237, 252, 254, 0.92));
+  border-color: rgba(0, 104, 117, 0.16);
+}
+
+.example-story-impact {
+  background:
+    radial-gradient(circle at 100% 100%, rgba(0, 104, 117, 0.08), transparent 28%),
+    rgba(255, 255, 255, 0.86);
+}
+
+.example-story-role {
+  grid-column: span 2;
+  background:
+    linear-gradient(135deg, rgba(0, 104, 117, 0.94), rgba(0, 166, 184, 0.9));
+  color: #fff;
+  border-color: rgba(0, 104, 117, 0.2);
+}
+
+.example-story-role .playbook-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.example-story-role .example-story-head .material-symbols-outlined {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.example-story-grid .example-story-card:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.example-story-grid .example-story-card:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.example-story-grid .example-story-card:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+.example-story-grid .example-story-card:nth-child(5) {
+  animation-delay: 0.24s;
+}
+
+.example-chat-thread {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 4px 0;
+}
+
+.example-chat-bubble {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 22px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(0, 104, 117, 0.1);
+  box-shadow: 0 12px 28px rgba(0, 104, 117, 0.05);
+  max-width: min(100%, 560px);
+  animation: chat-bubble-in 0.6s ease both;
+}
+
+.example-chat-bubble::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  width: 18px;
+  height: 18px;
+  background: inherit;
+  border: inherit;
+  transform: rotate(45deg);
+}
+
+.example-chat-user {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(242, 244, 246, 0.94));
+  border-top-left-radius: 8px;
+  justify-self: start;
+  margin-left: 12px;
+}
+
+.example-chat-user::before {
+  left: -9px;
+  border-right: none;
+  border-top: none;
+}
+
+.example-chat-assistant {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(243, 252, 254, 0.98), rgba(236, 248, 250, 0.95));
+  border-top-right-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  justify-self: end;
+  width: min(100%, 500px);
+  margin-right: 12px;
+  animation-delay: 0.12s;
+}
+
+.example-chat-assistant::before {
+  right: -9px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.example-chat-assistant:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 104, 117, 0.2);
+  box-shadow: 0 24px 44px rgba(0, 104, 117, 0.09);
+}
+
+.example-chat-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.example-chat-head .material-symbols-outlined {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 104, 117, 0.1);
+  color: var(--primary);
+}
+
+.example-chat-head strong,
+.example-chat-head small {
+  display: block;
+}
+
+.example-chat-head small {
+  color: var(--secondary);
+  font-size: 0.8rem;
+}
+
+.example-prompt {
+  margin: 0;
+  width: 100%;
+  padding: 12px 13px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(186, 201, 204, 0.42);
+  color: var(--text);
+  font: inherit;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+}
+
+.link-preview-card {
+  border-radius: 20px;
+  overflow: hidden;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.link-preview-visual {
+  position: relative;
+  min-height: 180px;
+  padding: 0;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(0, 229, 255, 0.16), transparent 32%),
+    linear-gradient(180deg, rgba(226, 245, 248, 0.95), rgba(240, 244, 246, 0.98));
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.link-preview-visual::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 28%;
+  background: linear-gradient(180deg, rgba(240, 244, 246, 0), rgba(236, 248, 250, 0.92));
+  pointer-events: none;
+}
+
+.link-preview-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  border-radius: 18px;
+  object-fit: cover;
+  object-position: center top;
+  background: linear-gradient(180deg, rgba(242, 244, 246, 0.8), rgba(232, 238, 240, 0.95));
+  box-shadow: 0 12px 24px rgba(0, 104, 117, 0.1);
+}
+
+@keyframes story-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes chat-bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .flow-board {
   position: relative;
   overflow: hidden;
@@ -1107,6 +1406,39 @@ a {
 
   .mini-grid {
     grid-template-columns: 1fr;
+  }
+
+  .example-callout {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .example-story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .example-story-role {
+    grid-column: span 1;
+  }
+
+  .link-preview-visual {
+    min-height: 0;
+  }
+
+  .example-chat-bubble::before {
+    display: none;
+  }
+
+  .example-chat-thread {
+    padding: 4px 0;
+  }
+
+  .example-chat-bubble,
+  .example-chat-assistant {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .playbook-deck {

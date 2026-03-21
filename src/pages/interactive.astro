@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseStudy from '../components/CaseStudy.astro';
 const implementationPlaybooks = [
   {
     key: 'text',
@@ -207,6 +208,30 @@ const defaultAfter = rawDefaultAfter.replace(/^\n+/, '');
       </p>
     </div>
   </article>
+
+  <CaseStudy
+    title="Spring Boot に決済 webhook を追加する例"
+    intro="開発段階では、実装前の整理と最小雛形づくりを早く回せるかが重要です。ここでは、既存 API に webhook 受信処理を追加するケースを例にしています。"
+    fitTitle="向いている課題"
+    fitBody="既存アプリに新しい endpoint や service を足したいが、どの単位に分けて着手するか迷う場面です。"
+    outputTitle="得たい成果物"
+    outputBody="Controller、Service、DTO の最小雛形と、異常系を含めた実装メモです。"
+    problem="決済 webhook を受けたあとに注文状態を更新する処理を、既存の Spring Boot API に追加したい。"
+    before="既存コードを読みながら手で構成を考えるため、最初の 1 手が遅くなりやすく、抜け漏れも出やすくなります。"
+    after="要件と制約を prompt に入れて、受信 endpoint、DTO、service の最小構成を先に出し、そこから本実装へ進めます。"
+    impact="着手速度、責務分割、レビュー前の共有、異常系の洗い出しが良くなります。"
+    role="機能要件を、貼り込み可能な雛形と実装メモに変換し、最初の実装コストを下げることです。"
+    promptBody={`以下の機能要件をもとに、既存の Spring Boot API へ payment webhook を追加する最小雛形を作成してください。
+要件:
+- POST /api/payments/webhook を追加する
+- request body は eventId, orderId, status, paidAt を含む
+- status=PAID のとき注文状態を更新する
+- 署名検証の TODO を残す
+- Controller / Service / DTO に分ける
+- 異常系とログ出力も含める`}
+    responseLabel="返答イメージ"
+    responseLead="ChatGPT には、最初から完成品を期待するのではなく、貼り込みやすい骨組みを出させる使い方が向いています。"
+  />
 
   <div class="footer">開発では、完成品を期待するより、叩き台を素早く出させる使い方が安定します。最後の実装判断は人が行います。</div>
 </BaseLayout>

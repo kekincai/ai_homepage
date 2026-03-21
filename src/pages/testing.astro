@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PromptLab from '../components/PromptLab.astro';
+import CaseStudy from '../components/CaseStudy.astro';
 ---
 
 <BaseLayout title="AI開発実践ガイド | テスト" current="testing">
@@ -72,6 +73,28 @@ __CONTEXT__
 6. 最後に実行可能なテストチェックリストを出す。
 7. 必要なら Jest / JUnit / Playwright のどれで書くべきか判断し、短い草案を出す。`}
     promptNote="テストでは、観点一覧、ケース表、再現手順の順で出力させると、既存のテスト基盤へ移しやすくなります。"
+  />
+
+  <CaseStudy
+    title="CAPTCHA 追加後のログインフォームを見直す例"
+    intro="テストでは、成功系より抜けやすい分岐を先に見つけることが大事です。ここでは、ログインフォームの回帰確認を例にしています。"
+    fitTitle="向いている課題"
+    fitBody="機能追加は小さいが、既存フローへの影響が読みにくく、テスト観点が漏れやすい変更です。"
+    outputTitle="得たい成果物"
+    outputBody="観点一覧、ケース表、Playwright や Jest に落とせるテスト草案です。"
+    problem="メールログインと電話番号ログインのフォームに CAPTCHA を追加した結果、既存テストの不足が見えてきた。"
+    before="成功系だけを追ってしまい、disabled 状態、異常入力、権限差などの確認が後回しになります。"
+    after="要件と失敗ログを AI に渡し、主要シナリオ、エッジケース、再現手順を先に一覧化してからテストへ落とします。"
+    impact="回帰漏れが減り、再現確認とテスト実装の順番が明確になります。"
+    role="要件と失敗ログを、実行可能なケース表と確認チェックリストへ変換することです。"
+    promptBody={`以下の文脈をもとに、テスト設計と弱点の洗い出しを支援してください。
+文脈:
+- メールログインと電話番号ログインに対応
+- CAPTCHA を追加
+- 現状のテストは成功系しかない
+- CI では disabled ボタン状態に関する失敗が出ている`}
+    responseLabel="返答イメージ"
+    responseLead="返答では、失敗しやすい経路が順番付きで出てくることが重要です。"
   />
 
   <div class="footer">テストでは、見落としを減らす補助として AI が効きます。品質の保証と受け入れ判断は、人が行います。</div>
