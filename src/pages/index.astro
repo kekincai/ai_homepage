@@ -11,9 +11,8 @@ const base = import.meta.env.BASE_URL;
     </div>
     <h1>ブラウザ型生成 AI の出力を、開発の成果物に変える</h1>
     <p>
-      ブラウザで使う生成 AI は、単なる文章作成ツールではありません。要約文、仕様文、HTML、スクリプト、VBA、
-      C# や Java のコード断片まで出力でき、既存の IDE、Excel、CI、CMS、社内運用にそのまま接続できます。
-      このサイトでは、各工程で何を出力させると価値が出るのかを、実務ベースで整理しています。
+      生成 AI は、ソフトウェア工学そのものを置き換える技術ではなく、曖昧な入力を次工程で使える成果物へ変換する技術です。
+      要件、設計、開発、テスト、保守の流れに沿って、何を出力させると実務が前に進むのかを簡潔に整理しています。
     </p>
   </section>
 
@@ -23,12 +22,12 @@ const base = import.meta.env.BASE_URL;
         <span class="material-symbols-outlined" aria-hidden="true">insights</span>
         <span class="kicker">考え方</span>
       </div>
-      <h2 class="panel-title">生成 AI の強みは、曖昧な入力を次の作業に使える形へ変換することです</h2>
+      <h2 class="panel-title">生成 AI の価値は、中間成果物を速く整えることにあります</h2>
       <ul class="challenge-list">
-        <li>会議メモやログの断片を、そのまま貼って整理文や比較表にできる。</li>
-        <li>仕様説明だけでなく、HTML、SQL、VBA、Shell、C#、Java などの実用的な雛形を出せる。</li>
-        <li>出力をそのまま採用するより、既存ツールへ渡す中間成果物として使うと安定する。</li>
-        <li>工程ごとに欲しい出力形式を変えると、AI は実務に組み込みやすくなる。</li>
+        <li>生成 AI は、工程そのものを代替するより、中間成果物を加速する支援役として使うと強い。</li>
+        <li>特に、整理、要約、比較、叩き台づくりのような認知負荷の高い作業と相性が良い。</li>
+        <li>工程ごとに出力形式を明確にすると、AI は実務フローに組み込みやすくなる。</li>
+        <li>最終判断、最終検証、最終責任は人が持つ前提を崩さないことが重要です。</li>
       </ul>
     </article>
 
@@ -37,12 +36,13 @@ const base = import.meta.env.BASE_URL;
         <span class="material-symbols-outlined" aria-hidden="true">bolt</span>
         <span class="kicker" style="background:rgba(255,255,255,.2);color:#fff;">方針</span>
       </div>
-      <h3 class="panel-title">出力の型を決めると、AI はすぐ戦力になります</h3>
+      <h3 class="panel-title">小さく始めて、今ある環境につなぐ</h3>
       <p style="line-height:1.8;opacity:.92;">
-        まずは「説明文を出す」「HTML を出す」「Excel 用 VBA を出す」「アプリの雛形コードを出す」
-        のように出口を指定します。新しい基盤がなくても、今ある環境に載せられる成果物から始めるのが近道です。
+        いきなり開発全体を任せるより、会議メモの整理、HTML の素案、VBA の下書き、
+        コード雛形のような一歩分から始めます。新しい仕組みを足す前に、既存の IDE、Excel、CI、
+        運用手順へ載せられる使い方を優先します。
       </p>
-      <p class="metric">成果物起点</p>
+      <p class="metric">現場接続</p>
     </article>
 
     <article class="card span-12">
@@ -54,19 +54,19 @@ const base = import.meta.env.BASE_URL;
       <div class="mini-grid">
         <div class="stat-item">
           <strong>説明文を整える</strong>
-          <p class="muted">要件整理、比較メモ、レビュー観点、障害説明、顧客向け報告文まで一気に下書きできます。</p>
+          <p class="muted">要件整理、比較メモ、レビュー観点、障害説明を、そのまま共有や会議に使える形で出せます。</p>
         </div>
         <div class="stat-item">
           <strong>画面をすぐ形にする</strong>
-          <p class="muted">HTML をそのまま出して、検証用 UI、簡易モック、メールテンプレートをすぐ試せます。</p>
+          <p class="muted">HTML をそのまま出し、検証用 UI、簡易モック、メールテンプレートとして即確認できます。</p>
         </div>
         <div class="stat-item">
           <strong>手作業を置き換える</strong>
-          <p class="muted">Shell、PowerShell、VBA、SQL の草案を作り、繰り返し作業や運用補助を減らせます。</p>
+          <p class="muted">Shell、PowerShell、VBA、SQL の草案を作り、繰り返し作業や運用補助に接続できます。</p>
         </div>
         <div class="stat-item">
           <strong>実装の叩き台を出す</strong>
-          <p class="muted">C#、Java、React、Spring、ASP.NET の雛形や修正案を出し、既存環境で仕上げられます。</p>
+          <p class="muted">C#、Java、React、Spring、ASP.NET の雛形や修正案を出し、既存コードベースへつなげられます。</p>
         </div>
       </div>
     </article>
@@ -78,11 +78,11 @@ const base = import.meta.env.BASE_URL;
             <span class="material-symbols-outlined" aria-hidden="true">timeline</span>
             <span class="kicker">開発フロー</span>
           </div>
-          <h3 class="panel-title">各工程では、欲しい出力形式が少しずつ変わります</h3>
+          <h3 class="panel-title">要求工学から保守まで、工程ごとに必要な成果物は変わります</h3>
         </div>
         <p class="flow-copy">
-          要件では整理文、設計では比較表、開発ではコード雛形、テストではケース一覧、デプロイでは手順書、
-          保守では調査メモのように、AI の出力を工程ごとに切り替えると全体の流れがつながります。
+          要件、設計、開発、テスト、進化と保守という流れに沿って、AI の出力形式を変えると全体の流れがつながります。
+          ここでは理論をそのまま並べるのではなく、現代の実務フローに合わせて再配置しています。
         </p>
       </div>
 
@@ -121,7 +121,7 @@ const base = import.meta.env.BASE_URL;
     </article>
   </section>
 
-  <div class="footer">各ページでは、その工程で何を出力させると役立つか、どの既存環境へつなげやすいか、すぐ試せる prompt とあわせて整理しています。</div>
+  <div class="footer">各ページでは、その工程で何を出力させると役立つか、どこまで AI に任せられるか、そして人が責任を持つべき点を簡潔に整理しています。</div>
 </BaseLayout>
 
 <script>
