@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PromptLab from '../components/PromptLab.astro';
 import CaseStudy from '../components/CaseStudy.astro';
+import { caseStudyPreviewConfig } from '../data/caseStudyPreviewConfig';
 ---
 
 <BaseLayout title="AI開発実践ガイド | 保守" current="maintenance">
@@ -130,6 +131,7 @@ __CONTEXT__
 - 13:40 に決済の再試行ロジックをリリース`}
         responseLabel="返答イメージ"
         responseLead="返答では、断定より先に『何が起きているか』と『次に何を見るか』が整理されていることが重要です。"
+        previewHref={caseStudyPreviewConfig.maintenance.previewHref}
       />
     </div>
   </section>

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PromptLab from '../components/PromptLab.astro';
 import CaseStudy from '../components/CaseStudy.astro';
+import { caseStudyPreviewConfig } from '../data/caseStudyPreviewConfig';
 ---
 
 <BaseLayout title="AI開発実践ガイド | デプロイ" current="deployment">
@@ -130,6 +131,7 @@ __CONTEXT__
 - Source は GitHub Actions を使いたい`}
         responseLabel="返答イメージ"
         responseLead="返答では、まず『どこで詰まっているか』が明確になることが大切です。"
+        previewHref={caseStudyPreviewConfig.deployment.previewHref}
       />
     </div>
   </section>

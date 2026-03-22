@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PromptLab from '../components/PromptLab.astro';
 import CaseStudy from '../components/CaseStudy.astro';
+import { caseStudyPreviewConfig } from '../data/caseStudyPreviewConfig';
 ---
 
 <BaseLayout title="AI開発実践ガイド | テスト" current="testing">
@@ -130,6 +131,7 @@ __CONTEXT__
 - CI では disabled ボタン状態に関する失敗が出ている`}
         responseLabel="返答イメージ"
         responseLead="返答では、失敗しやすい経路が順番付きで出てくることが重要です。"
+        previewHref={caseStudyPreviewConfig.testing.previewHref}
       />
     </div>
   </section>

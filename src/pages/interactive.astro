@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CaseStudy from '../components/CaseStudy.astro';
+import { caseStudyPreviewConfig } from '../data/caseStudyPreviewConfig';
 const implementationPlaybooks = [
   {
     key: 'text',
@@ -267,6 +268,7 @@ const defaultAfter = rawDefaultAfter.replace(/^\n+/, '');
 - 異常系とログ出力も含める`}
     responseLabel="返答イメージ"
     responseLead="ChatGPT には、最初から完成品を期待するのではなく、貼り込みやすい骨組みを出させる使い方が向いています。"
+    previewHref={caseStudyPreviewConfig.interactive.previewHref}
   />
     </div>
   </section>

@@ -16,7 +16,24 @@ interface Props {
   responseLabel?: string;
   responseSnippet?: string;
   previewHref?: string;
-  previewImageSrc?: string;
+}
+
+function getPreviewImageSrc(previewHref: string) {
+  const fallback = 'https://ogimg.chatgpt.com/?postId=t_69bdf3b49a548191a29e332153231e44';
+
+  try {
+    const url = new URL(previewHref);
+    const segments = url.pathname.split('/').filter(Boolean);
+    const shareId = segments.at(-1);
+
+    if (url.hostname === 'chatgpt.com' && segments[0] === 's' && shareId) {
+      return `https://ogimg.chatgpt.com/?postId=${shareId}`;
+    }
+  } catch {
+    return fallback;
+  }
+
+  return fallback;
 }
 
 const {
@@ -35,9 +52,10 @@ const {
   responseLead,
   responseSnippet = '',
   responseLabel = '出力イメージ',
-  previewHref = 'https://chatgpt.com/s/t_69bdf3b49a548191a29e332153231e44',
-  previewImageSrc = 'https://ogimg.chatgpt.com/?postId=t_69bdf3b49a548191a29e332153231e44'
+  previewHref = 'https://chatgpt.com/s/t_69bdf3b49a548191a29e332153231e44'
 } = Astro.props;
+
+const previewImageSrc = getPreviewImageSrc(previewHref);
 ---
 
 <article class="card soft span-12 case-study">
